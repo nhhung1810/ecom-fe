@@ -36,7 +36,8 @@ class HomePage extends React.Component {
                     handleClose={this.togglePopup}
                 />}
                 <button type="button">Login</button>
-            </div>
+                <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
+            </div> 
         )
     }
 }
