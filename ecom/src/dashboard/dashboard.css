@@ -1,0 +1,120 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+  
+  
+  :root{
+    --side-nav-width: 220px;
+    --white-two: #f6f6f6;
+    --white-three: #ededed;
+    --dark-grey: #202124;
+    background-color: var(--white-two);
+  }
+
+  .sidenav {
+    height: 100%;
+    width: var(--side-nav-width);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    border-style: solid;
+    border-right-color: #202124;
+    border: 0px;
+    box-shadow: 1px 0 0 0 var(--white-three);
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+  }
+
+  .main {
+    margin-left: var(--side-nav-width); /* Same as the width of the sidenav */
+    background-color: var(--white-two);
+    height: 100%;
+    position: relative;
+    bottom: 4px;
+  }
+
+  .main-logo-container{
+    text-align: center;
+    position: relative;
+    width: auto;
+    height: 104px;
+  }
+
+  .main-logo{
+    position: relative;
+    top: calc(50% - 12px); 
+  }
+
+  .title-bar{
+    position: relative;
+    height: 104px;
+    width: 100%;
+  }
+
+  .title{
+    padding-left: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    color: var(--dark-grey);
+
+    top: 50%;
+    position: absolute;
+    transform: translate(0, -50%);
+  }
+
+  .name-position{
+    top: 50%;
+    position: absolute;
+    right: 24px;
+    transform: translate(0, -50%);
+  }
+
+  .avatar-name{
+    padding-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    color: var(--dark-grey);
+
+    position: relative;
+  }
+
+  .avatar {
+    vertical-align: middle;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: white;
+
+    position: relative;
+    box-shadow: 7px 5px 33px 3px rgba(189,189,189,0.75);
+  }
+
+  .avatar-dropdown{
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+  }
+
+  .avatar-mail{
+    padding-left: 32px;
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+  }
+
+

@@ -1,11 +1,17 @@
 /* Popup style */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 /* Color variable */
 :root{
   --white-four: #d4d3d3;
-  --dark-grey: #202124
+  --dark-grey: #202124;
+  --greyish-brown: #4d4d4d;
+  --pale-orange: #ffa15f;
+  --strawberry: #f63f45;
+  --white-two: #f6f6f6;
+  --white-three: #ededed;
 }
 
 .popup-register {
@@ -21,25 +27,21 @@
     position: relative;
     width: 32%;
     margin: 0 auto;
+    margin-top: 50px; 
     height: auto;
-    max-height: 80vh;
     min-height: fit-content;
-    margin-top: 110px;
     background: #fff;
     box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.03);
-    padding: 20px;
-    overflow: hidden;
+    padding: 20px 0px 20px 0px;
   }
   
   .close-icon {
     cursor: pointer;
     position: absolute;
-    right: 0;
-    top: 5px;
+    right: 10px;
+    top: 10px;
     width: 24px;
     height: 24px;
-    margin: 0 14px 5px 42px;
-    padding: 5px 5px 5px 5px;
     object-fit: contain;
   }
 
@@ -83,9 +85,11 @@
 
   .input-input{
     font-size: 14px;
-    width: 95%;
+    width: 95%; 
     height: 22px;
     padding: 12px 0 12px 12px;
+    background-color: var(--white-two);
+    border: 0px;
   }
 
   .input-container{
@@ -96,12 +100,19 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     opacity: 0.3;
-    font-weight: 500;
+    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.57;
     letter-spacing: normal;
     color: var(--greyish-brown);
+  }
+
+  .error{
+    text-decoration-color: var(--strawberry);
+    border-radius: 4px;
+    background-color: rgba(246, 63, 69, 0.04);
+    border: solid 1px var(--strawberry);
   }
 
   .term-service{
@@ -121,8 +132,10 @@
   }
 
   .text-link{
+    cursor: pointer;
     color: #ff7413;
     text-decoration: underline;
+    font-weight: bold;
   }
 
   .register-button-container{
@@ -136,7 +149,7 @@
   }
 
   .register-button{
-    
+    cursor: pointer;
     position: relative;
     width: 75%;
     height: 50px;
@@ -144,8 +157,45 @@
     border: 0px;
   }
 
+  .valid-button{
+    background-color: var(--pale-orange);
+  }
+
   .register-button-text{
     font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
     font-size: 16px;
     color: white;
   }
+
+  .register-footer{
+    position: relative;
+    margin: 0 25% 0 25%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: var(--greyish-brown);
+  }
+
+  .invalid-password{
+    font-family: Montserrat;
+    font-size: 10px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.2;
+    letter-spacing: normal;
+    color: var(--strawberry);
+  }
+  
+  .span-line{
+    border-top: 0px;
+    background-color: var(--white-three);
+    position: relative;
+  }
+
+  
