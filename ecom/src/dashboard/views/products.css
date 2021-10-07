@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+:root{
+    --greyish: #acacac;
+    --white-three: #ededed;
+    --grey-border: #dfdfdf;
+    --search-bar-width: 280px;
+    --search-bar-height: 44px;
+    --pale-orange: #ffa15f;
+}
+
+
+.product-toolbar{
+    height: 48px;
+    position: relative;
+}
+
+.sort-label{
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: var(--greyish);
+    margin-left: 15px;
+}
+
+.right-tool-align{
+    display: inline-block;
+    position: absolute;
+    right: 368px;
+    bottom: 18px;
+}
+
+.product-search{
+    position: relative;
+    width: var(--search-bar-width);
+    height: 45px;
+}
+
+.product-search-bar{
+    border: 1px solid var(--grey-border);
+    border-radius: 3px;
+    width: var(--search-bar-width);
+    height: var(--search-bar-height);
+
+    /* TEXT */
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    margin-left: 15px;
+    color: var(--greyish);
+}
+
+.product-search-bar:focus{
+    padding-left: 40px;
+}
+
+.product-search-bar:focus::placeholder{
+    padding-left: 0px;
+}
+
+.product-search-bar:not(:focus){
+    padding-left: 40px;
+}
+
+
+
+.product-search-bar::placeholder{
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: var(--greyish);
+}
+
+.search-icon{
+    position: absolute;
+    z-index: 2;
+    display: inline;
+    top: 12px;
+    left: 25px;
+}
+
+.add-button-wrapper{
+    position: relative;
+}
+
+.add-button{
+    cursor: pointer;
+    position: absolute;
+    left: var(--search-bar-width);
+    bottom: -1px; 
+
+    /* PADDING 60 is the default to let the button right next to the search bar */
+    margin-left: calc(60px + 20px);
+    height: calc(var(--search-bar-height) + 2px);
+    width: 156px;
+    border: 0px;
+    border-radius: 3px;
+
+    /* COLOR */
+    background-color: var(--pale-orange);
+
+    /* FONT */
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    color: white;
+}
+
+.add-button-text{
+    position: relative;
+    bottom: 4px;
+}
+
+.plus-sym{
+    position: relative;
+    z-index: 2;
+    top: 3px;
+    right: 8px;
+}
+
+
+.export-button{
+    cursor: pointer;
+    position: absolute;
+    left: calc(var(--search-bar-width) + 170px);
+    bottom: -1px;
+
+    /* PADDING 60 is the default to let the button right next to the search bar */
+    margin-left: calc(60px + 20px);
+    height: calc(var(--search-bar-height) + 2px);
+    width: 112px;
+    border: 0px;
+    border-radius: 3px;
+
+    /* COLOR */
+    background-color: white;
+
+    /* FONT */
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.71;
+    letter-spacing: normal;
+    color: var(--pale-orange);
+}

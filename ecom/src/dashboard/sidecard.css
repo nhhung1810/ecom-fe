@@ -2,6 +2,7 @@
 
 :root{
     --charcoal-grey: #3d3d3f;
+    --pale-orange: #ffa15f;
 }
 
 .full-span-card{
@@ -15,9 +16,19 @@
     letter-spacing: normal;
     color: var(--charcoal-grey);
     margin: auto;
-    margin-left: 30px;
     padding: 10px;
-    margin-bottom: 8px; 
+    padding-left: 40px;
+    margin-bottom: 8px;
+}
+
+.active-side-card{
+    padding-left: calc(40px - 6px);
+    border-style: solid;
+    border-width: 6px;
+    border-right: 0px;
+    border-top: 0px;  
+    border-bottom: 0px;
+    border-color: var(--pale-orange);
 }
 
 .logo-label{
@@ -29,5 +40,9 @@
     position: relative;
     top: 7px;
     right: 20px; 
+}
+
+a:link{
+    text-decoration: none;
 }
 
