@@ -69,6 +69,7 @@ class HomePage extends React.Component {
                         this.state.isLoginOpen && <Login handleClose={this.toggleLoginPopup} handleChange={this.loginToRegister} />
                     }
                     <Link to="/dashboard"><button type='button'>Seller Dashboard</button></Link>
+                    <Link to="/logindash"><button type="button">Login Dash</button></Link>
                     {/* <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
                     <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
                     <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>

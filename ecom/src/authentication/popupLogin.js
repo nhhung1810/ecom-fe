@@ -3,6 +3,8 @@ import './popupLogin.css';
 import './checkbox.css'
 import validator from 'validator';
 
+const axios = require('axios').default;
+
 const InvalidInput = () => {
     return (
         <div className="invalid-input">Your email/password is invalid</div>
@@ -80,7 +82,7 @@ const Login = props => {
                         <div className="input-group">
                             <div className="input-label"> Password </div>
                             <div className="input-container">
-                                <input onChange={changePassword} className={inputStyle()} type="text" placeholder="Enter your password..."></input>
+                                <input onChange={changePassword} className={inputStyle()} type="password" placeholder="Enter your password..."></input>
                             </div>
                         </div>
 

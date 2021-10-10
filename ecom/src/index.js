@@ -11,6 +11,7 @@ import './index.css';
 
 import HomePage from "./home/homepage.js";
 import Dashboard from './dashboard/dashboard';
+import LoginDash from './dashboard/loginDash';
 
 const App = () => {
     return (
@@ -22,6 +23,9 @@ const App = () => {
                         </Route>
                         <Route path="/dashboard">
                             <Dashboard/>
+                        </Route>
+                        <Route path="/logindash">
+                            <LoginDash/>
                         </Route>
                     </Switch>
                 </div>

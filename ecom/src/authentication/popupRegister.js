@@ -110,7 +110,7 @@ const Register = props => {
                         <div className="input-group">
                             <div className="input-label"> Password </div>
                             <div className="input-container">
-                                <input onChange={changePassword} className={inputStyle()} type="text" placeholder="Enter your password..."></input>
+                                <input onChange={changePassword} className={inputStyle()} type="password" placeholder="Enter your password..."></input>
                             </div>
                         </div>
                         {(errorState && !isValidPassword) ? <InvalidPassword /> : null}
