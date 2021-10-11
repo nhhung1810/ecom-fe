@@ -11,6 +11,7 @@ import Register from "../popupAuth/popupRegister.js";
 import Login from "../popupAuth/popupLogin.js"
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/auth.redux";
+import { signoutAPI } from "../../api/auth.api";
 
 const HomePage = props => {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false) 
@@ -18,7 +19,7 @@ const HomePage = props => {
 
     const dispatch = useDispatch()
 
-    
+
 
     const toggleRegisterPopup = () => {
         if (isLoginOpen) setIsLoginOpen(false)
@@ -48,8 +49,9 @@ const HomePage = props => {
         }
     }
 
-    const logout = () =>{
-        dispatch(signout())
+    const logout = async () =>{
+        const response = await signoutAPI();
+        if(response) dispatch(signout())
     }
 
         return (
