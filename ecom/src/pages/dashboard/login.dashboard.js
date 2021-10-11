@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './loginDash.css';
+import "./login.dashboard.css";
 import {Redirect, useHistory} from "react-router-dom"
 import validator from 'validator';
 
