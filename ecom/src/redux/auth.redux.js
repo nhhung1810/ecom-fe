@@ -9,10 +9,14 @@ export const authStore = createSlice({
     signin : (state, action) => {
       state.user = action.payload
     },
+
+    signout : (state) => {
+      state.user = null
+    },
   }
 })
 
-export const {signin} = authStore.actions
+export const {signin, signout} = authStore.actions
 
 export default authStore.reducer
 

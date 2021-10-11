@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,65 +9,61 @@ import "./index.css"
 
 import Register from "../popupAuth/popupRegister.js";
 import Login from "../popupAuth/popupLogin.js"
+import { useDispatch } from "react-redux";
+import { signout } from "../../redux/auth.redux";
 
-class HomePage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isRegisterOpen: false,
-            isLoginOpen: false,
-        }
-    }
+const HomePage = props => {
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false) 
+    const [isLoginOpen, setIsLoginOpen] = useState(false)
 
-    toggleRegisterPopup = () => {
-        // console.log(this);
-        let reg = this.state.isRegisterOpen;
-        // let log = this.state.isLoginOpen;
-        this.setState({ isRegisterOpen: !reg });
-        if (this.state.isLoginOpen) this.setState({ isLoginOpen: false });
+    const dispatch = useDispatch()
+
+    
+
+    const toggleRegisterPopup = () => {
+        if (isLoginOpen) setIsLoginOpen(false)
+        setIsRegisterOpen(!isRegisterOpen)
         return;
     }
 
-    toggleLoginPopup = () => {
-        // let reg = this.state.isRegisterOpen;
-        let log = this.state.isLoginOpen;
-        if (this.state.isRegisterOpen)
-            this.setState({ isRegisterOpen: false });
-        this.setState({ isLoginOpen: !log });
+    const toggleLoginPopup = () => {
+        if (isRegisterOpen) setIsRegisterOpen(false)
+        setIsLoginOpen(!isLoginOpen)
         return;
     }
 
-    loginToRegister = () => {
-        let log = this.state.isLoginOpen;
-        if (!log) this.toggleRegisterPopup();
+    const loginToRegister = () => {
+        if (!isLoginOpen) toggleRegisterPopup();
         else {
-            this.setState({ isLoginOpen: false });
-            this.setState({ isRegisterOpen: true });
+            setIsLoginOpen(false)
+            setIsRegisterOpen(true)
         }
     }
 
-    registerToLogin = () => {
-        let reg = this.state.isRegisterOpen;
-        if (!reg) this.toggleRegisterPopup();
+    const registerToLogin = () => {
+        if (!isRegisterOpen) toggleRegisterPopup();
         else {
-            this.setState({ isLoginOpen: true });
-            this.setState({ isRegisterOpen: false });
+            setIsLoginOpen(true)
+            setIsRegisterOpen(false)
         }
     }
 
-    render() {
+    const logout = () =>{
+        dispatch(signout())
+    }
 
         return (
                 <div>
-                    <button type="button" onClick={this.toggleRegisterPopup}>Register</button>
+                    <button type="button" onClick={toggleRegisterPopup}>Register</button>
                     {
-                        this.state.isRegisterOpen && <Register handleClose={this.toggleRegisterPopup} handleChange={this.registerToLogin} />
+                        isRegisterOpen && <Register handleClose={toggleRegisterPopup} handleChange={registerToLogin} />
                     }
-                    <button type="button" onClick={this.toggleLoginPopup}>Login</button>
+                    <button type="button" onClick={toggleLoginPopup}>Login</button>
                     {
-                        this.state.isLoginOpen && <Login handleClose={this.toggleLoginPopup} handleChange={this.loginToRegister} />
+                        isLoginOpen && <Login handleClose={toggleLoginPopup} handleChange={loginToRegister} />
                     }
                     <Link to="/logindash"><button type="button">Login Dash</button></Link>
+                    <button type="button" onClick={logout}>Log out</button>
                     {/* <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
                     <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
                     <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
@@ -76,7 +72,6 @@ class HomePage extends React.Component {
                     <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p> */}
                 </div>  
         )
-    }
 }
 
 export default HomePage;
