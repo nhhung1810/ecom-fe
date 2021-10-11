@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './popupRegister.css';
+import './popup.register.css';
 import validator from 'validator';
 import { Redirect } from "react-router-dom";
 import { signupAPI } from "../../api/auth.api";

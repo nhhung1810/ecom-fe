@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import "./index.css"
 
-import Register from "../popupAuth/popupRegister.js";
-import Login from "../popupAuth/popupLogin.js"
+import Register from "../popup.auth/popup.register.js";
+import Login from "../popup.auth/popup.login.js"
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/auth.redux";
 import { signoutAPI } from "../../api/auth.api";
@@ -64,14 +64,10 @@ const HomePage = props => {
                     {
                         isLoginOpen && <Login handleClose={toggleLoginPopup} handleChange={loginToRegister} />
                     }
+
                     <Link to="/logindash"><button type="button">Login Dash</button></Link>
+                    
                     <button type="button" onClick={logout}>Log out</button>
-                    {/* <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
-                    <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
-                    <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
-                    <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
-                    <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p>
-                    <p className="fill-page"><object data="./images/text.txt" className="fill-page"></object></p> */}
                 </div>  
         )
 }

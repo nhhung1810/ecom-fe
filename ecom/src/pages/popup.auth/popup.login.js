@@ -1,9 +1,10 @@
-import React, { useReducer, useState } from "react";
-import './popupLogin.css';
+import React, { useEffect, useReducer, useState } from "react";
+import { ReactDOM } from "react";
+import './popup.login.css';
 import './checkbox.css'
 import validator from 'validator';
 import { Redirect } from "react-router";
-import { signin, selectAuthUser } from "../../redux/auth.redux";
+import { signin, selectAuthUser, selectRemember, setRemember } from "../../redux/auth.redux";
 import { useDispatch, useSelector } from "react-redux";
 import { signinAPI } from "../../api/auth.api";
 
@@ -22,8 +23,19 @@ const Login = props => {
 
     const [errorState, setErrorState] = useState(false);
     const [redirect, setRedirect] = useState('');
-
+    
     let user = useSelector(selectAuthUser);
+    let remember = useSelector(selectRemember);
+    const [isRemember, setIsRemember] = useState(remember !== null);
+    
+    useEffect(() => {
+        if(isRemember) {
+            setEmail(remember);
+            setIsValidEmail(true);
+        }
+        console.log(email)
+    })
+    
     const dispatch = useDispatch();
 
     if(user != null){
@@ -61,9 +73,13 @@ const Login = props => {
         setPassword(e.target.value);
     }
 
+    const handleRemember = e => {
+        console.log(remember)
+        setIsRemember(!isRemember)
+    }
+
     const handleSubmit = async e => {
         if (!isValidInput) {
-            //if try to submit with invalid state, we will change to error ui
             setErrorState(true);
             e.preventDefault();
             return;
@@ -74,6 +90,10 @@ const Login = props => {
         const response = await signinAPI(email, password);
         if(response){
             dispatch(signin(email))
+
+            if(isRemember) dispatch(setRemember(email))
+            else dispatch(setRemember(null))
+
             setRedirect("dashboard")
         } else {
             setRedirect("index")
@@ -105,7 +125,8 @@ const Login = props => {
                         <div className="input-group">
                             <div className="input-label"> Email </div>
                             <div className="input-container">
-                                <input onChange={changeEmail} className={inputStyle()} type="text" placeholder="Enter your email..."></input>
+                                <input onChange={changeEmail} defaultValue={remember}
+                                    className={inputStyle()} type="text" placeholder="Enter your email..."></input>
                             </div>
                         </div>
 
@@ -119,7 +140,7 @@ const Login = props => {
                         <div className="remember-block">
                             <label className="control control-checkbox">
                                 Remember password
-                                <input type="checkbox" className="inline-checkbox"/>
+                                <input type="checkbox" className="inline-checkbox" onChange={handleRemember} defaultChecked={remember !== null}/>
                                 <span className="control_indicator"></span>
                             </label>
                             <span className="forgot-password">
