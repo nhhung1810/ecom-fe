@@ -10,9 +10,7 @@ import {
 
 import "./dashboard.css"
 import "./sidecard.css"
-
-import Order from "./views/orders.js"
-import Product from "./views/products"
+import { Order, Product } from "./views";
 
 import { selectAuthUser } from "../../../redux/auth.redux";
 import { useSelector } from "react-redux";

@@ -12,12 +12,12 @@
 }
 
 
-.product-toolbar{
+.products__product-toolbar{
     height: 48px;
     position: relative;
 }
 
-.sort-label{
+.products__sort-label{
     font-family: Montserrat, sans-serif;
     font-size: 12px;
     font-weight: 600;
@@ -29,20 +29,20 @@
     margin-left: 15px;
 }
 
-.right-tool-align{
+.products__right-tool-align{
     display: inline-block;
     position: absolute;
     right: 368px;
     bottom: 18px;
 }
 
-.product-search{
+.products__product-search{
     position: relative;
     width: var(--search-bar-width);
     height: 45px;
 }
 
-.product-search-bar{
+.products__product-search-bar{
     border: 1px solid var(--grey-border);
     border-radius: 3px;
     width: var(--search-bar-width);
@@ -60,21 +60,21 @@
     color: var(--greyish);
 }
 
-.product-search-bar:focus{
+.products__product-search-bar:focus{
     padding-left: 40px;
 }
 
-.product-search-bar:focus::placeholder{
+.products__product-search-bar:focus::placeholder{
     padding-left: 0px;
 }
 
-.product-search-bar:not(:focus){
+.products__product-search-bar:not(:focus){
     padding-left: 40px;
 }
 
 
 
-.product-search-bar::placeholder{
+.products__product-search-bar::placeholder{
     font-family: Montserrat, sans-serif;
     font-size: 12px;
     font-weight: 600;
@@ -85,7 +85,7 @@
     color: var(--greyish);
 }
 
-.search-icon{
+.products__search-icon{
     position: absolute;
     z-index: 2;
     display: inline;
@@ -93,11 +93,11 @@
     left: 25px;
 }
 
-.add-button-wrapper{
+.products__button-wrapper{
     position: relative;
 }
 
-.add-button{
+.products__add-button{
     cursor: pointer;
     position: absolute;
     left: var(--search-bar-width);
@@ -124,12 +124,12 @@
     color: white;
 }
 
-.add-button-text{
+.products__add-button-text{
     position: relative;
     bottom: 4px;
 }
 
-.plus-sym{
+.products__plus-sym{
     position: relative;
     z-index: 2;
     top: 3px;
@@ -137,7 +137,7 @@
 }
 
 
-.export-button{
+.products__export-button{
     cursor: pointer;
     position: absolute;
     left: calc(var(--search-bar-width) + 170px);
