@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import "./login.dashboard.css";
-import {Redirect, useHistory} from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 import validator from 'validator';
 
-import { signinAPI } from "../../api/auth.api";
-import { signin, selectAuthUser } from "../../redux/auth.redux";
+import { signinAPI } from "../../../api/auth.api";
+import { signin, selectAuthUser } from "../../../redux/auth.redux";
 import { useDispatch, useSelector } from "react-redux";
 
-const InvalidInput = () => {
-    return (
-        <div className="invalid-input">Your email/password is invalid</div>
-    )
-}
+import { DashboardLoginButton, DashboardLoginGroupInput } from "./components";
+
 
 const LoginDash = props => {
     const [email, setEmail] = useState('');
@@ -25,8 +22,8 @@ const LoginDash = props => {
     let user = useSelector(selectAuthUser);
     const dispatch = useDispatch()
 
-    if(user != null){
-        return(
+    if (user != null) {
+        return (
             <Redirect to="/dashboard"></Redirect>
         )
     }
@@ -70,54 +67,68 @@ const LoginDash = props => {
         e.preventDefault();
         console.log(`email: ${email}, password: ${password}`);
         const response = await signinAPI(email, password);
-        if(response === true){
+        if (response === true) {
             dispatch(signin(email))
             history.push("/dashboard")
         }
     }
 
-   
+
 
     return (
         <div className="dash-background">
             <img src={process.env.PUBLIC_URL + "./images/login-dash-bg.png"} className="bg"></img>
             <div className="dash-box">
-                <div className="dash-login-header">
-                    Login
-                </div>
+                <Header />
                 {errorState ? <InvalidInput /> : null}
                 <form onSubmit={handleSubmit}>
                     <div className="dash-login-form">
-                        <div className="dash-input-group">
-                            <div className="dash-input-label"> EMAIL </div>
-                            <div className="dash-input-container">
-                                <input onChange={changeEmail} className={inputStyle()} type="text" placeholder="Enter your email..."></input>
-                            </div>
-                        </div>
+                        <DashboardLoginGroupInput
+                            label={"EMAIL"}
+                            handleChange={changeEmail}
+                            styling={inputStyle()}
+                            type={"text"}
+                            placeholder={"Enter your email..."}
+                        />
 
-                        <div className="dash-input-group">
-                            <div className="dash-input-label"> PASSWORD </div>
-                            <div className="dash-input-container">
-                                <input onChange={changePassword} className={inputStyle()} type="password" placeholder="Enter your password..."></input>
-                            </div>
-                        </div>
-
+                        <DashboardLoginGroupInput
+                            label={"PASSWORD"}
+                            handleChange={changePassword}
+                            styling={inputStyle()}
+                            type={"password"}
+                            placeholder={"Enter your password..."}
+                        />
                     </div>
 
-                    <div className="dash-login-button-container">
-                        <div className="dash-center-button">
-                            <button className={validInput()} type="submit">
-                                <span className="dash-login-button-text">Log in</span>
-                            </button>
-                        </div>
-                    </div>
+                    <DashboardLoginButton styling={validInput()} />
                 </form>
-                <div className="dash-forgot-container">
-                    <div className="dash-forgot-password"> Forgot password? </div>
-                </div>
+                <DashboardForgotPassword/>
             </div>
         </div>
     )
 }
+
+const Header = props => {
+    return (
+        <div className="dash-login-header">
+            Login
+        </div>
+    )
+}
+
+const InvalidInput = () => {
+    return (
+        <div className="dash-invalid-input">Your email/password is invalid</div>
+    )
+}
+
+const DashboardForgotPassword = () => {
+    return (
+        <div className="dash-forgot-container">
+            <div className="dash-forgot-password"> Forgot password? </div>
+        </div>
+    )
+}
+
 
 export default LoginDash;

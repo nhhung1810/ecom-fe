@@ -14,25 +14,23 @@ import store, {persistor} from "./redux/store";
 
 
 import HomePage from "./pages/home/homepage.js";
-import Dashboard from './pages/dashboard/dashboard';
-import LoginDash from './pages/dashboard/login.dashboard';
+import Dashboard from './pages/seller/dashboard/dashboard';
+import LoginDash from './pages/seller/login/login.dashboard';
 
 const App = () => {
     return (
         <Router>
-            <div>   
-                <Switch>
-                    <Route exact path="/">
-                        <HomePage />
-                    </Route>
-                    <Route path="/dashboard">
-                        <Dashboard/>
-                    </Route>
-                    <Route path="/logindash">
-                        <LoginDash/>
-                    </Route>
-                </Switch>
-            </div>
+            <Switch>
+                <Route exact path="/">
+                    <HomePage />
+                </Route>
+                <Route path="/dashboard">
+                    <Dashboard/>
+                </Route>
+                <Route path="/logindash">
+                    <LoginDash/>
+                </Route>
+            </Switch>
         </Router>
     )
 }

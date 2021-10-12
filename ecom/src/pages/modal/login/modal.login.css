@@ -15,7 +15,7 @@
   --white-three: #ededed;
 }
 
-.popup-login {
+.modal__popup-login {
     position: fixed;
     background: #00000050;
     width: 100%;
@@ -24,7 +24,7 @@
     left: 0;
   }
   
-  .box {
+  .modal__box {
     position: relative;
     width: 32%;
     margin: 0 auto;
@@ -36,7 +36,7 @@
     padding: 20px 0px 20px 0px;
   }
   
-  .close-icon {
+  .modal__close-icon {
     cursor: pointer;
     position: absolute;
     right: 10px;
@@ -46,7 +46,7 @@
     object-fit: contain;
   }
 
-  .login-header{
+  .modal__login-header{
     height: 42px;
     position: relative;
     margin: auto;
@@ -63,7 +63,7 @@
     color: var(--dark-grey);
   }
 
-  .invalid-input{
+  .modal__invalid-input{
     height: 42px;
     position: relative;
     margin: auto;
@@ -78,13 +78,13 @@
     color: var(--strawberry);
   }
 
-  .login-form{
+  .modal__login-form{
     margin: 0 12% 0 12%;
     font-family: 'Montserrat', sans-serif;
     height: auto;
   }
 
-  .input-label{
+  .modal__input-label{
     font-size: 12px;
     font-weight: bolder;
     font-stretch: normal;
@@ -95,22 +95,22 @@
     margin-bottom: 8px;
   }
 
-  .input-group{
+  .modal__input-group{
     margin-top: 24px;
   }
 
-  .input-input{
+  .modal__input-input{
     font-size: 14px;
     width: 95%;
     height: 22px;
     padding: 12px 0 12px 12px;
   }
 
-  .input-container{
+  .modal__input-container{
     width: 100%;
   }
 
-  .input-input::placeholder{
+  .modal__input-input::placeholder{
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     opacity: 0.3;
@@ -122,30 +122,30 @@
     color: var(--greyish-brown);
   }
 
-  .error{
+  .modal__error{
     border-radius: 4px;
     background-color: rgba(246, 63, 69, 0.04);
     border: solid 1px var(--strawberry);
   }
 
-  .text-link{
+  .modal__text-link{
     cursor: pointer;
     color: #ff7413;
     text-decoration: underline;
     font-weight: bold;
   }
 
-  .login-button-container{
+  .modal__login-button-container{
     margin: 45px auto 63px auto;
     position: relative;
   }
 
-  .center-button{
+  .modal__center-button{
     display: flex;
     justify-content: center;
   }
 
-  .login-button{
+  .modal__login-button{
     cursor: pointer;
     position: relative;
     width: 75%;
@@ -154,18 +154,18 @@
     border: 0px;
   }
 
-  .valid-button{
+  .modal__valid-button{
     background-color: var(--pale-orange);
   }
 
-  .login-button-text{
+  .modal__login-button-text{
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 16px;
     color: white;
   }
 
-  .login-footer{
+  .modal__login-footer{
     position: relative;
     margin: 0 25% 0 25%;
     font-family: 'Montserrat', sans-serif;
@@ -178,7 +178,7 @@
     color: var(--greyish-brown);
   }
 
-  .invalid-password{
+  .modal__invalid-password{
     font-family: Montserrat;
     font-size: 10px;
     font-weight: 500;
@@ -189,12 +189,12 @@
     color: var(--strawberry);
   }
 
-  .remember-block{
+  .modal__remember-block{
     font-family: 'Montserrat', sans-serif;
     margin-top: 26px;
   }
 
-  .forgot-password{
+  .modal__forgot-password{
     cursor: pointer;
     float: right;
     font-size: 14px;
@@ -207,7 +207,7 @@
     color: var(--greyish-brown);
   }
 
-  .span-line{
+  .modal__span-line{
     border-top: 0px;
     background-color: var(--white-three);
     position: relative;

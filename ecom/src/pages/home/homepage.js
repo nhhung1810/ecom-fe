@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import "./index.css"
 
-import Register from "../popup.auth/popup.register.js";
-import Login from "../popup.auth/popup.login.js"
+import Register from "../modal/register/modal.register.js";
+import Login from "../modal/login/modal.login.js"
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/auth.redux";
 import { signoutAPI } from "../../api/auth.api";

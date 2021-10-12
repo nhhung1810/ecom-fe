@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import authRedux from './auth.redux'
 import { persistStore, persistReducer } from 'redux-persist'
@@ -17,6 +17,9 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 
 const store = configureStore({
   reducer: persistedReducer,
+  middleware : (getDefaultMiddleware) =>  getDefaultMiddleware({
+    serializableCheck : false,
+  })
 })
 
 export const persistor = persistStore(store);
