@@ -3,11 +3,27 @@ import "./product.css";
 
 import Dropdown from "../dropdown/Dropdown"
 
-import { ProductSearchBar, ProductAddButton, ProductExportButton } from "./components";
+import { ProductSearchBar, ProductAddButton, ProductExportButton, ProductTable } from "./components";
 
 
 
 const Product = props => {
+    const onSortChange = (item, name) => {
+        // TODO: add sort 
+        console.log(item, name)
+    }
+
+    return (
+        <div>
+            <ToolBar handleChange={onSortChange}></ToolBar>
+            <ProductTable />
+        </div>
+    )
+}
+
+
+
+const ToolBar = props => {
     const locations = [
         {
             label: "Date added",
@@ -23,10 +39,6 @@ const Product = props => {
         }
     ];
 
-    const onChange = (item, name) => {
-        // TODO: add sort 
-        console.log(item, name)
-    }
 
     return (
         <div className="products__product-toolbar">
@@ -35,7 +47,7 @@ const Product = props => {
                 name="location"
                 title="Select location"
                 list={locations}
-                onChange={onChange}
+                onChange={props.handleChange}
                 select={{ value: "1" }}
             />
             <div className="products__right-tool-align">
