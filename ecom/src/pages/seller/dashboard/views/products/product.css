@@ -124,9 +124,12 @@
     color: white;
 }
 
+
 .products__add-button-text{
     position: relative;
     bottom: 4px;
+    text-decoration: none;
+    /* color: white; */
 }
 
 .products__plus-sym{

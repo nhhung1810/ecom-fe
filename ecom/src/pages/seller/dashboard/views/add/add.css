@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+
+:root{
+    --dark-grey: #202124;
+    --white-three: #ededed;
+    --greyish: #acacac;
+}
+
+.add__container{
+    font-family: Montserrat, sans-serif;
+    margin-right: 220px;
+    height: calc(732px + 270px);
+    text-align: end;
+}
+
+.add__photo-container{
+
+}
+
+.add__photo-label{
+    position: relative;
+    top: 128px;
+
+    /* TEXT */
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: right;
+    color: var(--dark-grey);
+}
+
+.add__photo{
+    display: inline-block;
+    height: 270px;
+    margin-bottom: 16px;
+}
+
+.add__photo-card{
+    vertical-align: top;
+    cursor: pointer;
+    display: inline-block;
+    border: dashed 1px var(--white-three);
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 180px;
+    height: 270px;
+    margin-left: 20px
+}
+
+.add__photo-icon-container{
+    display: inline-block;
+    position: relative;
+    /* ALIGN CENTER THE BUTTON */
+    top: 110px;
+    right: 57px;
+
+    /* TEXT */
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.83;
+    letter-spacing: normal;
+    color: var(--greyish);
+}
+
+.add__photo-icon{
+    display: block;
+    position: relative;
+    left: 33%;
+    margin-bottom: 8px;
+}
+
+.add__photo-note{
+    position: relative;
+    right: 260px;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: var(--greyish);
+}

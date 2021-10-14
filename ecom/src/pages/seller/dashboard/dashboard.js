@@ -14,6 +14,7 @@ import { Order, Product } from "./views";
 
 import { selectAuthUser } from "../../../redux/auth.redux";
 import { useSelector } from "react-redux";
+import { AddPage } from "./views/add/product.add";
 
 
 
@@ -145,9 +146,14 @@ const MainView = props => {
                     <Order />
                 </Route>
 
-                <Route path={`${props.path}/product`}>
+                <Route exact path={`${props.path}/product`}>
                     <Header name="Products"></Header>
-                    <Product />
+                    <Product/>
+                </Route>
+
+                <Route path={`${props.path}/product/add`}>
+                    <Header name="Add product"></Header>
+                    <AddPage/>
                 </Route>
 
                 <Route path={`${props.path}/payment`}>
