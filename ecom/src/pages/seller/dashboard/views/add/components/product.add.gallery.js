@@ -53,16 +53,16 @@ export const AddPhotoGallery = props => {
                 className="add__photo-input-hidden"
                 ref={hiddenFileInput} />
             <span className="add__photo-label">PHOTOS</span>
-            <PhotoRow 
-                id={1} 
+            <PhotoRow
+                id={1}
                 handleClose={handleClose(0)}
-                handleUpload={handleUpload} 
+                handleUpload={handleUpload}
                 url={url.slice(0, 4)} />
-            {isOverflow && 
-                <PhotoRow 
-                    id={2} 
+            {isOverflow &&
+                <PhotoRow
+                    id={2}
                     handleClose={handleClose(1)}
-                    handleUpload={handleUpload} 
+                    handleUpload={handleUpload}
                     url={url.slice(4, 8)} />
             }
             <p className='add__photo-note'>
@@ -76,21 +76,21 @@ export const AddPhotoGallery = props => {
 const PhotoRow = props => {
     return (
         <span className="add__photo">
-            <PhotoCard 
-                url={props.url[0]} 
-                handleClose={props.handleClose(0)} 
+            <PhotoCard
+                url={props.url[0]}
+                handleClose={props.handleClose(0)}
                 handleUpload={props.handleUpload} />
-            <PhotoCard 
-                url={props.url[1]} 
-                handleClose={props.handleClose(1)} 
+            <PhotoCard
+                url={props.url[1]}
+                handleClose={props.handleClose(1)}
                 handleUpload={props.handleUpload} />
-            <PhotoCard 
-                url={props.url[2]} 
-                handleClose={props.handleClose(2)} 
+            <PhotoCard
+                url={props.url[2]}
+                handleClose={props.handleClose(2)}
                 handleUpload={props.handleUpload} />
-            <PhotoCard 
-                url={props.url[3]} 
-                handleClose={props.handleClose(3)} 
+            <PhotoCard
+                url={props.url[3]}
+                handleClose={props.handleClose(3)}
                 handleUpload={props.handleUpload} />
         </span>
     )
@@ -101,9 +101,9 @@ const PhotoCard = props => {
         <div className="add__photo-card">
             {
                 props.url == undefined ?
-                <PhotoCardNoImage handleUpload={props.handleUpload} />
-                :
-                <PhotoCardWithImage url={props.url} handleClose={props.handleClose} />
+                    <PhotoCardNoImage handleUpload={props.handleUpload} />
+                    :
+                    <PhotoCardWithImage url={props.url} handleClose={props.handleClose} />
             }
         </div>
     )
