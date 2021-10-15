@@ -1,50 +1,60 @@
 import React, { useState } from "react";
+import {
+    AddSubmitButton,
+    AddDescriptionInput,
+    AddNameInput,
+    AddPhotoGallery,
+    GeneralInput
+} from "./components";
 import "./add.css"
 
 export const AddPage = props => {
+    const [name, setName] = useState('')
+    const [ctg, setCtg] = useState('') // concatenate of value
+    const [brand, setBrand] = useState('')
+    const [price, setPrice] = useState(0)
+    const [size, setSize] = useState('') // concatenate of value
+    const [colors, setColors] = useState('') //concatenate of value
+    const [quantity, setQuantity] = useState(0)
+    const [des, setDes] = useState('')
+
+    // console.log(name)
+    // console.log(ctg)
+    // console.log(brand)
+    // console.log(price)
+    // console.log(size)
+    // console.log(colors)
+    // console.log(quantity)
+    // console.log(des)
+
     return (
         <div className="add__container">
-            <PhotoGallery></PhotoGallery>
-        </div>
-    )
-}
-
-const PhotoGallery = props => {
-    const [isOverflow, setIsOverflow] = useState(false)
-
-    return (
-        <div className="add__photo-container">
-            <span className="add__photo-label">Photos</span>
-            <PhotoRow />
-            {isOverflow && <PhotoRow />}
-            <p className='add__photo-note'>
-                You can add up to 8 photos. 
-                The 1st photo will be set as cover (main photo)
-            </p>
-        </div>
-    )
-}
-
-const PhotoRow = props => {
-    return (
-        <span className="add__photo">
-            <PhotoCard />
-            <PhotoCard />
-            <PhotoCard />
-            <PhotoCard />
-        </span>
-    )
-}
-
-const PhotoCard = props => {
-    return (
-        <div className="add__photo-card">
-            <div className="add__photo-icon-container">
-                <img className="add__photo-icon"
-                    src={process.env.PUBLIC_URL + "/images/add.svg"}>
-                </img>
-                Add Photo
-            </div>
+            <p className="add__title">Products / Add Product</p>
+            <form>
+                <AddPhotoGallery />
+                <AddNameInput 
+                    handleChange={(e) => { setName(e.target.value) }} />
+                <GeneralInput 
+                    handleChange={(e) => { setCtg(e.target.value) }} 
+                    type="text" label={"CATEGORIES"} />
+                <GeneralInput 
+                    handleChange={(e) => { setBrand(e.target.value) }} 
+                    type="text" label={"BRAND"} />
+                <GeneralInput 
+                    handleChange={(e) => { setPrice(e.target.value) }} 
+                    type="number" label={"PRICE ($)"} />
+                <GeneralInput 
+                    handleChange={(e) => { setSize(e.target.value) }} 
+                    type="text" label={"SIZE"} />
+                <GeneralInput 
+                    handleChange={(e) => { setColors(e.target.value) }} 
+                    type="text" label={"COLORS"} />
+                <GeneralInput 
+                    handleChange={(e) => { setQuantity(e.target.value) }} 
+                    type="number" label={"QUANTITY"} />
+                <AddDescriptionInput handleChange={(e) => { setDes(e.target.value) }} />
+                <AddSubmitButton />
+            </form>
         </div>
     )
 }
