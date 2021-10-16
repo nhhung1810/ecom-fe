@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
     AddSubmitButton,
     AddDescriptionInput,
@@ -9,6 +10,7 @@ import {
 import "./add.css"
 
 export const AddPage = props => {
+    const [images, setImages] = useState([])
     const [name, setName] = useState('')
     const [ctg, setCtg] = useState('') // concatenate of value
     const [brand, setBrand] = useState('')
@@ -18,20 +20,26 @@ export const AddPage = props => {
     const [quantity, setQuantity] = useState(0)
     const [des, setDes] = useState('')
 
-    // console.log(name)
-    // console.log(ctg)
-    // console.log(brand)
-    // console.log(price)
-    // console.log(size)
-    // console.log(colors)
-    // console.log(quantity)
-    // console.log(des)
+    const history = useHistory()
+
+    const handleSubmit = e =>{
+        e.preventDefault()
+        console.log(images)
+        console.log(name)
+        console.log(ctg)
+        console.log(brand)
+        console.log(price)
+        console.log(size)
+        console.log(colors)
+        console.log(quantity)
+        console.log(des)
+    }
 
     return (
         <div className="add__container">
             <p className="add__title">Products / Add Product</p>
-            <form>
-                <AddPhotoGallery />
+            <form onSubmit={handleSubmit}>
+                <AddPhotoGallery setImages={setImages} />
                 <AddNameInput 
                     handleChange={(e) => { setName(e.target.value) }} />
                 <GeneralInput 

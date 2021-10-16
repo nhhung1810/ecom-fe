@@ -6,15 +6,11 @@ export const AddPhotoGallery = props => {
     const hiddenFileInput = useRef(null)
     const [url, setUrl] = useState([])
 
-    console.log("The gallery level: ", imageList.length)
-    console.log(imageList)
-    console.log("URL LIST: ", url)
-
     useLayoutEffect(() => {
+        props.setImages(imageList)
         let tmp = imageList.map(data => {
             return URL.createObjectURL(data)
         })
-
         setUrl(tmp)
     }, [imageList])
 
