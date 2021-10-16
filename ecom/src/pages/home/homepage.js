@@ -12,7 +12,7 @@ import Login from "../modal/login/modal.login.js"
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/auth.redux";
 import { signoutAPI } from "../../api/auth.api";
-import { uploadAPI } from "../../api/upload.api";
+import { imageUploadAPI, uploadAPI } from "../../api/upload.api";
 
 const HomePage = props => {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false) 
@@ -68,7 +68,7 @@ const HomePage = props => {
                     "productId" : 1
                 }
             ]
-            const response = await uploadAPI(file)
+            const response = await imageUploadAPI(file)
             console.log(response);
         }
     }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import {
     AddSubmitButton,
     AddDescriptionInput,
@@ -8,6 +7,7 @@ import {
     GeneralInput
 } from "./components";
 import "./add.css"
+import { imageUploadAPI, productAPI } from "../../../../../api/upload.api";
 
 export const AddPage = props => {
     const [images, setImages] = useState([])
@@ -20,19 +20,45 @@ export const AddPage = props => {
     const [quantity, setQuantity] = useState(0)
     const [des, setDes] = useState('')
 
-    const history = useHistory()
+    const handleSubmit = async e => {
+        // TODO: VALID ALL ENTRY
+        e.preventDefault();
 
-    const handleSubmit = e =>{
-        e.preventDefault()
-        console.log(images)
-        console.log(name)
-        console.log(ctg)
-        console.log(brand)
-        console.log(price)
-        console.log(size)
-        console.log(colors)
-        console.log(quantity)
-        console.log(des)
+        // Phase upload data
+        const productData = {
+            "name": name,
+            "ctg": ctg,
+            "brand": brand,
+            "price": price,
+            "size": size,
+            "colors": colors,
+            "quantity": quantity,
+            "des": des,
+        }
+
+        // Should get the ID of the product
+        // const productID = await productAPI(productData)
+        let imgPromise = images.map(data => new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onloadend = () => resolve(reader.result)
+            reader.onerror = reject
+            reader.readAsDataURL(data)
+        }))
+        try {
+            let values = await Promise.all(imgPromise)
+            console.log(values)
+            let imageData = values.map(data => {
+                return {
+                    "data": data,
+                    "productId": 1
+                }
+            })
+            // let response = await imageUploadAPI(imageData)
+            // console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     return (
@@ -40,25 +66,25 @@ export const AddPage = props => {
             <p className="add__title">Products / Add Product</p>
             <form onSubmit={handleSubmit}>
                 <AddPhotoGallery setImages={setImages} />
-                <AddNameInput 
+                <AddNameInput
                     handleChange={(e) => { setName(e.target.value) }} />
-                <GeneralInput 
-                    handleChange={(e) => { setCtg(e.target.value) }} 
+                <GeneralInput
+                    handleChange={(e) => { setCtg(e.target.value) }}
                     type="text" label={"CATEGORIES"} />
-                <GeneralInput 
-                    handleChange={(e) => { setBrand(e.target.value) }} 
+                <GeneralInput
+                    handleChange={(e) => { setBrand(e.target.value) }}
                     type="text" label={"BRAND"} />
-                <GeneralInput 
-                    handleChange={(e) => { setPrice(e.target.value) }} 
+                <GeneralInput
+                    handleChange={(e) => { setPrice(e.target.value) }}
                     type="number" label={"PRICE ($)"} />
-                <GeneralInput 
-                    handleChange={(e) => { setSize(e.target.value) }} 
+                <GeneralInput
+                    handleChange={(e) => { setSize(e.target.value) }}
                     type="text" label={"SIZE"} />
-                <GeneralInput 
-                    handleChange={(e) => { setColors(e.target.value) }} 
+                <GeneralInput
+                    handleChange={(e) => { setColors(e.target.value) }}
                     type="text" label={"COLORS"} />
-                <GeneralInput 
-                    handleChange={(e) => { setQuantity(e.target.value) }} 
+                <GeneralInput
+                    handleChange={(e) => { setQuantity(e.target.value) }}
                     type="number" label={"QUANTITY"} />
                 <AddDescriptionInput handleChange={(e) => { setDes(e.target.value) }} />
                 <AddSubmitButton />
