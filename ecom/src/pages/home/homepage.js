@@ -12,6 +12,7 @@ import Login from "../modal/login/modal.login.js"
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/auth.redux";
 import { signoutAPI } from "../../api/auth.api";
+import { uploadAPI } from "../../api/upload.api";
 
 const HomePage = props => {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false) 
@@ -54,6 +55,24 @@ const HomePage = props => {
         if(response) dispatch(signout())
     }
 
+    const testUpload = async e => {
+        if(e.target.files.length == 0) return
+        let file = e.target.files[0]
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = async () => {
+            console.log(reader.result)
+            const file = [
+                {
+                    "data" : reader.result, 
+                    "productId" : 1
+                }
+            ]
+            const response = await uploadAPI(file)
+            console.log(response);
+        }
+    }
+
         return (
                 <div>
                     <button type="button" onClick={toggleRegisterPopup}>Register</button>
@@ -68,6 +87,7 @@ const HomePage = props => {
                     <Link to="/logindash"><button type="button">Login Dash</button></Link>
                     
                     <button type="button" onClick={logout}>Log out</button>
+                    <input accept=".jpg" type="file" onChange={testUpload}></input>
                 </div>  
         )
 }
