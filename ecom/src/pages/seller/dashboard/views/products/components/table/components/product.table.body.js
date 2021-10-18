@@ -1,24 +1,40 @@
-export const ProductTableBody = props => {
-    const data = {
-        imagePath: "http://localhost:8080/image",
-        pname: "Collete Strect Linen Minidress",
-        ptag: ["Women", "Casual dresses"],
-        soldNum: 4,
-        capacity: 100,
-        dateAdded: "Today, 8th Aug, 2018",
-        totalProfit: 400,
-    }
+import { useEffect, useLayoutEffect, useState } from "react"
+import { fetchProductAPI } from "../../../../../../../../api/upload.api"
 
-    const dataset = [data, data, data, data]
+export const ProductTableBody = props => {
+    const [data, setData] = useState([])
+    
+    useEffect(() => {
+        let mounted = true
+        fetchProductAPI().then(response => {
+            console.log(response)
+            if(mounted && response != null && response.products != null && response.products.length > 0){
+                let tmp = response.products.map(data => {
+                    return {
+                        imagePath: "http://localhost:8080/image/" + data.Imageid[0],
+                        pname: data.Prod.name,
+                        ptag: data.Prod.categories,
+                        soldNum: 0,
+                        capacity: data.Prod.quantity,
+                        dateAdded: "Today, 8th Aug, 2018",
+                        totalProfit: 0,
+                    }
+                })
+                console.log(tmp)
+                setData(tmp)
+            }
+        })
+        return () => mounted = false
+    }, [])
+
+    const dataset = data
 
     const rowGenerator = dataset => {
-        return dataset.map((data, index) => {
+        return dataset.map((data) => {
             let tag = ""
             const { imagePath, pname, ptag, soldNum, capacity, dateAdded, totalProfit } = data
-            for (const e of ptag){
-                tag += e + ", " 
-            }
-            tag = tag.slice(0, tag.length - 2)
+            tag = ptag
+            // tag = tag.slice(0, tag.length - 2)
             return (
                 <tr className="table__body-row">
                     <td><ProductSummary tag={tag} imagePath={imagePath} label={pname}/></td>

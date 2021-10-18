@@ -7,7 +7,7 @@ import {
     GeneralInput
 } from "./components";
 import "./add.css"
-import { imageUploadAPI, productAPI } from "../../../../../api/upload.api";
+import { imageUploadAPI, uploadProductAPI } from "../../../../../api/upload.api";
 
 export const AddPage = props => {
     const [images, setImages] = useState([])
@@ -23,21 +23,25 @@ export const AddPage = props => {
     const handleSubmit = async e => {
         // TODO: VALID ALL ENTRY
         e.preventDefault();
-
+        
         // Phase upload data
         const productData = {
             "name": name,
-            "ctg": ctg,
+            "categories": ctg,
             "brand": brand,
-            "price": price,
+            "price": parseFloat(price),
             "size": size,
             "colors": colors,
-            "quantity": quantity,
-            "des": des,
+            "quantity": parseInt(quantity),
+            "description": des,
         }
+        console.log(productData)
 
         // Should get the ID of the product
-        // const productID = await productAPI(productData)
+        const res = await uploadProductAPI(productData)
+        if(res == false) 
+            return
+
         let imgPromise = images.map(data => new Promise((resolve, reject) => {
             const reader = new FileReader()
             reader.onloadend = () => resolve(reader.result)
@@ -50,11 +54,11 @@ export const AddPage = props => {
             let imageData = values.map(data => {
                 return {
                     "data": data,
-                    "productId": 1
+                    "productId": res.id
                 }
             })
-            // let response = await imageUploadAPI(imageData)
-            // console.log(response)
+            let response = await imageUploadAPI(imageData)
+            console.log(response)
         } catch (error) {
             console.log(error)
         }

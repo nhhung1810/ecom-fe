@@ -12,7 +12,7 @@ import Login from "../modal/login/modal.login.js"
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/auth.redux";
 import { signoutAPI } from "../../api/auth.api";
-import { imageUploadAPI, uploadAPI } from "../../api/upload.api";
+import { fetchProductAPI, imageUploadAPI, uploadAPI } from "../../api/upload.api";
 
 const HomePage = props => {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false) 
@@ -73,6 +73,11 @@ const HomePage = props => {
         }
     }
 
+    const fetchProductTest = async e => {
+        const response = await fetchProductAPI();
+        console.log(response) 
+    }
+
         return (
                 <div>
                     <button type="button" onClick={toggleRegisterPopup}>Register</button>
@@ -88,6 +93,7 @@ const HomePage = props => {
                     
                     <button type="button" onClick={logout}>Log out</button>
                     <input accept=".jpg" type="file" onChange={testUpload}></input>
+                    <input type="button" onClick={fetchProductTest}></input>
                 </div>  
         )
 }
