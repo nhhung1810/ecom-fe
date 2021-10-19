@@ -1,6 +1,7 @@
+import API_PATH from "../config/api.path.config"
 
 export const imageUploadAPI = async (data) => {
-    return fetch(process.env.REACT_APP_API_ENDPOINT + "/upload/image", {
+    return fetch(API_PATH.UPLOAD_IMAGE, {
         method: "POST",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",
@@ -18,7 +19,7 @@ export const imageUploadAPI = async (data) => {
 }
 
 export const uploadProductAPI = async (data) => {
-    return fetch(process.env.REACT_APP_API_ENDPOINT + "/upload/product", {
+    return fetch(API_PATH.UPLOAD_PRODUCT, {
         method: "POST",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",
@@ -38,7 +39,7 @@ export const uploadProductAPI = async (data) => {
 
 
 export const fetchProductAPI = async () => {
-    return fetch(process.env.REACT_APP_API_ENDPOINT + "/product", {
+    return fetch(API_PATH.GET_ALL_PRODUCTS, {
         method: "GET",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",

@@ -16,6 +16,7 @@ import store, {persistor} from "./redux/store";
 import HomePage from "./pages/home/homepage.js";
 import Dashboard from './pages/seller/dashboard/dashboard';
 import LoginDash from './pages/seller/login/login.dashboard';
+import { ProductList } from './pages/product/product.list';
 
 const App = () => {
     return (
@@ -26,6 +27,9 @@ const App = () => {
                 </Route>
                 <Route path="/dashboard">
                     <Dashboard/>
+                </Route>
+                <Route path="/product">
+                    <ProductList/>
                 </Route>
                 <Route path="/logindash">
                     <LoginDash/>

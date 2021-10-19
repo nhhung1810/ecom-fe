@@ -16,6 +16,7 @@
 
 .popup-register {
     position: fixed;
+    z-index: 5;
     background: #00000050;
     width: 100%;
     height: 150vh;

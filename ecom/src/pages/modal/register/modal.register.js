@@ -59,15 +59,14 @@ const Register = props => {
 
     const handleSubmit = async e => {
         if (!isValidInput) {
-            //if try to submit with invalid state, we will change to error ui
             setErrorState(true);
             e.preventDefault();
             return;
         }
         e.preventDefault();
-        console.log(`name: ${name}, email: ${email}, password: ${password}`);
         const response = await signupAPI(name, email, password);
-        console.log(response)
+        // redirect to the login modal
+        props.handleChange()
     }
 
 
@@ -99,7 +98,7 @@ const Register = props => {
                 </form>
 
                 <hr className="span-line" />
-                <Footer props={props.handleChange}/>
+                <Footer handleChange={props.handleChange}/>
             </div>
         </div>
     )

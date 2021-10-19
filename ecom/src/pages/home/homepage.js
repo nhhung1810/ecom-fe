@@ -5,22 +5,30 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import "./index.css"
 
+import { NavBar } from "../../components";
 import Register from "../modal/register/modal.register.js";
 import Login from "../modal/login/modal.login.js"
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/auth.redux";
 import { signoutAPI } from "../../api/auth.api";
-import { fetchProductAPI, imageUploadAPI, uploadAPI } from "../../api/upload.api";
+import { fetchProductAPI, imageUploadAPI } from "../../api/upload.api";
 
 const HomePage = props => {
-    const [isRegisterOpen, setIsRegisterOpen] = useState(false) 
+
+    return (
+        <div className="home__fill-page">
+            <NavBar />
+            <TestSite />
+        </div>
+    )
+}
+
+const TestSite = props => {
+    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
 
     const dispatch = useDispatch()
-
-
 
     const toggleRegisterPopup = () => {
         if (isLoginOpen) setIsLoginOpen(false)
@@ -50,13 +58,13 @@ const HomePage = props => {
         }
     }
 
-    const logout = async () =>{
+    const logout = async () => {
         const response = await signoutAPI();
-        if(response) dispatch(signout())
+        if (response) dispatch(signout())
     }
 
     const testUpload = async e => {
-        if(e.target.files.length == 0) return
+        if (e.target.files.length == 0) return
         let file = e.target.files[0]
         let reader = new FileReader()
         reader.readAsDataURL(file)
@@ -64,8 +72,8 @@ const HomePage = props => {
             console.log(reader.result)
             const file = [
                 {
-                    "data" : reader.result, 
-                    "productId" : 1
+                    "data": reader.result,
+                    "productId": 1
                 }
             ]
             const response = await imageUploadAPI(file)
@@ -75,27 +83,27 @@ const HomePage = props => {
 
     const fetchProductTest = async e => {
         const response = await fetchProductAPI();
-        console.log(response) 
+        console.log(response)
     }
 
-        return (
-                <div>
-                    <button type="button" onClick={toggleRegisterPopup}>Register</button>
-                    {
-                        isRegisterOpen && <Register handleClose={toggleRegisterPopup} handleChange={registerToLogin} />
-                    }
-                    <button type="button" onClick={toggleLoginPopup}>Login</button>
-                    {
-                        isLoginOpen && <Login handleClose={toggleLoginPopup} handleChange={loginToRegister} />
-                    }
+    return (
+        <div>
+            <button type="button" onClick={toggleRegisterPopup}>Register</button>
+            {
+                isRegisterOpen && <Register handleClose={toggleRegisterPopup} handleChange={registerToLogin} />
+            }
+            <button type="button" onClick={toggleLoginPopup}>Login</button>
+            {
+                isLoginOpen && <Login handleClose={toggleLoginPopup} handleChange={loginToRegister} />
+            }
 
-                    <Link to="/logindash"><button type="button">Login Dash</button></Link>
-                    
-                    <button type="button" onClick={logout}>Log out</button>
-                    <input accept=".jpg" type="file" onChange={testUpload}></input>
-                    <input type="button" onClick={fetchProductTest}></input>
-                </div>  
-        )
+            <Link to="/logindash"><button type="button">Login Dash</button></Link>
+
+            <button type="button" onClick={logout}>Log out</button>
+            <input accept=".jpg" type="file" onChange={testUpload}></input>
+            <button type="button" onClick={fetchProductTest}>Fetch Products</button>
+        </div>
+    )
 }
 
 export default HomePage;

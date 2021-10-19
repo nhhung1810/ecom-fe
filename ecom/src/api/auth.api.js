@@ -1,6 +1,7 @@
+import API_PATH from "../config/api.path.config"
 
 export const signupAPI = async (name, email, password) => {
-    return fetch(process.env.REACT_APP_API_ENDPOINT + "/register", {
+    return fetch(API_PATH.SIGNUP, {
         method: "POST",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",
@@ -14,17 +15,15 @@ export const signupAPI = async (name, email, password) => {
         if(!res.ok) throw new Error("error")
         return res.json()})
     .then(data => {
-        // console.log(data)
         return true
     })
     .catch(error => {
-        // console.log(error)
         return false
     })
 }
 
 export const signinAPI = async (email, password) => {
-    return fetch(process.env.REACT_APP_API_ENDPOINT + "/login", {
+    return fetch(API_PATH.SIGNIN, {
         method: "POST",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",
@@ -38,18 +37,15 @@ export const signinAPI = async (email, password) => {
         return res.json()
     })
     .then(data => {
-        // console.log(data)
         return true
     })
     .catch(error => {
-        // console.log(error)
         return false
     })
 };
 
-
 export const signoutAPI = async () => {
-    return fetch(process.env.REACT_APP_API_ENDPOINT + "/logout", {
+    return fetch(API_PATH.SIGNOUT, {
         method: "POST",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",
