@@ -7,8 +7,11 @@ const API_PATH = {
 
     UPLOAD_IMAGE : HOST_URL + "/upload/image",
     UPLOAD_PRODUCT : HOST_URL + "/upload/product",
-    GET_ALL_PRODUCTS : HOST_URL + "/product"
+    GET_ALL_PRODUCTS : HOST_URL + "/product",
+    GET_PRODUCT_INFO_QUERY : HOST_URL + "/product/info?",
     
+    IMAGE : HOST_URL + "/image",
+    IMAGE_QUERY : HOST_URL + "/image" + "?",
 }
 
 export default API_PATH

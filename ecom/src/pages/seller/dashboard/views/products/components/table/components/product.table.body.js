@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from "react"
 import { fetchProductAPI } from "../../../../../../../../api/upload.api"
+import API_PATH from "../../../../../../../../config/api.path.const"
 
 export const ProductTableBody = props => {
     const [data, setData] = useState([])
@@ -10,8 +11,15 @@ export const ProductTableBody = props => {
             console.log(response)
             if(mounted && response != null && response.products != null && response.products.length > 0){
                 let tmp = response.products.map(data => {
+                    const imageParam = {
+                        productid : data.Prod.id,
+                        id : 0,
+                    } 
+                    const param = new URLSearchParams(imageParam)
+                    const imgUrl = API_PATH.IMAGE_QUERY + param.toString()
+                    
                     return {
-                        imagePath: "http://localhost:8080/image/" + data.Imageid[0],
+                        imagePath: imgUrl,
                         pname: data.Prod.name,
                         ptag: data.Prod.categories,
                         soldNum: 0,
@@ -20,7 +28,6 @@ export const ProductTableBody = props => {
                         totalProfit: 0,
                     }
                 })
-                console.log(tmp)
                 setData(tmp)
             }
         })

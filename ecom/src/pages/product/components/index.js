@@ -1,3 +1,4 @@
+import { useHistory } from "react-router"
 
 const SideBar = props => {
     return (
@@ -70,10 +71,20 @@ const MainView = props => {
 }
 
 const ProductCard = props => {
+    const history = useHistory()
+    
+    const toProductInfo = () =>{
+        const params = {
+            // TODO: CHANGE THIS AFTER APPLIED THE API
+            id : 1
+        }
+        const query = new URLSearchParams(params)
+        history.push("/info" + "?" + query.toString())
+    }
     return (
         <div className="product__card">
-            <div className="product__card-image">
-                <img src={process.env.PUBLIC_URL + "images/product-image-card.jpg"}></img>
+            <div onClick={toProductInfo} className="product__card-image">
+                <img className="product__card-image-size" src={process.env.PUBLIC_URL + "images/product-image-card.jpg"}></img>
                 <button className="product__card-hover">+ Quick shop</button>
             </div>
             <div className="product__card-name">

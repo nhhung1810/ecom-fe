@@ -17,6 +17,7 @@ import HomePage from "./pages/home/homepage.js";
 import Dashboard from './pages/seller/dashboard/dashboard';
 import LoginDash from './pages/seller/login/login.dashboard';
 import { ProductList } from './pages/product/product.list';
+import { ProductInfo } from './pages/info/product.info';
 
 const App = () => {
     return (
@@ -30,6 +31,9 @@ const App = () => {
                 </Route>
                 <Route path="/product">
                     <ProductList/>
+                </Route>
+                <Route path="/info">
+                    <ProductInfo/>
                 </Route>
                 <Route path="/logindash">
                     <LoginDash/>

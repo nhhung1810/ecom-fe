@@ -1,11 +1,20 @@
-import API_PATH from "../config/api.path.config"
+import API_PATH from "../config/api.path.const"
 
-export const imageUploadAPI = async (data) => {
+export const imageUploadAPI = async (data, productid) => {
+    const formData = new FormData();
+    // data should be array
+    // productid should be int
+    data.forEach((element, index) => {
+        formData.append('images[]', element, index)
+    });
+
+    formData.append('productid', productid)
+    console.log(formData)
+
     return fetch(API_PATH.UPLOAD_IMAGE, {
         method: "POST",
-        headers: { 'Content-Type': "application/json" },
         credentials: "include",
-        body: JSON.stringify(data)
+        body: formData
     })
     .then(res => {
         if(!res.ok) throw new Error("error")

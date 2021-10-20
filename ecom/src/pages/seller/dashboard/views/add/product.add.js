@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import Select from 'react-select'
+
+import "./add.css"
+import { imageUploadAPI, uploadProductAPI } from "../../../../../api/upload.api";
+
+
 import {
     AddSubmitButton,
     AddDescriptionInput,
@@ -6,8 +12,6 @@ import {
     AddPhotoGallery,
     GeneralInput
 } from "./components";
-import "./add.css"
-import { imageUploadAPI, uploadProductAPI } from "../../../../../api/upload.api";
 
 export const AddPage = props => {
     const [images, setImages] = useState([])
@@ -21,9 +25,9 @@ export const AddPage = props => {
     const [des, setDes] = useState('')
 
     const handleSubmit = async e => {
-        // TODO: VALID ALL ENTRY
+        // TODO: VALIDATE ALL ENTRY
         e.preventDefault();
-        
+
         // Phase upload data
         const productData = {
             "name": name,
@@ -35,33 +39,14 @@ export const AddPage = props => {
             "quantity": parseInt(quantity),
             "description": des,
         }
-        console.log(productData)
+        let prodRes = await uploadProductAPI(productData)
+        console.log(prodRes);
+        if (!prodRes)
+            return;
 
-        // Should get the ID of the product
-        const res = await uploadProductAPI(productData)
-        if(res == false) 
-            return
-
-        let imgPromise = images.map(data => new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.onloadend = () => resolve(reader.result)
-            reader.onerror = reject
-            reader.readAsDataURL(data)
-        }))
-        try {
-            let values = await Promise.all(imgPromise)
-            console.log(values)
-            let imageData = values.map(data => {
-                return {
-                    "data": data,
-                    "productId": res.id
-                }
-            })
-            let response = await imageUploadAPI(imageData)
-            console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
+        console.log(images);
+        let imageResponse = await imageUploadAPI(images, prodRes.id)
+        console.log(imageResponse);
 
     }
 
@@ -91,8 +76,33 @@ export const AddPage = props => {
                     handleChange={(e) => { setQuantity(e.target.value) }}
                     type="number" label={"QUANTITY"} />
                 <AddDescriptionInput handleChange={(e) => { setDes(e.target.value) }} />
+                <MultiSelectInput />
                 <AddSubmitButton />
             </form>
+        </div>
+    )
+}
+
+const styleMultiSelect = props => {
+
+}
+
+const MultiSelectInput = props => {
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
+
+    const getValue = (e) => console.log(e);
+    return (
+        <div className="add__multi-container">
+            <Select
+                multi
+                isRtl={true}
+                onChange={getValue}
+                options={options}
+            />
         </div>
     )
 }

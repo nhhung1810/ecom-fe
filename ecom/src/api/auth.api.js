@@ -1,4 +1,4 @@
-import API_PATH from "../config/api.path.config"
+import API_PATH from "../config/api.path.const"
 
 export const signupAPI = async (name, email, password) => {
     return fetch(API_PATH.SIGNUP, {

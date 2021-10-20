@@ -117,7 +117,6 @@ const PhotoCardNoImage = props => {
 }
 
 const PhotoCardWithImage = props => {
-    console.log("With image: ", props.url)
     return (
         <div className="add__photo-upload-container">
             <img
