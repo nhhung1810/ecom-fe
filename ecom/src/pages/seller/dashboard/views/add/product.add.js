@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Select from 'react-select'
+import CreatableSelect from 'react-select/creatable'
 
 import "./add.css"
 import { imageUploadAPI, uploadProductAPI } from "../../../../../api/upload.api";
@@ -66,6 +67,7 @@ export const AddPage = props => {
                 <GeneralInput
                     handleChange={(e) => { setPrice(e.target.value) }}
                     type="number" label={"PRICE ($)"} />
+                <MultiSelectInput />
                 <GeneralInput
                     handleChange={(e) => { setSize(e.target.value) }}
                     type="text" label={"SIZE"} />
@@ -76,15 +78,39 @@ export const AddPage = props => {
                     handleChange={(e) => { setQuantity(e.target.value) }}
                     type="number" label={"QUANTITY"} />
                 <AddDescriptionInput handleChange={(e) => { setDes(e.target.value) }} />
-                <MultiSelectInput />
                 <AddSubmitButton />
             </form>
         </div>
     )
 }
 
-const styleMultiSelect = props => {
-
+const styleMultiSelect = {
+    control: (styles) => ({ 
+        ...styles, 
+        backgroundColor: 'white',
+        width : 785,
+        height : 48,
+        borderRadius: 2, 
+        borderColor : "#ededed",
+        marginLeft: "auto",
+        marginRight: 0,
+    }),
+    option: (styles, { isDisabled, isFocused, isSelected }) => ({
+        ...styles,
+        color : isFocused ? "#ffa15f" : "#3d3d3f",
+        backgroundColor : "white"
+    }),
+    menu : (styles, state) => ({
+        ...styles,
+        position: "absolute",
+        right : 0,
+        width : 785,
+        height : 48,
+    }),
+    indicatorSeparator : (styles, state) => ({
+        ...styles,
+        backgroundColor : "white",
+    })
 }
 
 const MultiSelectInput = props => {
@@ -97,11 +123,15 @@ const MultiSelectInput = props => {
     const getValue = (e) => console.log(e);
     return (
         <div className="add__multi-container">
-            <Select
-                multi
-                isRtl={true}
+            <CreatableSelect
+                className="add__multi"
+                classNamePrefix="add_multi"
+                isMulti={true}
                 onChange={getValue}
                 options={options}
+                delimiter={","}
+                styles={styleMultiSelect}
+                placeholder={"Select categories"}
             />
         </div>
     )
