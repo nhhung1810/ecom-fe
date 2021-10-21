@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Select from 'react-select'
-import CreatableSelect from 'react-select/creatable'
 
 import "./add.css"
 import { imageUploadAPI, uploadProductAPI } from "../../../../../api/upload.api";
@@ -11,8 +9,11 @@ import {
     AddDescriptionInput,
     AddNameInput,
     AddPhotoGallery,
-    GeneralInput
+    GeneralInput,
+    MultiSelectInput,
+    CreatableSingleSelectInput
 } from "./components";
+import { BRAND_LIST, CATEGORIES_LIST, COLORS_LIST, SIZE_LIST } from "../../../../../config/options.list.const";
 
 export const AddPage = props => {
     const [images, setImages] = useState([])
@@ -48,8 +49,12 @@ export const AddPage = props => {
         console.log(images);
         let imageResponse = await imageUploadAPI(images, prodRes.id)
         console.log(imageResponse);
-
     }
+
+    console.log(ctg);
+    console.log(brand);
+    console.log(colors);
+    console.log(size);
 
     return (
         <div className="add__container">
@@ -58,81 +63,36 @@ export const AddPage = props => {
                 <AddPhotoGallery setImages={setImages} />
                 <AddNameInput
                     handleChange={(e) => { setName(e.target.value) }} />
-                <GeneralInput
-                    handleChange={(e) => { setCtg(e.target.value) }}
-                    type="text" label={"CATEGORIES"} />
-                <GeneralInput
-                    handleChange={(e) => { setBrand(e.target.value) }}
-                    type="text" label={"BRAND"} />
+                <MultiSelectInput 
+                    options={CATEGORIES_LIST}
+                    onChange={setCtg}
+                    placeholder="Select categories"> CATEGORIES 
+                </MultiSelectInput>
+                <CreatableSingleSelectInput
+                    options={BRAND_LIST}
+                    onChange={setBrand}
+                    placeholder={"Select brand"}>
+                    BRAND
+                </CreatableSingleSelectInput>
                 <GeneralInput
                     handleChange={(e) => { setPrice(e.target.value) }}
                     type="number" label={"PRICE ($)"} />
-                <MultiSelectInput />
-                <GeneralInput
-                    handleChange={(e) => { setSize(e.target.value) }}
-                    type="text" label={"SIZE"} />
-                <GeneralInput
-                    handleChange={(e) => { setColors(e.target.value) }}
-                    type="text" label={"COLORS"} />
+                <MultiSelectInput
+                    options={SIZE_LIST}
+                    onChange={setSize}
+                    placeholder={"Select size"}>SIZES
+                </MultiSelectInput>
+                <MultiSelectInput
+                    options={COLORS_LIST}
+                    onChange={setColors}
+                    placeholder={"Select colors"}>COLORS
+                </MultiSelectInput>
                 <GeneralInput
                     handleChange={(e) => { setQuantity(e.target.value) }}
                     type="number" label={"QUANTITY"} />
                 <AddDescriptionInput handleChange={(e) => { setDes(e.target.value) }} />
                 <AddSubmitButton />
             </form>
-        </div>
-    )
-}
-
-const styleMultiSelect = {
-    control: (styles) => ({ 
-        ...styles, 
-        backgroundColor: 'white',
-        width : 785,
-        height : 48,
-        borderRadius: 2, 
-        borderColor : "#ededed",
-        marginLeft: "auto",
-        marginRight: 0,
-    }),
-    option: (styles, { isDisabled, isFocused, isSelected }) => ({
-        ...styles,
-        color : isFocused ? "#ffa15f" : "#3d3d3f",
-        backgroundColor : "white"
-    }),
-    menu : (styles, state) => ({
-        ...styles,
-        position: "absolute",
-        right : 0,
-        width : 785,
-        height : 48,
-    }),
-    indicatorSeparator : (styles, state) => ({
-        ...styles,
-        backgroundColor : "white",
-    })
-}
-
-const MultiSelectInput = props => {
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ]
-
-    const getValue = (e) => console.log(e);
-    return (
-        <div className="add__multi-container">
-            <CreatableSelect
-                className="add__multi"
-                classNamePrefix="add_multi"
-                isMulti={true}
-                onChange={getValue}
-                options={options}
-                delimiter={","}
-                styles={styleMultiSelect}
-                placeholder={"Select categories"}
-            />
         </div>
     )
 }

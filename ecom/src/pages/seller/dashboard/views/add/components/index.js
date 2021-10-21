@@ -2,6 +2,11 @@ import { AddSubmitButton } from "./product.add.submitbutton"
 import { AddDescriptionInput } from "./product.add.descinput"
 import { AddPhotoGallery } from "./product.add.gallery"
 import { AddNameInput } from "./product.add.nameinput"
+import { 
+    MultiSelectInput, 
+    CreatableMultiSelectInput,
+    CreatableSingleSelectInput,
+} from "./add.custom.select"
 
 // TEST VERSION, PLACEHOLDER FOR THE MULTI-SELECT
 const GeneralInput = props => {
@@ -13,5 +18,14 @@ const GeneralInput = props => {
     )
 }
 
-export {GeneralInput, AddDescriptionInput, AddSubmitButton, AddPhotoGallery, AddNameInput}
+export {
+    GeneralInput, 
+    AddDescriptionInput, 
+    AddSubmitButton, 
+    AddPhotoGallery, 
+    AddNameInput, 
+    MultiSelectInput, 
+    CreatableMultiSelectInput,
+    CreatableSingleSelectInput
+}
 

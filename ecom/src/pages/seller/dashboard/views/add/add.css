@@ -219,9 +219,23 @@
     height: 270px;
 }
 
-/* .add__multi{
-    position: relative;
-    left: 100px;
-    margin-left: auto;
-    margin-right: 0;
-} */
+.add__multi-container{
+    margin-top: 24px;
+}
+
+.add__multi-label{
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: right;
+    color: var(--dark-grey);
+    margin-right: 20px;
+}
+
+.add__multi{
+    display: inline-block;
+}
