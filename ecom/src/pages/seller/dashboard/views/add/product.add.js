@@ -51,11 +51,6 @@ export const AddPage = props => {
         console.log(imageResponse);
     }
 
-    console.log(ctg);
-    console.log(brand);
-    console.log(colors);
-    console.log(size);
-
     return (
         <div className="add__container">
             <p className="add__title">Products / Add Product</p>

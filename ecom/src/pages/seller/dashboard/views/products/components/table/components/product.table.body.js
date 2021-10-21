@@ -1,13 +1,22 @@
-import { useEffect, useLayoutEffect, useState } from "react"
-import { fetchProductAPI } from "../../../../../../../../api/upload.api"
+import { useEffect, useState } from "react"
 import API_PATH from "../../../../../../../../config/api.path.const"
+import { fetchAllProductAPI } from "../../../../../../../../api/product.api"
+import { CATEGORIES_LIST } from "../../../../../../../../config/options.list.const"
 
 export const ProductTableBody = props => {
     const [data, setData] = useState([])
+
+    const categoriesFormat = (strList) => {
+        let ctgs = strList.map(value => {
+            let tmp = CATEGORIES_LIST.find(e => e.value == value).label;
+            return tmp
+        }).filter(e => e != undefined)
+        return ctgs.join(", ")
+    }
     
     useEffect(() => {
         let mounted = true
-        fetchProductAPI().then(response => {
+        fetchAllProductAPI().then(response => {
             console.log(response)
             if(mounted && response != null && response.products != null && response.products.length > 0){
                 let tmp = response.products.map(data => {
@@ -21,7 +30,7 @@ export const ProductTableBody = props => {
                     return {
                         imagePath: imgUrl,
                         pname: data.Prod.name,
-                        ptag: data.Prod.categories,
+                        ptag: categoriesFormat(data.Prod.categories),
                         soldNum: 0,
                         capacity: data.Prod.quantity,
                         dateAdded: "Today, 8th Aug, 2018",

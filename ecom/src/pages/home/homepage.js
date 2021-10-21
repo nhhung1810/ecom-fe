@@ -12,7 +12,8 @@ import Login from "../modal/login/modal.login.js"
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/auth.redux";
 import { signoutAPI } from "../../api/auth.api";
-import { fetchProductAPI, imageUploadAPI } from "../../api/upload.api";
+import { fetchAllProductAPI } from "../../api/product.api";
+import { imageUploadAPI } from "../../api/upload.api";
 
 const HomePage = props => {
 
@@ -82,7 +83,7 @@ const TestSite = props => {
     }
 
     const fetchProductTest = async e => {
-        const response = await fetchProductAPI();
+        const response = await fetchAllProductAPI();
         console.log(response)
     }
 

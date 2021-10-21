@@ -1,4 +1,4 @@
-import { useHistory } from "react-router"
+import { generatePath, useHistory } from "react-router"
 
 const SideBar = props => {
     return (
@@ -36,32 +36,28 @@ const SideCard = props => {
 }
 
 const MainView = props => {
+    const generateProductCard = () => {
+        return props.data.map(element => {
+            console.log("how about this", element)
+            console.log("name", element.name)
+            return (
+                <ProductCard 
+                    id={element.id}
+                    image={element.img}
+                    name={element.name}
+                    price={element.price}
+                />
+            )
+        })
+    } 
+
     return (
         <div className="product__mainview">
             <div className="product__mainview-header-container">
                 <button className="product__mainview-sort-button">Sort by: <b>Popularity</b></button>
             </div>
             <div className="product__mainview-body-container">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {generateProductCard()}
             </div>
             <div className="product__mainview-footer-container">
 
@@ -72,11 +68,12 @@ const MainView = props => {
 
 const ProductCard = props => {
     const history = useHistory()
+    console.log(props.name)
     
     const toProductInfo = () =>{
         const params = {
             // TODO: CHANGE THIS AFTER APPLIED THE API
-            id : 1
+            id : props.id
         }
         const query = new URLSearchParams(params)
         history.push("/info" + "?" + query.toString())
@@ -88,10 +85,10 @@ const ProductCard = props => {
                 <button className="product__card-hover">+ Quick shop</button>
             </div>
             <div className="product__card-name">
-                Collete Stretch Linen Minidress
+                {props.name}
             </div>
             <div className="product__card-price">
-                $69.00
+                ${props.price}
             </div>
         </div>
     )

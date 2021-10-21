@@ -120,7 +120,7 @@ export const MultiSelectInput = props => {
         placeholder = defaultPlaceholder
 
     const formatListValue = values => {
-        let tmp = values.map(e => e.value).join(",")
+        let tmp = values.map(e => e.value)
         props.onChange(tmp)
     }
     return (

@@ -1,19 +1,13 @@
 import { NavBar } from "../../components"
-import { useState, useEffect, useLayoutEffect } from "react";
-import {
-    useLocation,
-    Redirect
-} from "react-router-dom";
+import { useState, useLayoutEffect } from "react";
+import { Redirect } from "react-router-dom";
+
+import { useQuery } from "../../hook";
 import API_PATH from "../../config/api.path.const";
 import { fetchEachProductAPI } from "../../api/product.api";
 
 import "./product.info.css"
 import { InfoBody } from "./components/info.body";
-
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
-
 
 export const ProductInfo = props => {
     let query = useQuery()

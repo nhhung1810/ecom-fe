@@ -21,7 +21,7 @@ export const NavBar = props => {
             <div className="navbar__footer">
                 <div className="navbar__footer-dropcard-center">
                     <DropCard>Men</DropCard>
-                    <Link to="/product">
+                    <Link to="/product?ctg=ladies">
                         <DropCard>Ladies</DropCard>
                     </Link>
                     <DropCard>Girls</DropCard>
