@@ -24,7 +24,7 @@ const LoginDash = props => {
 
     if (user != null) {
         return (
-            <Redirect to="/dashboard"></Redirect>
+            <Redirect to="/dashboard/overview"></Redirect>
         )
     }
 
