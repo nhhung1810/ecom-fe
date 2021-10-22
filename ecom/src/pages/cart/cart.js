@@ -4,11 +4,28 @@ import { ColorButton, NavBar, QuantityButton } from "../../components";
 import "./cart.css"
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllProduct, removeFromCart } from "../../redux/cart.redux";
+import { uploadProduct } from "../../api/api.order";
 
 
 export const CartPage = props => {
     const cartData = useSelector(selectAllProduct);
-    console.log(cartData)
+
+    const onSubmit = async () => {
+        if(cartData != null && cartData.length > 0){
+            const submitData = cartData.map(e => {
+                return{
+                    productid : e.id,
+                    quantity : e.quantity,
+                    price : e.price,
+                    color : e.color,
+                    size : e.size
+                }
+            })
+            console.log(submitData)
+            const response = await uploadProduct(submitData)
+            console.log("Is submited", response)
+        }
+    }
 
     return (
         <div className="cart__bg">
@@ -18,7 +35,7 @@ export const CartPage = props => {
             </div>
             <div className="cart__body-container">
                 <CartTable data={cartData} />
-                <CartSummary />
+                <CartSummary onSubmit={onSubmit} />
             </div>
         </div>
     )
@@ -43,7 +60,10 @@ const CartSummary = props => {
                     <span className="cart__body-summary-right">$1000</span>
                 </div>
             </div>
-            <button className="cart__body-check-out-button">
+            <button
+                type="button"
+                onClick={props.onSubmit} 
+                className="cart__body-check-out-button">
                 Check out
             </button>
         </div>

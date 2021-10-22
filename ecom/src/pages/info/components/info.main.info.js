@@ -21,7 +21,7 @@ export const MainInfo = props => {
             name: props.pname,
             color: chosenColor,
             size: chosenSize,
-            capacity: chosenQuantity,
+            quantity: chosenQuantity,
             price: props.price,
             img: props.img
         }

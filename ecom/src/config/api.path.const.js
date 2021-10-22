@@ -13,6 +13,8 @@ const API_PATH = {
     UPLOAD_IMAGE : HOST_URL + "/upload/image",
     IMAGE : HOST_URL + "/image",
     IMAGE_QUERY : HOST_URL + "/image" + "?",
+
+    UPLOAD_ORDER : HOST_URL + "/upload/order"
 }
 
 export default API_PATH
