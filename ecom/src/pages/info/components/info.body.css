@@ -150,76 +150,15 @@
     color: var(--dark-grey);
 }
 
-.info__info-colors-button{
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    margin: 9px 20px 0 0;
-    
-    border-radius: 50px;
-    border: 0px solid;
+.info__info-colors-button-row{
+    margin-top: 10px;
 }
 
-.info__info-colors-button:hover{
-    opacity: 0.9;
+.info__info-colors-button-margin{
+    margin: 20px 20px 0 0;
 }
 
-/* INFO QUANTITY BUTTON */
-
-.info__info-quantity{
-    margin-top: 30px;
-}
-.info__info-quantity-text{
-    font-family: Montserrat;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.57;
-    letter-spacing: normal;
-    color: var(--dark-grey);
-    margin-right: 30px;
-}
-
-.info__info-quantity-button > *{
-    font-family: Montserrat;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.57;
-    letter-spacing: normal;
-    text-align: center;
-    color: var(--dark-grey);
-
-    /*  */
-    background-color: white;
-    display: inline-block;
-    width: 42px;
-    height: 42px;
-}
-
-.info__info-quantity-button-number{
-    border: solid 1px var(--white-four);
-    border-left: none;
-    border-right: none;
-}
-
-
-.info__info-quantity-button-down{
-    border: solid 1px var(--white-four);
-    border-right: none;  
-}
-
-.info__info-quantity-button-up{
-    border: solid 1px var(--white-four);
-    border-left: none;  
-}
-
-.info__info-quantity-button-up:hover, 
-    .info__info-quantity-button-down:hover{
-        background-color: var(--white-four);
-    }
+/* SUBMIT BUTTON */
 
 .info__info-submit-button{
     display: block;

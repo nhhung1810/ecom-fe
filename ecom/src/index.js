@@ -12,12 +12,12 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, {persistor} from "./redux/store";
 
-
 import HomePage from "./pages/home/homepage.js";
 import Dashboard from './pages/seller/dashboard/dashboard';
 import LoginDash from './pages/seller/login/login.dashboard';
 import { ProductList } from './pages/product/product.list';
 import { ProductInfo } from './pages/info/product.info';
+import { CartPage } from './pages/cart/cart';
 
 const App = () => {
     return (
@@ -34,6 +34,9 @@ const App = () => {
                 </Route>
                 <Route path="/info">
                     <ProductInfo/>
+                </Route>
+                <Route path="/cart">
+                    <CartPage />
                 </Route>
                 <Route path="/logindash">
                     <LoginDash/>

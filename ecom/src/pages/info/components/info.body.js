@@ -5,7 +5,6 @@ import { useState } from "react"
 
 export const InfoBody = props => {
     const [mainImage, setMainImage] = useState(0) 
-    console.log(props.data)
 
     const onChangeMainImage = (index) => {
         return (e) => {
@@ -18,6 +17,7 @@ export const InfoBody = props => {
             if(index != mainImage)
                 return(
                     <LeftSideImage 
+                        key={index}
                         onChangeMainImage={onChangeMainImage(index)}
                         src={e}
                     />
@@ -42,9 +42,14 @@ export const InfoBody = props => {
                 { generateMainImage() }
             </div>
             <MainInfo 
+                id={props.data.id}
                 pname={props.data.name}
                 colors={props.data.colors}
                 description={props.data.description}
+                price={props.data.price}
+                sizes={props.data.sizes}
+                capacity={props.data.capacity}
+                img={props.data.imgs[0]}
             />
             <div className="info__right-images-container"></div>
         </div>

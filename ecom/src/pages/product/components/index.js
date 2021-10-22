@@ -81,7 +81,9 @@ const ProductCard = props => {
     return (
         <div className="product__card">
             <div onClick={toProductInfo} className="product__card-image">
-                <img className="product__card-image-size" src={process.env.PUBLIC_URL + "images/product-image-card.jpg"}></img>
+                <img 
+                    className="product__card-image-size" 
+                    src={props.image}></img>
                 <button className="product__card-hover">+ Quick shop</button>
             </div>
             <div className="product__card-name">

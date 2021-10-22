@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import authRedux from './auth.redux'
+import cartRedux from './cart.redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
@@ -10,7 +11,8 @@ const persistConfig = {
 }
 
 const reducer = combineReducers({
-  auth : authRedux
+  auth : authRedux,
+  cart : cartRedux
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

@@ -60,7 +60,9 @@ const RightTool = props => {
                     <AuthenticatedGroup />
             }
             <span className="navbar__right-shopping-cart">
-                <img src={process.env.PUBLIC_URL + "/images/cart.svg"}></img>
+                <Link to="/cart">
+                    <img src={process.env.PUBLIC_URL + "/images/cart.svg"}></img>
+                </Link>
             </span>
         </span>
     )
@@ -150,8 +152,8 @@ const DropCard = props => {
     return (
         <span className="navbar__footer-dropcard">
             {props.children}
-            <img className="navbar__footer-dropcard-arrow" 
-            src={process.env.PUBLIC_URL + "/images/arrow.svg"}></img>
+            <img className="navbar__footer-dropcard-arrow"
+                src={process.env.PUBLIC_URL + "/images/arrow.svg"}></img>
         </span>
     )
 }

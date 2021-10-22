@@ -30,19 +30,19 @@ export const ProductInfo = props => {
                     imgURLS.push(url)
                 }
                 setData({
+                    id : response.data.Prod.id,
                     imgs: imgURLS,
                     name: response.data.Prod.name,
-                    price: 0,
-                    colors: ["red", "yellow", "blue"],
-                    sizes: ["S", "M", "L"],
-                    capacity: response.data.Prod.capacity,
+                    colors: response.data.Prod.colors,
+                    sizes: response.data.Prod.size,
+                    capacity: response.data.Prod.quantity,
                     description: response.data.Prod.description,
+                    price : response.data.Prod.price
                 })
                 setBusy(false)
             }
         })
         console.log(data)
-        // Prevent unmounted change
         return () => mounted = false
     }, [])
 
