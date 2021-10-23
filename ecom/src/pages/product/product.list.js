@@ -4,7 +4,7 @@ import { SideBar, MainView, Footer } from "./components";
 import { useQuery } from "../../hook";
 import "./product.list.css"
 import { fetchAllProductWithFilter } from "../../api/product.api";
-import API_PATH from "../../config/api.path.const";
+import API_PATH from "../../const/api.path.const";
 
 export const ProductList = props => {
     const [busy, setBusy] = useState(true)

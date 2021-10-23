@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import API_PATH from "../../../../../../../../config/api.path.const"
+import API_PATH from "../../../../../../../../const/api.path.const"
 import { fetchAllProductAPI } from "../../../../../../../../api/product.api"
-import { CATEGORIES_LIST } from "../../../../../../../../config/options.list.const"
+import { CATEGORIES_LIST } from "../../../../../../../../const/options.list.const"
+import { dateFormat } from "../../../../../../../../utilities/date.format"
 
 export const ProductTableBody = props => {
     const [data, setData] = useState([])
@@ -13,6 +14,7 @@ export const ProductTableBody = props => {
         }).filter(e => e != undefined)
         return ctgs.join(", ")
     }
+
     
     useEffect(() => {
         let mounted = true
@@ -26,14 +28,14 @@ export const ProductTableBody = props => {
                     } 
                     const param = new URLSearchParams(imageParam)
                     const imgUrl = API_PATH.IMAGE_QUERY + param.toString()
-                    
                     return {
+                        id : data.Prod.id,
                         imagePath: imgUrl,
                         pname: data.Prod.name,
                         ptag: categoriesFormat(data.Prod.categories),
                         soldNum: 0,
                         capacity: data.Prod.quantity,
-                        dateAdded: "Today, 8th Aug, 2018",
+                        dateAdded: dateFormat(data.Prod.created_date),
                         totalProfit: 0,
                     }
                 })
@@ -48,11 +50,11 @@ export const ProductTableBody = props => {
     const rowGenerator = dataset => {
         return dataset.map((data) => {
             let tag = ""
-            const { imagePath, pname, ptag, soldNum, capacity, dateAdded, totalProfit } = data
+            const { id, imagePath, pname, ptag, soldNum, capacity, dateAdded, totalProfit } = data
             tag = ptag
             // tag = tag.slice(0, tag.length - 2)
             return (
-                <tr className="table__body-row">
+                <tr key={id} className="table__body-row">
                     <td><ProductSummary tag={tag} imagePath={imagePath} label={pname}/></td>
                     <td>{String(soldNum) + "/" + String(capacity)}</td>
                     <td>{dateAdded}</td>

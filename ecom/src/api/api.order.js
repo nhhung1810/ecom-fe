@@ -1,4 +1,4 @@
-import API_PATH from "../config/api.path.const"
+import API_PATH from "../const/api.path.const"
 
 export const uploadProduct = async (data) => {
     return fetch(API_PATH.UPLOAD_ORDER, {

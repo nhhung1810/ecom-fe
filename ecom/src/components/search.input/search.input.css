@@ -1,0 +1,47 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+  
+
+:root{
+    --white-two: #f6f6f6;
+    --white-three: #ededed;
+    --dark-grey: #202124;
+    --body-height: 300vh;
+    --greyish-brown: #4d4d4d;
+    --pale-orange: #ffa15f;
+    --brown-grey: #979797;
+    --white-four: #d4d3d3;
+    --charcoal-grey : #3d3d3f;
+}
+
+.search__input{
+    padding-left: 40px;
+    height: 46px;
+    width: 240px;
+    background-color: white;
+    border-radius: 2px;
+    border: solid 1px var(--white-three);
+}   
+
+
+
+.search__input::placeholder{
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: var(--charcoal-grey);
+}
+
+
+.search__input-icon{
+    position: relative;
+    top: 8px;
+    left: 30px;
+}

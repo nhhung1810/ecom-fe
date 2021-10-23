@@ -1,4 +1,4 @@
-import API_PATH from "../config/api.path.const"
+import API_PATH from "../const/api.path.const"
 
 export const imageUploadAPI = async (data, productid) => {
     const formData = new FormData();

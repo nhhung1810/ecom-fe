@@ -13,7 +13,7 @@ import {
     MultiSelectInput,
     CreatableSingleSelectInput
 } from "./components";
-import { BRAND_LIST, CATEGORIES_LIST, COLORS_LIST, SIZE_LIST } from "../../../../../config/options.list.const";
+import { BRAND_LIST, CATEGORIES_LIST, COLORS_LIST, SIZE_LIST } from "../../../../../const/options.list.const";
 
 export const AddPage = props => {
     const [images, setImages] = useState([])

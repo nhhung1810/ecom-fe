@@ -1,4 +1,4 @@
-import { COLORS } from "../../config/colors.const"
+import { COLORS } from "../../const/colors.const"
 import "./color.button.css" 
 
 export const ColorButton = props => {

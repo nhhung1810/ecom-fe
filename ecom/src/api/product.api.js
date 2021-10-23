@@ -1,4 +1,4 @@
-import API_PATH from "../config/api.path.const"
+import API_PATH from "../const/api.path.const"
 
 export const fetchAllProductAPI = async () => {
     return fetch(API_PATH.GET_ALL_PRODUCTS, {

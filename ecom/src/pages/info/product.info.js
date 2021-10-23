@@ -3,7 +3,7 @@ import { useState, useLayoutEffect } from "react";
 import { Redirect } from "react-router-dom";
 
 import { useQuery } from "../../hook";
-import API_PATH from "../../config/api.path.const";
+import API_PATH from "../../const/api.path.const";
 import { fetchEachProductAPI } from "../../api/product.api";
 
 import "./product.info.css"
