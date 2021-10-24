@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { NavBar } from "../../components";
 import { selectAllProduct, removeAllFromCart } from "../../redux/cart.redux";
-import { uploadProduct } from "../../api/api.order";
 import { CartTable, CartSummary } from "./components";
+import { uploadOrder } from "../../api/api.order";
 
 export const CartPage = props => {
     const cartData = useSelector(selectAllProduct);
@@ -23,7 +23,7 @@ export const CartPage = props => {
                 }
             })
             console.log(submitData)
-            const response = await uploadProduct(submitData)
+            const response = await uploadOrder(submitData)
             console.log("Is submited", response)
             if(response == true)
                 dispatch(removeAllFromCart())

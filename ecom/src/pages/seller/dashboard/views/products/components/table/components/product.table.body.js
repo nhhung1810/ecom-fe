@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import API_PATH from "../../../../../../../../const/api.path.const"
-import { fetchAllProductAPI } from "../../../../../../../../api/product.api"
+import { fetchAllProductWithOrderInfo } from "../../../../../../../../api/product.api"
 import { CATEGORIES_LIST } from "../../../../../../../../const/options.list.const"
 import { dateFormat } from "../../../../../../../../utilities/date.format"
 
@@ -14,31 +14,37 @@ export const ProductTableBody = props => {
         }).filter(e => e != undefined)
         return ctgs.join(", ")
     }
+    const formatImages = (id) => {
+        const imageParam = {
+            productid: id,
+            id: 0,
+        }
+        const param = new URLSearchParams(imageParam)
+        return API_PATH.IMAGE_QUERY + param.toString()
+    }
 
     
     useEffect(() => {
         let mounted = true
-        fetchAllProductAPI().then(response => {
-            console.log(response)
-            if(mounted && response != null && response.products != null && response.products.length > 0){
-                let tmp = response.products.map(data => {
-                    const imageParam = {
-                        productid : data.Prod.id,
-                        id : 0,
-                    } 
-                    const param = new URLSearchParams(imageParam)
-                    const imgUrl = API_PATH.IMAGE_QUERY + param.toString()
+        fetchAllProductWithOrderInfo().then(response => {
+            if(mounted && response != null && response.data != null && response.data.length > 0){
+                let tmp = response.data.map(data => {
+                    // IMAGE FETCHING
+                    const imgUrl = formatImages(data.id)
                     return {
-                        id : data.Prod.id,
+                        id : data.id,
                         imagePath: imgUrl,
-                        pname: data.Prod.name,
-                        ptag: categoriesFormat(data.Prod.categories),
-                        soldNum: 0,
-                        capacity: data.Prod.quantity,
-                        dateAdded: dateFormat(data.Prod.created_date),
-                        totalProfit: 0,
+                        pname: data.name,
+                        ptag: categoriesFormat(data.categories),
+                        soldNum: data.sold,
+                        capacity: data.capacity,
+                        dateAdded: dateFormat(data.created_date),
+                        totalProfit: data.sold*data.price,
+                        price : data.price
                     }
                 })
+                // ORDER SALE INFO FETCHING
+                // console.log(tmp)
                 setData(tmp)
             }
         })
@@ -50,9 +56,8 @@ export const ProductTableBody = props => {
     const rowGenerator = dataset => {
         return dataset.map((data) => {
             let tag = ""
-            const { id, imagePath, pname, ptag, soldNum, capacity, dateAdded, totalProfit } = data
+            const { id, imagePath, pname, ptag, soldNum, capacity, dateAdded, totalProfit, ...rest } = data
             tag = ptag
-            // tag = tag.slice(0, tag.length - 2)
             return (
                 <tr key={id} className="table__body-row">
                     <td><ProductSummary tag={tag} imagePath={imagePath} label={pname}/></td>

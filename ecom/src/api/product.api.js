@@ -55,3 +55,21 @@ export const fetchAllProductWithFilter = async (params) => {
         return false
     })
 }
+
+export const fetchAllProductWithOrderInfo = async () => {
+    return fetch(API_PATH.GET_PRODUCT_WITH_ORDER_INFO, {
+        method: "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw new Error("error")
+        return res.json()})
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        console.log(error);
+        return false
+    })
+}

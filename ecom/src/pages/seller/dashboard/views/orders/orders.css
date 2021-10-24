@@ -208,7 +208,7 @@
 .order__table-row{
     display: flex;
     flex-wrap: wrap;
-    height: 64px;
+    height: 48px;
     width: 95%;
     margin: auto;
     /* outline: 1px solid black; */

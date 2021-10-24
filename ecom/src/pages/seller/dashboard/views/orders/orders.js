@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { getAllOrderBySellerID } from "../../../../../api/api.order";
 import { SearchInput, ExportButton } from "../../../../../components";
+import { dateFormat } from "../../../../../utilities/date.format";
 import "./orders.css"
 
 const Order = props => {
     return (
-        <div className>
+        <div className="">
             <OrderToolBar />
             <OrderTable />
         </div>
@@ -37,12 +39,61 @@ const OrderToolBar = props => {
 }
 
 const OrderTable = props => {
+    const [data, setData] = useState([])
+    const [busy, setBusy] = useState(true)
+    useEffect(() => {
+        let mounted = true
+        getAllOrderBySellerID().then(response => {
+            if(mounted){
+                if(response != null && response.data != null){
+                    let tmp = response.data.map(e => {
+                        return {
+                            orderid: e.orderid,
+                            name  : e.name,
+                            productid: e.productid,
+                            quantity: e.quantity,
+                            price: e.price,
+                            color: e.color,
+                            size: e.size,
+                            status: e.status,
+                            created_date: dateFormat(e.created_date)
+                        }
+                    })
+                    console.log(tmp)
+                    setData(tmp)
+                    setBusy(false)
+                }
+            }
+        })
+        return () => mounted = false
+    }, [])
+
+    const rowGenerator = () => {
+        let tmp = data.map((e, index) => {
+            return(
+                <OrderTableRow
+                    key={e.orderid}
+                    isEven={(index + 1)%2}
+                    orderid={e.orderid}
+                    name={e.name}
+                    size={e.size}
+                    color={e.color}
+                    status={e.status}
+                    createdDate={e.created_date}
+                    price={e.price}
+                    quantity={e.quantity}
+                />
+            ) 
+        })
+        return tmp
+    }
+
+
     return(
         <div className="order__table-container">
             <OrderTableHeader/>
             <div className="order__table-line"/>
-            <OrderTableRow isEven={true}/>
-            <OrderTableRow isEven={false}/>
+            {busy ? null : rowGenerator()}
         </div>
     )
 }
@@ -74,12 +125,12 @@ const OrderTableRow = props => {
 
     return (
         <div className={`order__table-row ${alterBackground()}`}>
-            <div className="order__table-row-id">AB1234</div>
-            <div className="order__table-row-date">Today, 8th Aug, 2018</div>
-            <div className="order__table-row-detail">Collete Stretch Linen Minidress (M) x 1</div>
-            <div className="order__table-row-total">60.00</div>
+            <div className="order__table-row-id">{props.orderid}</div>
+            <div className="order__table-row-date">{props.createdDate} </div>
+            <div className="order__table-row-detail">{props.name} ({props.size.toUpperCase()}) x {props.quantity}</div>
+            <div className="order__table-row-total">{props.price * props.quantity}</div>
             <div className="order__table-row-status">
-                <OrderStatus completed/>
+                <OrderStatus status={props.status}/>
             </div>
             <div className="order__table-row-action">
                 Action
@@ -93,13 +144,8 @@ const OrderTableRow = props => {
 
 const OrderStatus = props => {
     let status = "Pending"
-
-    if(props.pending)
-        status = "Pending"
-    else if(props.completed)
-        status = "Completed"
-    else if(props.cancel)
-        status = "Cancel"
+    if(props.status != undefined)
+        status = props.status
 
     const COLORS_STATUS = {
         pending : "#fbba4e",
