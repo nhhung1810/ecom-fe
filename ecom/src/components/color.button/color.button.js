@@ -8,13 +8,13 @@ export const ColorButton = props => {
         color = "red"
 
     const handleChange = e => {
-        if(props.onChange != undefined)
+        if(props.onChange !== undefined)
             return props.onChange
         else return () => {return}
     }
 
     const activeStyling = () => {
-        if(props.activeStyling != undefined)
+        if(props.activeStyling !== undefined)
             return props.activeStyling
         else return ""
     }

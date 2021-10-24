@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import './modal.register.css';
 import validator from 'validator';
-import { Redirect } from "react-router-dom";
 
 import { signupAPI } from "../../../api/auth.api";
 import { GroupInputRegister, TermService, RegisterButton } from "./components";
@@ -16,8 +15,6 @@ const Register = props => {
     const [isValidPassword, setIsValidPassword] = useState(false);
 
     const [errorState, setErrorState] = useState(false);
-
-    const [redirect, setRedirect] = useState(false);
 
     //this function will be call again after state is updated
     let isValidInput = isValidEmail && isValidName && isValidPassword;
@@ -66,7 +63,8 @@ const Register = props => {
         e.preventDefault();
         const response = await signupAPI(name, email, password);
         // redirect to the login modal
-        props.handleChange()
+        if(response)
+            props.handleChange()
     }
 
 

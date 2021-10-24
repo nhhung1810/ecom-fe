@@ -25,13 +25,15 @@ const Login = props => {
     const [isRemember, setIsRemember] = useState(remember !== null);
 
     useEffect(() => {
+        let mounted = true
         if (isRemember) {
             if (remember != null) {
                 setEmail(remember);
                 setIsValidEmail(true);
             }
         }
-    })
+        return () => mounted = false
+    }, [])
 
     const dispatch = useDispatch();
 

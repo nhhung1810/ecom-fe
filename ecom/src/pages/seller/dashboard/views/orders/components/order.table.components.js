@@ -1,7 +1,7 @@
 
 export const OrderTableRow = props => {
     let isEven = true
-    if(props.isEven != undefined)
+    if(props.isEven !== undefined)
         isEven = props.isEven
 
     const alterBackground = () => {
@@ -23,6 +23,7 @@ export const OrderTableRow = props => {
             <div className="order__table-row-action">
                 Action
                 <img
+                    alt="action"
                     className="order__table-action-icon" 
                     src={process.env.PUBLIC_URL + "/images/dropdown.svg"}></img>
             </div>
@@ -32,7 +33,7 @@ export const OrderTableRow = props => {
 
 const OrderStatus = props => {
     let status = "Pending"
-    if(props.status != undefined)
+    if(props.status !== undefined)
         status = props.status
 
     const COLORS_STATUS = {

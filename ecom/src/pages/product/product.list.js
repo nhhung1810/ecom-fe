@@ -21,9 +21,11 @@ export const ProductList = props => {
             let tmp = new URLSearchParams({ categories: e })
             return tmp.toString()
         })
-        if (ctgParam.length == 0) ctgParam = ["categories="]
-        if (sizeParam.length == 0) sizeParam = ["size="]
-        if (colorParam.length == 0) colorParam = ["colors="]
+
+        if (ctgParam.length === 0) ctgParam = ["categories="]
+        if (sizeParam.length === 0) sizeParam = ["size="]
+        if (colorParam.length === 0) colorParam = ["colors="]
+
         let final = [...ctgParam, ...sizeParam, ...colorParam]
         let finalParam = final.join("&")
         console.log(finalParam);

@@ -3,7 +3,7 @@
 import { CartTableRow } from "."
 export const CartTable = props => {
     const generateTableRow = () => {
-        if(props.data == undefined)
+        if(props.data === undefined)
             return (
                 <></>
             )

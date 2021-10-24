@@ -1,22 +1,38 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect, useReducer } from "react"
 import { OrderTableRow } from "./order.table.components"
-import {getAllOrderBySellerID} from "./../../../../../../api/api.order"
-import {dateFormat} from "./../../../../../../utilities/date.format"
-
+import { countOrderBySellerID, getAllOrderBySellerWithPaging } from "./../../../../../../api/api.order"
+import { dateFormat } from "./../../../../../../utilities/date.format"
+import { PagingTool } from "../../../../../../components"
 
 
 export const OrderTable = props => {
     const [data, setData] = useState([])
     const [busy, setBusy] = useState(true)
+    const [paging, setPaging] = useState({
+        limit: 10,
+        offset: 0,
+        maxPage: 1,
+    })
+
     useEffect(() => {
         let mounted = true
-        getAllOrderBySellerID().then(response => {
-            if(mounted){
-                if(response != null && response.data != null){
+        countOrderBySellerID().then(response => {
+            if (mounted) {
+                if (response != null && response.count != null)
+                    setPaging({
+                        limit: paging.limit,
+                        offset: paging.offset,
+                        maxPage: response.count / paging.limit,
+                    })
+            }
+        }).catch(error => console.log(error))
+        getAllOrderBySellerWithPaging(paging.limit, paging.offset).then(response => {
+            if (mounted) {
+                if (response != null && response.data != null) {
                     let tmp = response.data.map(e => {
                         return {
                             orderid: e.orderid,
-                            name  : e.name,
+                            name: e.name,
                             productid: e.productid,
                             quantity: e.quantity,
                             price: e.price,
@@ -31,16 +47,16 @@ export const OrderTable = props => {
                     setBusy(false)
                 }
             }
-        })
+        }).catch(error => console.log(error))
         return () => mounted = false
-    }, [])
+    }, [paging.offset, paging.limit, paging.maxPage])
 
     const rowGenerator = () => {
         let tmp = data.map((e, index) => {
-            return(
+            return (
                 <OrderTableRow
                     key={e.orderid}
-                    isEven={(index + 1)%2}
+                    isEven={(index + 1) % 2}
                     orderid={e.orderid}
                     name={e.name}
                     size={e.size}
@@ -50,17 +66,34 @@ export const OrderTable = props => {
                     price={e.price}
                     quantity={e.quantity}
                 />
-            ) 
+            )
         })
         return tmp
     }
 
+    const handleChange = (limit, offset, maxPage) => {
+        console.log(limit, offset, maxPage)
+        setPaging({
+            limit : limit,
+            offset : offset,
+            maxPage : maxPage
+        })
+        return
+    }
 
-    return(
+
+    return (
         <div className="order__table-container">
-            <OrderTableHeader/>
-            <div className="order__table-line"/>
+            <OrderTableHeader />
+            <div className="order__table-line" />
             {busy ? null : rowGenerator()}
+            <div className="order__table-paging-position">
+                <PagingTool
+                    limit={paging.limit}
+                    offset={paging.offset}
+                    maxPage={paging.maxPage}
+                    handleChange={handleChange} />
+            </div>
         </div>
     )
 }
@@ -79,3 +112,5 @@ const OrderTableHeader = props => {
         </div>
     )
 }
+
+

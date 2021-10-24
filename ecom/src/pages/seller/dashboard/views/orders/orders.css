@@ -247,6 +247,8 @@
     flex: 1 1 var(--flex-status);
 }
 .order__table-row-action{
+    position: relative;
+    bottom: 5px;
     cursor: pointer;
     flex: 1 1 var(--flex-action);
 }
@@ -272,5 +274,12 @@
 .order__table-action-icon{
     cursor: pointer;
     position: relative;
-    top: 6px;
+    top: 8px;
+}
+
+.order__table-paging-position{
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    left: 35px;
 }

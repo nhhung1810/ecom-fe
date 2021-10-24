@@ -7,7 +7,9 @@ export const OrderToolBar = props => {
             </div>
             <button className="order__toolbar-date" disabled>
                 01/08/2018 - 31/08/2018
-                <img className="order__toolbar-date-calendar" src={process.env.PUBLIC_URL + "/images/calendar.svg"}></img>
+                <img 
+                    alt="calendar icon" 
+                    className="order__toolbar-date-calendar" src={process.env.PUBLIC_URL + "/images/calendar.svg"}></img>
             </button>
             <button className="order__toolbar-today">Today</button>
             <button className="order__toolbar-yesterday">Yesterday</button>

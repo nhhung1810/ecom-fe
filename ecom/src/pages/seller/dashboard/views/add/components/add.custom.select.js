@@ -56,11 +56,11 @@ const styleMultiSelect = {
 
 export const CreatableMultiSelectInput = props => {
     let options = props.options
-    if (options == undefined)
+    if (options === undefined)
         options = defaultOptions
     
     let placeholder = props.placeholder
-    if(placeholder == undefined)
+    if(placeholder === undefined)
         placeholder = defaultPlaceholder
 
     const formatListValue = values => {
@@ -87,11 +87,11 @@ export const CreatableMultiSelectInput = props => {
 
 export const CreatableSingleSelectInput = props => {
     let options = props.options
-    if (options == undefined)
+    if (options === undefined)
         options = defaultOptions
     
     let placeholder = props.placeholder
-    if(placeholder == undefined)
+    if(placeholder === undefined)
         placeholder = defaultPlaceholder
 
     return (
@@ -112,11 +112,11 @@ export const CreatableSingleSelectInput = props => {
 
 export const MultiSelectInput = props => {
     let options = props.options
-    if (options == undefined)
+    if (options === undefined)
         options = defaultOptions
     
     let placeholder = props.placeholder
-    if(placeholder == undefined)
+    if(placeholder === undefined)
         placeholder = defaultPlaceholder
 
     const formatListValue = values => {

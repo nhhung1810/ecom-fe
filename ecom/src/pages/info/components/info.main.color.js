@@ -11,7 +11,7 @@ export const ColorGroup = props => {
     }
 
     const activeStyling = (colors) => {
-        if (props.chosenColor == colors)
+        if (props.chosenColor === colors)
             return "active"
         else
             return ""
@@ -19,7 +19,7 @@ export const ColorGroup = props => {
 
     const generateColorButton = () => {
         const cleanedColor = props.colors.filter(e =>
-            COLORS[e] != undefined
+            COLORS[e] !== undefined
         )
         if (cleanedColor.length > 0) {
             return cleanedColor.map(e => {

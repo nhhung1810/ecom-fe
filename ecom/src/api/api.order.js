@@ -58,3 +58,46 @@ export const getAllOrderBySellerID = async () => {
         return false
     })
 }
+
+export const getAllOrderBySellerWithPaging = async (limit, offset) => {
+    const paging = {
+        limit : limit,
+        offset : offset
+    }
+
+    const params = new URLSearchParams(paging)
+    const url = API_PATH.GET_ORDER_BY_SELLER_WITH_PAGING + params.toString() 
+    return fetch(url, {
+        method : "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw new Error("error")
+        return res.json()})
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        return false
+    })
+}
+
+
+export const countOrderBySellerID = async () => {
+    const url = API_PATH.COUNT_ORDER_BY_SELLER 
+    return fetch(url, {
+        method : "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw new Error("error")
+        return res.json()})
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        return false
+    })
+}

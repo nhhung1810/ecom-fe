@@ -13,11 +13,14 @@ const API_PATH = {
     
     UPLOAD_IMAGE : HOST_URL + "/upload/image",
     IMAGE : HOST_URL + "/image",
-    IMAGE_QUERY : HOST_URL + "/image" + "?",
+    IMAGE_QUERY : HOST_URL + "/image?",
 
     UPLOAD_ORDER : HOST_URL + "/upload/order",
     GET_ORDER_QUERY: HOST_URL + "/order?",
     GET_ORDER_BY_SELLER : HOST_URL + "/seller/order",
+    GET_ORDER_BY_SELLER_WITH_PAGING : HOST_URL + "/seller/order?",
+
+    COUNT_ORDER_BY_SELLER : HOST_URL + "/count/order"
 
 }
 

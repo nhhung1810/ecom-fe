@@ -25,7 +25,7 @@ export const CartPage = props => {
             console.log(submitData)
             const response = await uploadOrder(submitData)
             console.log("Is submited", response)
-            if(response == true)
+            if(response === true)
                 dispatch(removeAllFromCart())
         }
     }

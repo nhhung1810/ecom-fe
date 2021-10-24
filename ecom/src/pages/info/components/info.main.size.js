@@ -7,14 +7,14 @@ export const SizeGroup = props => {
     const [inactiveSizeList, setInactiveSizeList] = useState([-1])
 
     const sizeButtonStyling = (index) => {
-        if (inactiveSizeList.find(e => e == index))
+        if (inactiveSizeList.find(e => e === index))
             return "inactive"
-        if (index == size)
+        if (index === size)
             return "chosen"
     }
 
     const setActiveSize = (e, index) => {
-        if (inactiveSizeList.find(inactive => inactive == index))
+        if (inactiveSizeList.find(inactive => inactive === index))
             return
         else {
             props.onChange(e)

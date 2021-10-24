@@ -6,7 +6,8 @@ export const ExportButton = props => {
         <button className="export__button">
             <img
                 className="export__button-icon" 
-                src={process.env.PUBLIC_URL + "/images/export-orange.svg"}></img>
+                src={process.env.PUBLIC_URL + "/images/export-orange.svg"}
+                alt="export icon"></img>
             Export
         </button>
     )

@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
 
@@ -65,7 +62,7 @@ const TestSite = props => {
     }
 
     const testUpload = async e => {
-        if (e.target.files.length == 0) return
+        if (e.target.files.length === 0) return
         let file = e.target.files[0]
         let reader = new FileReader()
         reader.readAsDataURL(file)

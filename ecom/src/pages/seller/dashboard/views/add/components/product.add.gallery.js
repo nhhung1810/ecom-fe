@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
 
 export const AddPhotoGallery = props => {
     const [isOverflow, setIsOverflow] = useState(false)
@@ -14,9 +14,9 @@ export const AddPhotoGallery = props => {
         setUrl(tmp)
     }, [imageList])
 
-    if (imageList.length == 4 && isOverflow == false) {
+    if (imageList.length === 4 && isOverflow === false) {
         setIsOverflow(true)
-    } else if (imageList.length == 3 && isOverflow == true) {
+    } else if (imageList.length === 3 && isOverflow === true) {
         setIsOverflow(false)
     }
 
@@ -36,7 +36,7 @@ export const AddPhotoGallery = props => {
     }
 
     const handleImage = e => {
-        if (e.target.files.length == 1)
+        if (e.target.files.length === 1)
             setImageList(imageList => [...imageList, e.target.files[0]])
     }
 
@@ -96,7 +96,7 @@ const PhotoCard = props => {
     return (
         <div className="add__photo-card">
             {
-                props.url == undefined ?
+                props.url === undefined ?
                     <PhotoCardNoImage handleUpload={props.handleUpload} />
                     :
                     <PhotoCardWithImage url={props.url} handleClose={props.handleClose} />
@@ -108,7 +108,7 @@ const PhotoCard = props => {
 const PhotoCardNoImage = props => {
     return (
         <div onClick={props.handleUpload} className="add__photo-icon-container">
-            <img className="add__photo-icon"
+            <img alt="icon" className="add__photo-icon"
                 src={process.env.PUBLIC_URL + "/images/add.svg"}>
             </img>
             Add Photo
@@ -120,11 +120,12 @@ const PhotoCardWithImage = props => {
     return (
         <div className="add__photo-upload-container">
             <img
+                alt="add"
                 src={process.env.PUBLIC_URL + "/images/close-1.svg"}
                 className="add__photo-upload-cross"
                 onClick={props.handleClose}
             />
-            <img src={props.url} className="add__photo-upload-image" />
+            <img alt="upload" src={props.url} className="add__photo-upload-image" />
         </div>
     )
 }

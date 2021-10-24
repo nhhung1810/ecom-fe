@@ -1,4 +1,4 @@
-import { generatePath, useHistory } from "react-router"
+import { useHistory } from "react-router"
 
 const SideBar = props => {
     return (
@@ -68,7 +68,6 @@ const MainView = props => {
 
 const ProductCard = props => {
     const history = useHistory()
-    console.log(props.name)
     
     const toProductInfo = () =>{
         const params = {
@@ -76,12 +75,13 @@ const ProductCard = props => {
             id : props.id
         }
         const query = new URLSearchParams(params)
-        history.push("/info" + "?" + query.toString())
+        history.push("/info?" + query.toString())
     }
     return (
         <div className="product__card">
             <div onClick={toProductInfo} className="product__card-image">
                 <img 
+                    alt="card"
                     className="product__card-image-size" 
                     src={props.image}></img>
                 <button className="product__card-hover">+ Quick shop</button>

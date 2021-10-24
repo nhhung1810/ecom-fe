@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import authRedux from './auth.redux'
 import cartRedux from './cart.redux'

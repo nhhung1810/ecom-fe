@@ -35,7 +35,10 @@ export const NavBar = props => {
 const SearchBar = props => {
     return (
         <span className="navbar__search-container">
-            <img src={process.env.PUBLIC_URL + "/images/search.svg"} className="navbar__search-icon"></img>
+            <img 
+                src={process.env.PUBLIC_URL + "/images/search.svg"} 
+                className="navbar__search-icon"
+                alt="search icon"></img>
             <input type="text" className="navbar__searchbar" placeholder="Search"></input>
         </span>
     )
@@ -43,7 +46,10 @@ const SearchBar = props => {
 
 const Logo = props => {
     return (
-        <img className="navbar__logo" src={process.env.PUBLIC_URL + "/images/logo.svg"}></img>
+        <img 
+            className="navbar__logo" 
+            src={process.env.PUBLIC_URL + "/images/logo.svg"}
+            alt="logo"></img>
     )
 }
 
@@ -61,7 +67,9 @@ const RightTool = props => {
             }
             <span className="navbar__right-shopping-cart">
                 <Link to="/cart">
-                    <img src={process.env.PUBLIC_URL + "/images/cart.svg"}></img>
+                    <img 
+                        src={process.env.PUBLIC_URL + "/images/cart.svg"}
+                        alt="cart"></img>
                 </Link>
             </span>
         </span>
@@ -153,6 +161,7 @@ const DropCard = props => {
         <span className="navbar__footer-dropcard">
             {props.children}
             <img className="navbar__footer-dropcard-arrow"
+                alt="dropcard"
                 src={process.env.PUBLIC_URL + "/images/arrow.svg"}></img>
         </span>
     )

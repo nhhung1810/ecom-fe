@@ -14,7 +14,7 @@ export const InfoBody = props => {
 
     const generateSideImage = () =>{
         let tmp = props.data.imgs.map((e, index) => {
-            if(index != mainImage)
+            if(index === mainImage)
                 return(
                     <LeftSideImage 
                         key={index}
@@ -22,14 +22,17 @@ export const InfoBody = props => {
                         src={e}
                     />
                 )
-        }).filter(e => e != undefined)
+            else return undefined
+        }).filter(e => e !== undefined)
         return tmp
     }
 
     const generateMainImage = () =>{
         return (
-            <img className="info__main-image" 
-            src={props.data.imgs[mainImage%5]}/>
+            <img
+                alt="info" 
+                className="info__main-image" 
+                src={props.data.imgs[mainImage%5]}/>
         )
     }
 

@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {ReactComponent as ArrowDown} from './assets/arrowDown.svg';
-import {ReactComponent as ArrowUp} from './assets/arrowUp.svg';
-import {ReactComponent as Check} from './assets/check.svg';
+// import {ReactComponent as ArrowUp} from './assets/arrowUp.svg';
+// import {ReactComponent as Check} from './assets/check.svg';
 import './styles/global.sass';
 import "./override.css";
 

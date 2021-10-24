@@ -53,7 +53,7 @@ export const ProductInfo = props => {
 
     // REDIRECT WHEN PATH IS NOT MET
     // TODO: COMBINE WITH CASE WHEN PATH IS NOT FOUND
-    if (param.id == undefined)
+    if (param.id === undefined)
         return (
             <Redirect to="/" />
         )

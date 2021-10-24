@@ -25,14 +25,14 @@ const Dashboard = () => {
     let user = useSelector(selectAuthUser);
 
     const activeStyling = (index) => {
-        if (onActive == index) return "active-side-card";
+        if (onActive === index) return "active-side-card";
         return "";
     }
 
     const setActive = index => {
         return (
             (e) => {
-                if (index != onActive)
+                if (index !== onActive)
                     setOnActive(index);
                 return;
             }
@@ -100,9 +100,9 @@ const Header = props => {
             <span className="name-position">
                 <img src={process.env.PUBLIC_URL + "/images/ava.jpg"} alt="Avatar" className="avatar"></img>
                 <span className="avatar-name">Nguyen H. Hung</span>
-                <img src={process.env.PUBLIC_URL + "/images/dropdown.svg"} className="avatar-dropdown"></img>
-                <img src={process.env.PUBLIC_URL + "/images/mail.svg"} className="avatar-mail"></img>
-                <img src={process.env.PUBLIC_URL + "/images/notification.svg"} className="avatar-mail"></img>
+                <img alt="dropdown" src={process.env.PUBLIC_URL + "/images/dropdown.svg"} className="avatar-dropdown"></img>
+                <img alt="mail" src={process.env.PUBLIC_URL + "/images/mail.svg"} className="avatar-mail"></img>
+                <img alt="noti" src={process.env.PUBLIC_URL + "/images/notification.svg"} className="avatar-mail"></img>
             </span>
         </div>
     )

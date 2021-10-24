@@ -9,9 +9,9 @@ export const ProductTableBody = props => {
 
     const categoriesFormat = (strList) => {
         let ctgs = strList.map(value => {
-            let tmp = CATEGORIES_LIST.find(e => e.value == value).label;
+            let tmp = CATEGORIES_LIST.find(e => e.value === value).label;
             return tmp
-        }).filter(e => e != undefined)
+        }).filter(e => e !== undefined)
         return ctgs.join(", ")
     }
     const formatImages = (id) => {
@@ -27,7 +27,8 @@ export const ProductTableBody = props => {
     useEffect(() => {
         let mounted = true
         fetchAllProductWithOrderInfo().then(response => {
-            if(mounted && response != null && response.data != null && response.data.length > 0){
+            if(mounted && response !== null 
+                && response.data !== null && response.data.length > 0){
                 let tmp = response.data.map(data => {
                     // IMAGE FETCHING
                     const imgUrl = formatImages(data.id)
@@ -47,6 +48,8 @@ export const ProductTableBody = props => {
                 // console.log(tmp)
                 setData(tmp)
             }
+        }).catch(error => {
+            console.log(error);
         })
         return () => mounted = false
     }, [])
@@ -56,7 +59,7 @@ export const ProductTableBody = props => {
     const rowGenerator = dataset => {
         return dataset.map((data) => {
             let tag = ""
-            const { id, imagePath, pname, ptag, soldNum, capacity, dateAdded, totalProfit, ...rest } = data
+            const { id, imagePath, pname, ptag, soldNum, capacity, dateAdded, totalProfit } = data
             tag = ptag
             return (
                 <tr key={id} className="table__body-row">
@@ -92,8 +95,10 @@ const ActionButton = props =>{
     return (
         <div className="table__action-container">
             <span>Action</span>
-            <img src={process.env.PUBLIC_URL + "/images/dropdown.svg"} className="table__action-button"/>
-            <span></span>
+            <img 
+                alt="action" 
+                src={process.env.PUBLIC_URL + "/images/dropdown.svg"} 
+                className="table__action-button"/>
         </div>
     )
 }
@@ -101,7 +106,7 @@ const ActionButton = props =>{
 const ProductSummary = props => {
     return (
         <div className="table__product-summary-container">
-            <img src={props.imagePath} className="table__product-image"/>
+            <img alt="product" src={props.imagePath} className="table__product-image"/>
             <span className="table__product-summary-text">
                 <div className="table__product-label">
                     {props.label}

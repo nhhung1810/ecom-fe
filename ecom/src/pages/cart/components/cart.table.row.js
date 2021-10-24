@@ -33,6 +33,7 @@ export const CartTableRow = props => {
             <div className="cart__table-line" />
             <div className="cart__body-row-product">
                 <img
+                    alt="body"
                     className="cart__body-row-product-image"
                     src={props.image}>
                 </img>

@@ -77,7 +77,10 @@ const LoginDash = props => {
 
     return (
         <div className="dash-background">
-            <img src={process.env.PUBLIC_URL + "./images/login-dash-bg.png"} className="bg"></img>
+            <img
+                alt="background" 
+                src={process.env.PUBLIC_URL + "./images/login-dash-bg.png"} 
+                className="bg"></img>
             <div className="dash-box">
                 <Header />
                 {errorState ? <InvalidInput /> : null}

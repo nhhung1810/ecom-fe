@@ -3,13 +3,13 @@ import "./quantity.button.css"
 export const QuantityButton = props => {
 
     const handleChange = (offset) => {
-        if (props.onChange != undefined)
+        if (props.onChange !== undefined)
             return props.onChange(offset)
         else return () => { return }
     }
 
     const quantity = () => {
-        if (props.quantity != undefined)
+        if (props.quantity !== undefined)
             return props.quantity
         else
             return 0
