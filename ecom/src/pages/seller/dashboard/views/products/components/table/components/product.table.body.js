@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import API_PATH from "../../../../../../../../const/api.path.const"
 import { fetchAllProductWithOrderInfo } from "../../../../../../../../api/product.api"
 import { CATEGORIES_LIST } from "../../../../../../../../const/options.list.const"
 import { dateFormat } from "../../../../../../../../utilities/date.format"
+import { useOnClickOutside } from "../../../../../../../../hook"
 
 export const ProductTableBody = props => {
     const [data, setData] = useState([])
@@ -23,25 +24,25 @@ export const ProductTableBody = props => {
         return API_PATH.IMAGE_QUERY + param.toString()
     }
 
-    
+
     useEffect(() => {
         let mounted = true
         fetchAllProductWithOrderInfo().then(response => {
-            if(mounted && response !== null 
-                && response.data !== null && response.data.length > 0){
+            if (mounted && response !== null
+                && response.data !== null && response.data.length > 0) {
                 let tmp = response.data.map(data => {
                     // IMAGE FETCHING
                     const imgUrl = formatImages(data.id)
                     return {
-                        id : data.id,
+                        id: data.id,
                         imagePath: imgUrl,
                         pname: data.name,
                         ptag: categoriesFormat(data.categories),
                         soldNum: data.sold,
                         capacity: data.capacity,
                         dateAdded: dateFormat(data.created_date),
-                        totalProfit: data.sold*data.price,
-                        price : data.price
+                        totalProfit: data.sold * data.price,
+                        price: data.price
                     }
                 })
                 // ORDER SALE INFO FETCHING
@@ -63,12 +64,12 @@ export const ProductTableBody = props => {
             tag = ptag
             return (
                 <tr key={id} className="table__body-row">
-                    <td><ProductSummary tag={tag} imagePath={imagePath} label={pname}/></td>
+                    <td><ProductSummary tag={tag} imagePath={imagePath} label={pname} /></td>
                     <td>{String(soldNum) + "/" + String(capacity)}</td>
                     <td>{dateAdded}</td>
                     <td>{totalProfit}</td>
-                    <td className="table__body-align-left"><ActionButton/></td>
-                </tr>   
+                    <td className="table__body-align-left"><ActionButton /></td>
+                </tr>
             )
         })
 
@@ -91,14 +92,42 @@ export const ProductTableBody = props => {
     )
 }
 
-const ActionButton = props =>{
+const ActionButton = props => {
+    const [isOpen, setIsOpen] = useState(false)
+    const ref = useRef()
+
+    useOnClickOutside(ref, () => setIsOpen(false))
     return (
         <div className="table__action-container">
             <span>Action</span>
-            <img 
-                alt="action" 
-                src={process.env.PUBLIC_URL + "/images/dropdown.svg"} 
-                className="table__action-button"/>
+            <img
+                onClick={e => setIsOpen(true)}
+                alt="action"
+                src={process.env.PUBLIC_URL + "/images/dropdown.svg"}
+                className="table__action-button" 
+            />
+            {
+                isOpen 
+                ? 
+                <div ref={ref} className="table__action-modal">
+                    <button className="table__action-modal-edit">
+                        Edit
+                        <img 
+                            className="table__action-edit-icon" 
+                            src={process.env.PUBLIC_URL + "/images/edit.svg"}
+                        />
+                    </button>
+                    <button className="table__action-modal-remove">
+                        Remove
+                        <img 
+                            className="table__action-remove-icon" 
+                            src={process.env.PUBLIC_URL + "/images/remove.svg"}
+                        />
+                    </button>
+                </div> 
+                : 
+                null
+            }
         </div>
     )
 }
@@ -106,7 +135,7 @@ const ActionButton = props =>{
 const ProductSummary = props => {
     return (
         <div className="table__product-summary-container">
-            <img alt="product" src={props.imagePath} className="table__product-image"/>
+            <img alt="product" src={props.imagePath} className="table__product-image" />
             <span className="table__product-summary-text">
                 <div className="table__product-label">
                     {props.label}

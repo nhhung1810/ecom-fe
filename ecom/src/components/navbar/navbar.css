@@ -12,6 +12,8 @@
     --greyish-brown: #4d4d4d;
     --pinkish-grey: #cccccc;
     --pale-orange: #ffa15f; 
+    --white-five : #fbfbfb;
+    --white-six: #eaeaea;
 }
 
 .navbar__container{
@@ -113,6 +115,7 @@
     top: 6px
 }
 .navbar__footer-dropcard-center{
+    position: relative;
     text-align: center;
 }
 
@@ -125,7 +128,6 @@
     line-height: 1.57;
     letter-spacing: normal;
     color: var(--dark-grey);
-
     padding-left: 20px;
 }
 
@@ -134,4 +136,36 @@
     position: relative;
     top: 8px;
     z-index: 0;
+}
+
+.navbar__dropcard{
+    position: absolute;
+    z-index: 6;
+    width: 620px;
+    height: 45px;
+    top: 50px;
+    left: 30%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    border: solid 0.5px var(--white-six);
+    background-color: var(--white-five);
+}
+
+.navbar__dropcard > *{
+    display: inline-block;
+    height: 100%;
+    width: calc(100%/7);
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--dark-grey);
+    border: none;
+}
+
+.navbar__dropcard > *:hover{
+    opacity: 0.7;
 }

@@ -9,6 +9,6 @@ const Order = props => {
             <OrderTable />
         </div>
     )
-    }
+}
 
 export default Order

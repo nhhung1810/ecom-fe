@@ -101,3 +101,48 @@ export const countOrderBySellerID = async () => {
         return false
     })
 }
+
+export const updateOrderStatusCompleted = async (id) => {
+    const queryData = {
+        orderid : id
+    }
+    const param = new URLSearchParams(queryData)
+    const url = API_PATH.UPDATE_ORDER_STATUS_COMPLETED + param.toString()
+    return fetch(url, {
+        method : "POST",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw new Error("error")
+        return res.json()})
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        return false
+    })
+}
+
+
+export const updateOrderStatusCancel = async (id) => {
+    const queryData = {
+        orderid : id
+    }
+    const param = new URLSearchParams(queryData)
+    const url = API_PATH.UPDATE_ORDER_STATUS_CANCEL + param.toString()
+    return fetch(url, {
+        method : "POST",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw new Error("error")
+        return res.json()})
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        return false
+    })
+}

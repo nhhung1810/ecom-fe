@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./add.css"
 import { imageUploadAPI, uploadProductAPI } from "../../../../../api/upload.api";
 
-
 import {
     AddSubmitButton,
     AddDescriptionInput,
@@ -13,6 +12,7 @@ import {
     MultiSelectInput,
     CreatableSingleSelectInput
 } from "./components";
+
 import { BRAND_LIST, CATEGORIES_LIST, COLORS_LIST, SIZE_LIST } from "../../../../../const/options.list.const";
 
 export const AddPage = props => {

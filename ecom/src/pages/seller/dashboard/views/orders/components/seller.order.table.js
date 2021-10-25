@@ -27,9 +27,11 @@ export const OrderTable = props => {
             }
         }).catch(error => console.log(error))
         getAllOrderBySellerWithPaging(paging.limit, paging.offset).then(response => {
-            if (mounted) {
-                if (response != null && response.data != null) {
-                    let tmp = response.data.map(e => {
+            if(!mounted)
+                return
+            if (response != null && response.data != null) {
+                    let result = response.data.map(e => {
+                        // TODO:
                         return {
                             orderid: e.orderid,
                             name: e.name,
@@ -42,11 +44,9 @@ export const OrderTable = props => {
                             created_date: dateFormat(e.created_date)
                         }
                     })
-                    console.log(tmp)
-                    setData(tmp)
+                    setData(result)
                     setBusy(false)
                 }
-            }
         }).catch(error => console.log(error))
         return () => mounted = false
     }, [paging.offset, paging.limit, paging.maxPage])
@@ -72,7 +72,6 @@ export const OrderTable = props => {
     }
 
     const handleChange = (limit, offset, maxPage) => {
-        console.log(limit, offset, maxPage)
         setPaging({
             limit : limit,
             offset : offset,

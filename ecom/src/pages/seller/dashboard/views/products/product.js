@@ -25,18 +25,9 @@ const Product = props => {
 
 const ToolBar = props => {
     const locations = [
-        {
-            label: "Date added",
-            value: "1",
-        },
-        {
-            label: "A - Z",
-            value: "2",
-        },
-        {
-            label: "Z - A",
-            value: "3",
-        }
+        { label: "Date added", value: "1"},
+        { label: "A - Z", value: "2"},
+        { label: "Z - A", value: "3"}
     ];
 
 

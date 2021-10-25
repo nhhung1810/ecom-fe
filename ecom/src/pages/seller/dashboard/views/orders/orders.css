@@ -15,6 +15,7 @@
     --brown-grey: #979797;
     --white-four: #d4d3d3;
     --charcoal-grey : #3d3d3f;
+    --pea-green: #82bf11;
 
     /* FLEX */
     --flex-id : 10%;
@@ -249,8 +250,10 @@
 .order__table-row-action{
     position: relative;
     bottom: 5px;
+    right: 10px;
     cursor: pointer;
     flex: 1 1 var(--flex-action);
+    text-align: end;
 }
 
 .order__table-row-status-button{
@@ -282,4 +285,58 @@
     width: 100%;
     bottom: 20px;
     left: 35px;
+}
+
+.order__action-modal{
+    position: absolute;
+    z-index: 2;
+    top: 40px;
+    right: 0px;
+    width: 193px;
+    height: 88px;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.08);
+    background-color: white;
+    border-radius: 2px;
+}
+.order__action-modal > *{
+    display: block;
+    width: 100%;
+    height: 50%;
+    padding-left: 30px;
+    text-align: start;
+    background-color: white;
+    border: none;
+
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: var(--charcoal-grey);
+    border-radius: 2px;
+}
+
+
+.order__action-completed-icon, .order__action-cancel-icon{
+    display: inline-block;
+    position: relative;
+    right: 12px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--pea-green);
+    border-radius: 50px;
+}
+
+.order__action-completed:hover, .order__action-cancel:hover{
+    background-color: var(--white-four);
+}
+
+.order__action-completed-icon{
+    background-color: var(--pea-green);
+}
+
+.order__action-cancel-icon{
+    background-color: #f05d62;
 }

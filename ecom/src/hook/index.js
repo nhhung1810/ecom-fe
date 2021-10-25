@@ -1,3 +1,4 @@
 import { useQuery } from "./use.query.hook"
+import { useOnClickOutside } from "./click.outside.hook"
 
-export {useQuery}
+export {useQuery, useOnClickOutside}

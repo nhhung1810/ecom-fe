@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector} from "react-redux";
 import { Link } from "react-router-dom";
 
-import { selectAuthUser, signout } from "../../redux/auth.redux";
+import { selectAuthUser } from "../../redux/auth.redux";
 import "./navbar.css"
 
-import Login from "../../pages/modal/login/modal.login";
-import Register from "../../pages/modal/register/modal.register";
-import { signoutAPI } from "../../api/auth.api";
+import { DropCard } from "./navbar.dropcard";
+import { AuthenticatedGroup, UnauthenticatedGroup } from "./navbar.authenticate.group";
 
 
 export const NavBar = props => {
@@ -75,95 +74,3 @@ const RightTool = props => {
         </span>
     )
 }
-
-const AuthenticatedGroup = props => {
-    const dispatch = useDispatch()
-    const logout = async () => {
-        const response = await signoutAPI();
-        if (response) dispatch(signout())
-    }
-
-    return (
-        <>
-            <button type="button" onClick={logout}>Signout</button>
-            <Link to="/logindash"><button type="button">Login Dash</button></Link>
-
-        </>
-    )
-}
-
-const UnauthenticatedGroup = props => {
-    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
-    const [isLoginOpen, setIsLoginOpen] = useState(false)
-
-    const toggleRegisterPopup = () => {
-        if (isLoginOpen) setIsLoginOpen(false)
-        setIsRegisterOpen(!isRegisterOpen)
-        return;
-    }
-
-    const toggleLoginPopup = () => {
-        if (isRegisterOpen) setIsRegisterOpen(false)
-        setIsLoginOpen(!isLoginOpen)
-        return;
-    }
-
-    const loginToRegister = () => {
-        if (!isLoginOpen) toggleRegisterPopup();
-        else {
-            setIsLoginOpen(false)
-            setIsRegisterOpen(true)
-        }
-    }
-
-    const registerToLogin = () => {
-        console.log(isRegisterOpen)
-        if (!isRegisterOpen) toggleLoginPopup();
-        else {
-            setIsLoginOpen(true)
-            setIsRegisterOpen(false)
-        }
-        console.log(isRegisterOpen)
-    }
-
-    return (
-        <>
-            <span className="navbar__right-register">
-                <button type="button"
-                    onClick={toggleRegisterPopup}
-                    className="navbar__right-register-button">
-                    Register
-                </button>
-                {
-                    isRegisterOpen && <Register
-                        handleClose={toggleRegisterPopup}
-                        handleChange={registerToLogin} />
-                }
-            </span>
-            <span className="navbar__right-login">
-                <button type="button"
-                    onClick={toggleLoginPopup}
-                    className="navbar__right-login-button">
-                    Login
-                </button>
-                {
-                    isLoginOpen && <Login
-                        handleClose={toggleLoginPopup}
-                        handleChange={loginToRegister} />
-                }
-            </span>
-        </>
-    )
-}
-
-const DropCard = props => {
-    return (
-        <span className="navbar__footer-dropcard">
-            {props.children}
-            <img className="navbar__footer-dropcard-arrow"
-                alt="dropcard"
-                src={process.env.PUBLIC_URL + "/images/arrow.svg"}></img>
-        </span>
-    )
-}
-
