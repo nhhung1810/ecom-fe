@@ -37,11 +37,13 @@ const SideCard = props => {
 
 const MainView = props => {
     const generateProductCard = () => {
+        if(props.data === null){
+            return
+        }
         return props.data.map(element => {
-            console.log("how about this", element)
-            console.log("name", element.name)
             return (
-                <ProductCard 
+                <ProductCard
+                    key={element.id}
                     id={element.id}
                     image={element.img}
                     name={element.name}

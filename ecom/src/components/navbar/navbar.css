@@ -45,8 +45,9 @@
     height: 35px;
     border-radius: 17px;
     border: solid 1px var(--greyish-two);
+}
 
-    /* TEXT */
+.navbar__searchbar::placeholder{
     font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-weight: normal;
@@ -58,6 +59,7 @@
 }
 
 .navbar__search-icon{
+    cursor: pointer;
     position: absolute;
     top: -2px;
     right: 10px;

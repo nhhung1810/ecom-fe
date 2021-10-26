@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import { Link } from "react-router-dom";
 import { useOnClickOutside } from "../../hook";
 
 export const DropCard = props => {
@@ -11,24 +12,26 @@ export const DropCard = props => {
         <span className="navbar__footer-dropcard">
             {props.children}
             <img
-                onClick={e => setIsOpen(true)} 
+                onClick={e => setIsOpen(true)}
                 className="navbar__footer-dropcard-arrow"
                 alt="dropcard"
                 src={process.env.PUBLIC_URL + "/images/arrow.svg"}>
             </img>
             {
-            isOpen ?
-            <div ref={ref} className="navbar__dropcard"> 
-                <button>Tops</button>
-                <button>Bottoms</button>
-                <button>Dresses </button>
-                <button>Jacket</button>
-                <button>Shoes</button>
-                <button>Accessories</button>
-                <button>Sale</button>
-            </div>
-            :
-            null
+                isOpen ?
+                    <Link to={props.to}>
+                        <div ref={ref} className="navbar__dropcard">
+                            <button>Tops</button>
+                            <button>Bottoms</button>
+                            <button>Dresses </button>
+                            <button>Jacket</button>
+                            <button>Shoes</button>
+                            <button>Accessories</button>
+                            <button>Sale</button>
+                        </div>
+                    </Link>
+                    :
+                    null
             }
         </span>
     )

@@ -22,12 +22,10 @@ export const NavBar = props => {
             </div>
             <div className="navbar__footer">
                 <div className="navbar__footer-dropcard-center">
-                    <DropCard>Men</DropCard>
-                    <Link to="/product?ctg=ladies">
-                        <DropCard>Ladies</DropCard>
-                    </Link>
-                    <DropCard>Girls</DropCard>
-                    <DropCard>Boys</DropCard>
+                    <DropCard to="/product?ctg=men">Men</DropCard>
+                    <DropCard to="/product?ctg=ladies">Ladies</DropCard>
+                    <DropCard to="/product?ctg=girls">Girls</DropCard>
+                    <DropCard to="/product?ctg=boys">Boys</DropCard>
                 </div>
             </div>
         </div>
