@@ -22,8 +22,8 @@ export const ColorButton = props => {
     return (
         <button
             type="button"
-            onClick={handleChange}
-            className={`info__info-colors-button ${activeStyling}`}
+            onClick={handleChange()}
+            className={`info__info-colors-button ${activeStyling()}`}
             style={{ backgroundColor: COLORS[color] }}
         ></button>
     )

@@ -3,6 +3,7 @@ import { COLORS } from "../../../const/colors.const"
 import { ColorButton } from "../../../components"
 
 export const ColorGroup = props => {
+    
     const handleChooseColor = color => {
         return e => {
             e.preventDefault()
@@ -11,6 +12,7 @@ export const ColorGroup = props => {
     }
 
     const activeStyling = (colors) => {
+        console.log("Active styling", colors);
         if (props.chosenColor === colors)
             return "active"
         else

@@ -8,8 +8,13 @@
 }
 
 .info__info-colors-button:hover{
-    opacity: 0.9;
+    opacity: 0.8;
 }
+
+.info__info-colors-button:active{
+    opacity: 1;
+}
+
 
 .info__info-colors-button.active{
     border: 1px solid var(--greyish-brown);

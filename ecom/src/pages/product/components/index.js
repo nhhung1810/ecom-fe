@@ -1,39 +1,57 @@
 import { useHistory } from "react-router"
+import { CATEGORIES_LIST_FOR_SIDEBAR } from "../../../const/options.list.const"
 
+// SIDEBAR
 const SideBar = props => {
+
+    const activeStyling = (ctg) => {
+        return () => {
+            if (props.activeSideCard === ctg)
+                return "product__active"
+            else
+                return ""
+        }
+    }
+
+    const generateSideCard = () => {
+        return CATEGORIES_LIST_FOR_SIDEBAR.map(e => {
+            return(
+                <SideCard
+                    key={e.value} 
+                    activeStyling={activeStyling(e.value)}
+                    onChange={props.onChange(e.value)}>
+                    {e.label}
+                </SideCard>
+            )
+        })
+    }
+
     return (
         <div className="product__sidebar">
             <div className="product__sidebar-padding-left">
-            <SideCategory></SideCategory>
+            <div className="product__sidebar-title">Category</div>
+            <SideCard
+                activeStyling={activeStyling(null)} 
+                onChange={props.onChange(null)}>
+                All Dresses
+            </SideCard>
+            {generateSideCard()}
             </div>
         </div>
     )
 }
-
-const SideCategory = props => {
-    return (
-        <>
-            <div className="product__sidebar-title">Category</div>
-            <SideCard>All Dresses</SideCard>
-            <SideCard>Rompers / Jumpsuits</SideCard>
-            <SideCard>Casual Dresses</SideCard>
-            <SideCard>Going out dresses</SideCard>
-            <SideCard>Party / Occasion dresses</SideCard>
-            <SideCard>Mini Dresses</SideCard>
-            <SideCard>Maxi / Midi dresses</SideCard>
-            <SideCard>Sets</SideCard>
-        </>
-    )
-}
-
 const SideCard = props => {
     return (
-        <div className="product__sidecard">
+        <div
+            onClick={e => props.onChange()}
+            className={`product__sidecard ${props.activeStyling()}`}>
             {props.children}
-            <div className="product__sidecard-line"></div>
+            <div className={`product__sidecard-line ${props.activeStyling()}`}></div>
         </div>
     )
 }
+
+// MAINVIEW
 
 const MainView = props => {
     const generateProductCard = () => {

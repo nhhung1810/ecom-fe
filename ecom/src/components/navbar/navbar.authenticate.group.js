@@ -110,9 +110,8 @@ const CartIcon = props => {
             history.push("/cart")
     }
     return (
-        <span className="navbar__right-shopping-cart">
+        <span onClick={handleRedirect} className="navbar__right-shopping-cart">
             <img
-                onClick={handleRedirect}
                 src={process.env.PUBLIC_URL + "/images/cart.svg"}
                 alt="cart">
             </img>

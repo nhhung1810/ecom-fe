@@ -8,6 +8,17 @@ export const CATEGORIES_LIST = [
     {value: "goingOut", label: "Going out dresses"},
     {value: "party", label: "Party / Occasion dresses"},
     {value: "mini", label: "Mini dresses"},
+    {value: "maxi", label: "Maxi / Midi dresses"},
+    {value: "sets", label: "Sets"},
+]
+
+export const CATEGORIES_LIST_FOR_SIDEBAR = [
+    {value: "jumpsuits", label: "Rompers / Jumpsuits"},
+    {value: "casual", label: "Casual dresses"},
+    {value: "goingOut", label: "Going out dresses"},
+    {value: "party", label: "Party / Occasion dresses"},
+    {value: "mini", label: "Mini dresses"},
+    {value: "maxi", label: "Maxi / Midi dresses"},
     {value: "sets", label: "Sets"},
 ]
 

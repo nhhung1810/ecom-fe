@@ -6,28 +6,23 @@ import "./product.list.css"
 import { fetchAllProductWithFilter } from "../../api/product.api";
 import API_PATH from "../../const/api.path.const";
 import { CATEGORIES_LIST } from "../../const/options.list.const";
+
 export const ProductList = props => {
     const [busy, setBusy] = useState(true)
     const [data, setData] = useState([])
+
     let query = useQuery()
-    let ctgList = query.getAll("ctg")
-    let sizeParam = []
-    let colorParam = []
+    let mainCtg = query.get("ctg")
+
+    const [sizeChosen, setSizeChosen] = useState([])
+    const [colorChosen, setColorChosen] = useState([])
+    const [subCtgChosen, setSubCtgChosen] = useState(null)
 
 
     useLayoutEffect(() => {
-        let ctgParam = ctgList.map(e => {
-            let tmp = new URLSearchParams({ categories: e })
-            return tmp.toString()
-        })
 
-        if (ctgParam.length === 0) ctgParam = ["categories="]
-        if (sizeParam.length === 0) sizeParam = ["size="]
-        if (colorParam.length === 0) colorParam = ["colors="]
-
-        let final = [...ctgParam, ...sizeParam, ...colorParam]
-        let finalParam = final.join("&")
-        console.log(finalParam);
+        let finalParam = extractParam([mainCtg, subCtgChosen],
+            sizeChosen, colorChosen);
         let mounted = true
         // FETCH API HERE
         fetchAllProductWithFilter(finalParam).then(response => {
@@ -54,17 +49,22 @@ export const ProductList = props => {
             })
             setData(tmp)
             setBusy(false)
-        }).catch(error =>{
+        }).catch(error => {
             setData([])
             setBusy(false)
         })
         return () => mounted = false
-    }, [query.toString()])
+    }, [query.toString(), subCtgChosen, sizeChosen, colorChosen])
 
     const formatFirstCtg = () => {
-        let tmp = ctgList[0]
+        let tmp = mainCtg
         return CATEGORIES_LIST.find(e => e.value == tmp).label
+    }
 
+    const handleChangeCategories = ctg => {
+        return e => {
+            setSubCtgChosen(ctg)
+        }
     }
 
     return (
@@ -75,10 +75,31 @@ export const ProductList = props => {
             </div>
 
             <div className="product__container">
-                <SideBar />
+                <SideBar
+                    activeSideCard={subCtgChosen} 
+                    onChange={handleChangeCategories} />
                 {busy ? null : <MainView data={data} />}
             </div>
             <Footer />
         </div>
     )
+}
+
+const extractParam = (ctgList, sizeParam, colorParam) => {
+    let ctgParam = ctgList.filter(e => e != null).map(e => {
+        let tmp = new URLSearchParams({ categories: e });
+        return tmp.toString();
+    });
+
+    if (ctgParam.length === 0)
+        ctgParam = ["categories="];
+    if (sizeParam.length === 0)
+        sizeParam = ["size="];
+    if (colorParam.length === 0)
+        colorParam = ["colors="];
+
+    let final = [...ctgParam, ...sizeParam, ...colorParam];
+    let finalParam = final.join("&");
+    console.log(finalParam);
+    return finalParam;
 }

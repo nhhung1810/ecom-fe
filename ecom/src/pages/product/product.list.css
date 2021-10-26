@@ -56,17 +56,27 @@
 /* SIDE CARD */
 
 .product__sidecard{
+    cursor: pointer;
     position: relative;
     padding-bottom: 18px;
 }
 
 .product__sidecard-line{
+    display: none;
     position: absolute;
     left: 0px;
     bottom: 8px;
     height: 1px;
+}
+
+.product__sidecard.product__active{
+    color: var(--pale-orange);
+}
+
+.product__sidecard-line.product__active{
     width: 20px;
-    border-bottom: solid 1px var(--brown-grey);
+    display: block;
+    border-bottom: solid 1px var(--pale-orange);
 }
 
 
