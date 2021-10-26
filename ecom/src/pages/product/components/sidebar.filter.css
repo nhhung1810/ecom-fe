@@ -1,0 +1,94 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+  
+
+:root{
+    --side-bar-width: 20%;
+    --white-two: #f6f6f6;
+    --white-three: #ededed;
+    --dark-grey: #202124;
+    --nav-height: 122px;
+    --body-height: 200vh;
+    --greyish-brown: #4d4d4d;
+    --pale-orange: #ffa15f;
+    --brown-grey: #979797;
+    --pinkish-grey: #ccc
+}
+
+.product__sidebar-filter{
+    width: 100%;
+    height: fit-content;
+    min-height: 400px;
+}
+
+/* DROPDOWN LABEL */
+
+.product__sidebar-filter-dropdown{
+    cursor: pointer;
+    position: relative;
+    height: 30px;
+    max-height: 30px;
+    width: 80%;
+    margin-bottom: 10px;
+
+    /* TEXT */
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: var(--dark-grey);
+    text-align: start;
+
+    border-bottom: solid 0.5px var(--pinkish-grey);
+}
+
+
+.product__sidebar-filter-dropdown.product__sidebar-active{
+    border-bottom: dashed 0.5px var(--pinkish-grey);
+
+}
+
+.product__sidebar-filter-dropdown-icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* FILTER SIZE TOOL */
+
+.product__sidebar-filter-size{
+    max-width: 80%;
+}
+
+.product__sidebar-filter-size > *{
+    width: 40px;
+    height: 40px;
+    background-color: var(--pale-orange);
+    margin-right: 10px;
+    margin-bottom: 10px;
+    
+    border: none;
+
+    /* TEXT */
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: white;
+}
+
+.product__sidebar-filter-size > *:hover{
+    opacity: 0.7;
+}
+
+.product__sidebar-filter-size > *:active{
+    opacity: 1;
+}
