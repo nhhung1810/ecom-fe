@@ -2,10 +2,14 @@
 import Register from "./../../pages/modal/register/modal.register"
 import Login from "./../../pages/modal/login/modal.login"
 import { Link } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { signout } from "../../redux/auth.redux"
 import { signoutAPI } from "../../api/auth.api"
 import { useState } from "react"
+import { useHistory } from "react-router-dom"
+import { selectAllProduct } from "../../redux/cart.redux"
+import { Avatar } from ".."
+
 
 export const AuthenticatedGroup = props => {
     const dispatch = useDispatch()
@@ -16,12 +20,15 @@ export const AuthenticatedGroup = props => {
 
     return (
         <>
-            <button type="button" onClick={logout}>Signout</button>
-            <Link to="/logindash"><button type="button">Login Dash</button></Link>
-
+            <span className="navbar__align-avatar">
+                <Avatar onSignout={logout}/>
+                <CartIcon />
+            </span>
         </>
     )
 }
+
+{/* <Link to="/logindash"><button type="button">Login Dash</button></Link> */}
 
 export const UnauthenticatedGroup = props => {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false)
@@ -48,7 +55,6 @@ export const UnauthenticatedGroup = props => {
     }
 
     const registerToLogin = () => {
-        console.log(isRegisterOpen)
         if (!isRegisterOpen) toggleLoginPopup();
         else {
             setIsLoginOpen(true)
@@ -56,6 +62,11 @@ export const UnauthenticatedGroup = props => {
         }
         console.log(isRegisterOpen)
     }
+
+    const handleCartToLogin = e => {
+        toggleLoginPopup()
+    }
+
 
     return (
         <>
@@ -83,6 +94,37 @@ export const UnauthenticatedGroup = props => {
                         handleChange={loginToRegister} />
                 }
             </span>
+            <CartIcon handleCartToLogin={handleCartToLogin} />
         </>
+    )
+}
+
+const CartIcon = props => {
+    let product = useSelector(selectAllProduct);
+    const history = useHistory()
+
+    const handleRedirect = e => {
+        if (props.handleCartToLogin != null)
+            props.handleCartToLogin()
+        else
+            history.push("/cart")
+    }
+    return (
+        <span className="navbar__right-shopping-cart">
+            <img
+                onClick={handleRedirect}
+                src={process.env.PUBLIC_URL + "/images/cart.svg"}
+                alt="cart">
+            </img>
+            {
+                product.length > 0
+                    ?
+                    <div className="navbar__right-shopping-cart-count">
+                        {product.length}
+                    </div>
+                    :
+                    null
+            }
+        </span>
     )
 }

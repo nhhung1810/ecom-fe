@@ -1,10 +1,11 @@
-import React from "react";
-import { useSelector} from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 
 import { selectAuthUser } from "../../redux/auth.redux";
-import "./navbar.css"
 
+import "./navbar.css"
+import { selectAllProduct } from "../../redux/cart.redux";
 import { DropCard } from "./navbar.dropcard";
 import { AuthenticatedGroup, UnauthenticatedGroup } from "./navbar.authenticate.group";
 
@@ -14,7 +15,9 @@ export const NavBar = props => {
         <div className="navbar__container">
             <div className="navbar__header">
                 <SearchBar />
-                <Logo />
+                <Link to="/">
+                    <Logo />
+                </Link>
                 <RightTool />
             </div>
             <div className="navbar__footer">
@@ -34,8 +37,8 @@ export const NavBar = props => {
 const SearchBar = props => {
     return (
         <span className="navbar__search-container">
-            <img 
-                src={process.env.PUBLIC_URL + "/images/search.svg"} 
+            <img
+                src={process.env.PUBLIC_URL + "/images/search.svg"}
                 className="navbar__search-icon"
                 alt="search icon"></img>
             <input type="text" className="navbar__searchbar" placeholder="Search"></input>
@@ -45,17 +48,16 @@ const SearchBar = props => {
 
 const Logo = props => {
     return (
-        <img 
-            className="navbar__logo" 
+        <img
+            className="navbar__logo"
             src={process.env.PUBLIC_URL + "/images/logo.svg"}
-            alt="logo"></img>
+            alt="logo">
+        </img>
     )
 }
 
 const RightTool = props => {
-
     let user = useSelector(selectAuthUser);
-
     return (
         <span className="navbar__right-align">
             {
@@ -64,13 +66,6 @@ const RightTool = props => {
                     :
                     <AuthenticatedGroup />
             }
-            <span className="navbar__right-shopping-cart">
-                <Link to="/cart">
-                    <img 
-                        src={process.env.PUBLIC_URL + "/images/cart.svg"}
-                        alt="cart"></img>
-                </Link>
-            </span>
         </span>
     )
 }

@@ -73,7 +73,17 @@
     position: absolute;
     right: 135px;
     top: 15px;
+}
 
+.navbar__align-avatar{
+    display: inline-block;
+    position: relative;
+    height: 100%;
+}
+
+.navbar__align-avatar >*{
+    vertical-align: middle;
+    margin-left: 25px;
 }
 
 .navbar__right-register-button{
@@ -114,6 +124,29 @@
     position: relative;
     top: 6px
 }
+
+.navbar__right-shopping-cart-count{
+    position: absolute;
+    right: -7px;
+    top: -15px;
+    display: inline-block;    
+    width: 18px;
+    height: 18px;
+    border-radius: 50px;
+    background-color: var(--pale-orange);
+
+    /* TEXT */
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 19px;
+    letter-spacing: normal;
+    text-align: center;
+    color: white;
+}
+
 .navbar__footer-dropcard-center{
     position: relative;
     text-align: center;
