@@ -38,6 +38,25 @@
     width: 100%;
 }
 
+/* THIS MUST BE BELOW THE ALL CHILD 
+SELECTOR AND SET THE WIDTH TO FIT */
+.home__body-image-text{
+    position: absolute;
+    right: 80px;
+    top: 70px;
+    width: fit-content;
+    font-family: Domine, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.94;
+    letter-spacing: normal;
+    text-align: right;
+    color: white;
+}
+
+
 .home__main-button-position{
     position: absolute;
     width: fit-content;

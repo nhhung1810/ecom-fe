@@ -18,6 +18,7 @@ const HomePageBody = props => {
         <div className="home__body">
             <div className="home__body-container">
                 <div className="home__body-main-image-container">
+                <div className="home__body-image-text">OUTFIT OF THE WEEK</div>
                     <img
                         src={process.env.PUBLIC_URL + "images/home-1.jpg"}
                         alt="homepage"
