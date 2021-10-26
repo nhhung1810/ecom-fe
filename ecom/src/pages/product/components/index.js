@@ -36,10 +36,20 @@ const SideBar = props => {
                 All Dresses
             </SideCard>
             {generateSideCard()}
+            <div className="product__sidebar-line"></div>
+            <div className="product__sidebar-title">Filter</div>
+            <FilterToolBar/>
             </div>
         </div>
     )
 }
+
+const FilterToolBar = props => {
+    return (
+        <div className="product__sidebar-filter"></div>
+    )
+}
+
 const SideCard = props => {
     return (
         <div
