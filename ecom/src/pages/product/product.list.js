@@ -1,11 +1,12 @@
 import React, { useLayoutEffect, useState } from "react";
 import { NavBar } from "../../components";
-import { SideBar, MainView, Footer } from "./components";
+import { SideBar, MainView} from "./components";
 import { useQuery } from "../../hook";
 import "./product.list.css"
 import { fetchAllProductWithFilter } from "../../api/product.api";
 import API_PATH from "../../const/api.path.const";
 import { CATEGORIES_LIST } from "../../const/options.list.const";
+import { Footer } from "../../components";
 
 export const ProductList = props => {
     const [busy, setBusy] = useState(true)

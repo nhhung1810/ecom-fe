@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBar } from "../../components";
+import { Footer, NavBar } from "../../components";
 import { Link } from "react-router-dom";
 import "./homepage.css"
 
@@ -9,6 +9,7 @@ const HomePage = props => {
         <div>
             <NavBar />
             <HomePageBody />
+            <Footer/>
         </div>
     )
 }

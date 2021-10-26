@@ -5,8 +5,10 @@ import { SearchInput } from "./search.input/search.input";
 import { ExportButton } from "./export.button/export.button";
 import { PagingTool } from "./paging.tool/paging.tool";
 import { Avatar } from "./avatar/avatar";
+import { Footer } from "./footer/footer";
 
 export { 
+    Footer,
     PagingTool, 
     NavBar, 
     ColorButton, 

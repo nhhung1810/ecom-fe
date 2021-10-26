@@ -116,10 +116,4 @@ const ProductCard = props => {
     )
 }
 
-const Footer = props => {
-    return (
-        <></>
-    )
-}
-
-export {Footer, SideBar, MainView}
+export {SideBar, MainView}
