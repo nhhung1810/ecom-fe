@@ -1,10 +1,11 @@
 
 
 import { useState } from "react"
-import { CATEGORIES_LIST_FOR_SIDEBAR, COLORS_LIST, SIZE_LIST } from "../../../const/options.list.const"
+import { CATEGORIES_LIST_FOR_SIDEBAR} from "../../../const/options.list.const"
 import "./sidebar.filter.css"
-import { selectColorFilter, removeColorsFilter, addColorsFilter } from "../../../redux/product.filter.redux"
-import { useDispatch, useSelector } from "react-redux"
+import { SizeFilterTool } from "./size.filter.tool"
+import { ColorFilterTool } from "./colors.filter.tool"
+import { BrandFilterTool } from "./brand.filter.tool"
 // SIDEBAR
 export const SideBar = props => {
     const activeStyling = (ctg) => {
@@ -81,15 +82,28 @@ const FilterToolBar = props => {
             }
             <FilterToolLabel
                 setActive={setActive("color")}
-                activeStyle={activeStyle("color")}
-            >
+                activeStyle={activeStyle("color")} >
                 Color
             </FilterToolLabel>
+            {
+                activeState === "color"
+                    ?
+                    <ColorFilterTool/>
+                    :
+                    null
+            }
             <FilterToolLabel
                 setActive={setActive("brand")}
-                activeStyle={activeStyle("brand")}>
+                activeStyle={activeStyle("brand")} >
                 Brand
             </FilterToolLabel>
+            {
+                activeState === "brand"
+                    ?
+                    <BrandFilterTool/>
+                    :
+                    null
+            }
             <FilterToolLabel
                 setActive={setActive("price")}
                 activeStyle={activeStyle("price")}>
@@ -103,6 +117,7 @@ const FilterToolBar = props => {
         </div>
     )
 }
+
 
 const FilterToolLabel = props => {
     const onClick = e => {
@@ -127,46 +142,6 @@ const FilterToolLabel = props => {
     )
 }
 
-const SizeFilterTool = props => {
-    const dispatch = useDispatch()
-    let chosenColors = useSelector(selectColorFilter)
-    console.log(chosenColors)
-
-    const handleChange = size => {
-        return e => {
-            if (chosenColors.findIndex(e =>  e === size) != -1)
-                dispatch(removeColorsFilter(size))
-            else
-                dispatch(addColorsFilter(size))
-        }
-    }
-
-    const activeStyling = size => {
-        if (chosenColors.findIndex(e => e === size) != -1)
-            return "product__size-active"
-        else
-            return ""
-    }
-
-    const generateSizeButton = () => {
-        let result = SIZE_LIST.map(e => {
-            return (
-                <button
-                    className={activeStyling(e.value)}
-                    onClick={handleChange(e.value)}>
-                    {e.label}
-                </button>
-            )
-        })
-        return result
-    }
-
-    return (
-        <div className="product__sidebar-filter-size">
-            {generateSizeButton()}
-        </div>
-    )
-}
 
 const SideCard = props => {
     return (

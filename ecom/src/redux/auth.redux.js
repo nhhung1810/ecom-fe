@@ -18,7 +18,7 @@ export const authStore = createSlice({
 
     setRemember : (state, action) =>{
       state.remember = action.payload
-    }
+    }   
   }
 })
 

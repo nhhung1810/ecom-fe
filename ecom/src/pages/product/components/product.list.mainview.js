@@ -2,21 +2,23 @@
 import { useHistory } from "react-router-dom"
 export const MainView = props => {
     const generateProductCard = () => {
-        if(props.data === null){
+        if (props.data === null) {
             return
         }
         return props.data.map(element => {
             return (
-                <ProductCard
-                    key={element.id}
-                    id={element.id}
-                    image={element.img}
-                    name={element.name}
-                    price={element.price}
-                />
+                <>
+                    <ProductCard
+                        key={element.id}
+                        id={element.id}
+                        image={element.img}
+                        name={element.name}
+                        price={element.price}
+                    />
+                </>
             )
         })
-    } 
+    }
 
     return (
         <div className="product__mainview">
@@ -35,11 +37,11 @@ export const MainView = props => {
 
 const ProductCard = props => {
     const history = useHistory()
-    
-    const toProductInfo = () =>{
+
+    const toProductInfo = () => {
         const params = {
             // TODO: CHANGE THIS AFTER APPLIED THE API
-            id : props.id
+            id: props.id
         }
         const query = new URLSearchParams(params)
         history.push("/info?" + query.toString())
@@ -47,9 +49,9 @@ const ProductCard = props => {
     return (
         <div className="product__card">
             <div onClick={toProductInfo} className="product__card-image">
-                <img 
+                <img
                     alt="card"
-                    className="product__card-image-size" 
+                    className="product__card-image-size"
                     src={props.image}></img>
                 <button className="product__card-hover">+ Quick shop</button>
             </div>

@@ -30,7 +30,7 @@
     position: relative;
     height: 30px;
     max-height: 30px;
-    width: 80%;
+    width: 90%;
     margin-bottom: 10px;
 
     /* TEXT */
@@ -97,4 +97,54 @@
 
 .product__sidebar-filter-size > *:active{
     opacity: 1;
+}
+
+/* FILTER COLORS TOOL */
+
+.product__sidebar-filter-color{
+    max-width: 100%;
+}
+
+.product__sidebar-filter-color >*{
+    margin-right: 18px;
+    margin-bottom: 17px;
+}
+
+/* FILTER BRAND TOOL */
+
+.product__sidebar-filter-brands {
+    position: relative;
+}
+
+.product__sidebar-filter-brand-align {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 95%;
+    height: 35px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+}
+
+.product__sidebar-filter-brand-align div:first-child{   
+    margin: auto auto auto 5%;
+    flex: 1 1 75%;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: start;
+    vertical-align: middle;
+    color: var(--greyish-brown);
+}
+.product__sidebar-filter-brand-align 
+    div:first-child.product__sidebar-filter-active{
+        color: var(--pale-orange);
+}
+
+.product__sidebar-filter-brand-align div:last-child{
+    margin: auto;
+    flex: 1 1 10%;
 }

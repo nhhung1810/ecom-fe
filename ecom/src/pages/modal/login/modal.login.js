@@ -6,7 +6,6 @@ import validator from 'validator';
 
 import { signinAPI } from "../../../api/auth.api";
 import './modal.login.css';
-import './checkbox.css'
 
 import { ModalLoginGroupInput, LoginButton, RememberAndForgot } from "./components";
 
@@ -128,7 +127,9 @@ const Login = props => {
                         <ModalLoginGroupInput handleChange={changePassword} default={""} label={"Name"} type={"password"}
                             styling={inputStyle()} placeholder={"Enter your password..."} />
 
-                        <RememberAndForgot handleChange={handleRemember} default={remember !== null} />
+                        <RememberAndForgot 
+                            handleChange={handleRemember} 
+                            default={remember !== null} />
                     </div>
 
                     <LoginButton styling={validInput()} />

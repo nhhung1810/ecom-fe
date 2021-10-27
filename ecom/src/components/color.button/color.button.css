@@ -17,5 +17,5 @@
 
 
 .info__info-colors-button.active{
-    border: 1px solid var(--greyish-brown);
+    outline: 1px solid var(--greyish-brown);
 }

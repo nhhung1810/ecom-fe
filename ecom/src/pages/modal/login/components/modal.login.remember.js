@@ -1,11 +1,12 @@
+import { CustomCheckBox } from "../../../../components"
+
 export const RememberAndForgot = props => {
     return (
         <div className="modal__remember-block">
-            <label className="control control-checkbox">
-                Remember password
-                <input type="checkbox" className="inline-checkbox" onChange={props.handleChange} defaultChecked={props.default} />
-                <span className="control_indicator"></span>
-            </label>
+            <CustomCheckBox
+                handleChange={props.handleChange}
+                default={props.default}
+            >Remember me</CustomCheckBox>
             <span className="modal__forgot-password">
                 Forgot your password?
             </span>

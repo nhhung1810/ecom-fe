@@ -2,7 +2,6 @@ import { COLORS } from "../../const/colors.const"
 import "./color.button.css" 
 
 export const ColorButton = props => {
-    console.log(props.color)
     let color = props.color
     if (!(color in COLORS))
         color = "red"
