@@ -1,8 +1,10 @@
 
 
 import { useState } from "react"
-import { CATEGORIES_LIST_FOR_SIDEBAR } from "../../../const/options.list.const"
+import { CATEGORIES_LIST_FOR_SIDEBAR, COLORS_LIST, SIZE_LIST } from "../../../const/options.list.const"
 import "./sidebar.filter.css"
+import { selectColorFilter, removeColorsFilter, addColorsFilter } from "../../../redux/product.filter.redux"
+import { useDispatch, useSelector } from "react-redux"
 // SIDEBAR
 export const SideBar = props => {
     const activeStyling = (ctg) => {
@@ -73,9 +75,7 @@ const FilterToolBar = props => {
             {
                 activeState === "size"
                     ?
-                    <SizeFilterTool
-                        onChange
-                    />
+                    <SizeFilterTool />
                     :
                     null
             }
@@ -128,13 +128,42 @@ const FilterToolLabel = props => {
 }
 
 const SizeFilterTool = props => {
+    const dispatch = useDispatch()
+    let chosenColors = useSelector(selectColorFilter)
+    console.log(chosenColors)
+
+    const handleChange = size => {
+        return e => {
+            if (chosenColors.findIndex(e =>  e === size) != -1)
+                dispatch(removeColorsFilter(size))
+            else
+                dispatch(addColorsFilter(size))
+        }
+    }
+
+    const activeStyling = size => {
+        if (chosenColors.findIndex(e => e === size) != -1)
+            return "product__size-active"
+        else
+            return ""
+    }
+
+    const generateSizeButton = () => {
+        let result = SIZE_LIST.map(e => {
+            return (
+                <button
+                    className={activeStyling(e.value)}
+                    onClick={handleChange(e.value)}>
+                    {e.label}
+                </button>
+            )
+        })
+        return result
+    }
+
     return (
         <div className="product__sidebar-filter-size">
-            <button>S</button>
-            <button>M</button>
-            <button>L</button>
-            <button>L</button>
-            <button>L</button>
+            {generateSizeButton()}
         </div>
     )
 }

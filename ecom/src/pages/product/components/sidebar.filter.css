@@ -68,20 +68,26 @@
 .product__sidebar-filter-size > *{
     width: 40px;
     height: 40px;
-    background-color: var(--pale-orange);
+    background-color: white;
     margin-right: 10px;
     margin-bottom: 10px;
     
-    border: none;
+    border: solid 1px #808080;;
 
     /* TEXT */
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.57;
     letter-spacing: normal;
+    color: var(--dark-grey);
+}
+
+.product__sidebar-filter-size >*.product__size-active{
+    background-color: var(--pale-orange);
+    border: solid 1px var(--pale-orange);
     color: white;
 }
 
