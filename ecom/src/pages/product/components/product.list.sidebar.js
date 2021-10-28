@@ -6,7 +6,8 @@ import "./sidebar.filter.css"
 import { SizeFilterTool } from "./size.filter.tool"
 import { ColorFilterTool } from "./colors.filter.tool"
 import { BrandFilterTool } from "./brand.filter.tool"
-import { FilterToolPriceRange } from "./price.filter.tool"
+import { ToolPriceFilterRange } from "./price.filter.tool"
+import { AvailableFilterRange } from "./available.filter.range"
 // SIDEBAR
 export const SideBar = props => {
     const activeStyling = (ctg) => {
@@ -113,7 +114,7 @@ const FilterToolBar = props => {
             {
                 activeState === "price"
                     ?
-                    <FilterToolPriceRange />
+                    <ToolPriceFilterRange />
                     :
                     null
             }
@@ -122,7 +123,14 @@ const FilterToolBar = props => {
                 activeStyle={activeStyle("available")}>
                 Available
             </FilterToolLabel>
-        </div>
+            {
+                activeState === "available"
+                    ?
+                    <AvailableFilterRange />
+                    :
+                    null
+            }
+    </div>
     )
 }
 

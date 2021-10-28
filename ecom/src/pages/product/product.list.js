@@ -12,7 +12,10 @@ import { fetchAllProductWithFilter } from "../../api/product.api";
 import API_PATH from "../../const/api.path.const";
 
 import { useSelector } from "react-redux";
-import { selectBrandsFilter, selectColorFilter, selectSizesFilter } from "../../redux/product.filter.redux";
+import { 
+    selectAvailableFilter, selectBrandsFilter, 
+    selectColorFilter, selectPriceRangeFilter, 
+    selectSizesFilter } from "../../redux/product.filter.redux";
 
 export const ProductList = props => {
     const [busy, setBusy] = useState(true)
@@ -20,6 +23,8 @@ export const ProductList = props => {
     let sizeChosen = useSelector(selectSizesFilter)
     let colorChosen = useSelector(selectColorFilter)
     let brandChosen = useSelector(selectBrandsFilter)
+    let priceRangeChosen = useSelector(selectPriceRangeFilter)
+    let availableChosen = useSelector(selectAvailableFilter)
 
     let query = useQuery()
     let mainCtg = query.get("ctg")
@@ -29,7 +34,8 @@ export const ProductList = props => {
 
     useLayoutEffect(() => {
         let finalParam = extractParam([mainCtg, subCtgChosen],
-            sizeChosen, colorChosen, brandChosen);
+                            sizeChosen, colorChosen, brandChosen,
+                             priceRangeChosen, availableChosen);
         let mounted = true
         // FETCH API HERE
         fetchAllProductWithFilter(finalParam).then(response => {
@@ -61,7 +67,9 @@ export const ProductList = props => {
             setBusy(false)
         })
         return () => mounted = false
-    }, [query.toString(), subCtgChosen, sizeChosen, colorChosen, brandChosen])
+    }, [query.toString(), subCtgChosen, 
+        sizeChosen, colorChosen, brandChosen, 
+        availableChosen, priceRangeChosen])
 
 
 

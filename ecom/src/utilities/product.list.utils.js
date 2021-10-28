@@ -6,6 +6,8 @@ export const extractParam = (
     sizeParam,
     colorParam,
     brandParam,
+    priceRangeParam,
+    availableParam,
 ) => {
     let ctgParam = ctgList.filter(e => e != null).map(e => {
         let tmp = new URLSearchParams({ categories: e });
@@ -38,7 +40,28 @@ export const extractParam = (
             let tmp = new URLSearchParams({ brands: e })
             return tmp.toString()
         })
-    let final = [...ctgParam, ...sizeParam, ...colorParam, ...brandParam];
+    // Price range
+    let pstart = "pstart=" + priceRangeParam[0]
+    let pstop = "pstop=" + priceRangeParam[1]
+    
+    // Available
+    if (availableParam.length === 0)
+        availableParam = ["available="];
+    else
+        availableParam = availableParam.map(e => {
+            let tmp = new URLSearchParams({ available: e })
+            return tmp.toString()
+        })
+
+    let final = [
+        ...ctgParam, 
+        ...sizeParam, 
+        ...colorParam, 
+        ...brandParam, 
+        pstart, 
+        pstop,
+        ...availableParam
+    ];
     let finalParam = final.join("&");
     console.log(finalParam);
     return finalParam;

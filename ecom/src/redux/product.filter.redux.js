@@ -7,6 +7,7 @@ export const filterStore = createSlice({
         sizes : [],
         brands : [],
         priceRange : [0, 10000],
+        available : [] 
     },
 
     reducers : {
@@ -39,7 +40,18 @@ export const filterStore = createSlice({
 
         changePriceRange(state, action){
             state.priceRange = action.payload
-        }
+        },
+
+        addAvailableFilter : (state, action) => {
+            state.available.push(action.payload)
+        },
+
+        removeAvailableFilter : (state, action) => {
+            var tmp = state.available.findIndex(e => e === action.payload)
+            state.available.splice(tmp, 1)
+        },
+
+        
     }
 })
 
@@ -51,7 +63,8 @@ export const {
     addBrandsFilter,
     removeBrandsFilter,
     changePriceRange,
-
+    addAvailableFilter,
+    removeAvailableFilter,
 } = filterStore.actions
 
 export default filterStore.reducer
@@ -60,3 +73,4 @@ export const selectColorFilter = state => state.filter.colors
 export const selectSizesFilter = state => state.filter.sizes
 export const selectBrandsFilter = state => state.filter.brands
 export const selectPriceRangeFilter = state => state.filter.priceRange
+export const selectAvailableFilter = state => state.filter.available
