@@ -56,8 +56,33 @@ export const fetchAllProductWithFilter = async (params) => {
     })
 }
 
-export const fetchAllProductWithOrderInfo = async () => {
-    return fetch(API_PATH.GET_PRODUCT_WITH_ORDER_INFO, {
+export const countProductByUserID = async () => {
+    return fetch(API_PATH.COUNT_PRODUCT_BY_SELLER, {
+        method: "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw new Error("error")
+        return res.json()})
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        return false
+    })
+}
+
+export const fetchAllProductWithOrderInfo = async (limit, offset) => {
+    const paging = {
+        limit : limit,
+        offset : offset
+    }
+
+    const params = new URLSearchParams(paging)
+    const url = API_PATH.GET_PRODUCT_WITH_ORDER_INFO_WITH_PAGING + 
+        params.toString() 
+    return fetch(url, {
         method: "GET",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",

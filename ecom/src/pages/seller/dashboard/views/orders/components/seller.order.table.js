@@ -12,41 +12,48 @@ export const OrderTable = props => {
         limit: 10,
         offset: 0,
         maxPage: 1,
+        count: 0,
     })
 
     useEffect(() => {
         let mounted = true
         countOrderBySellerID().then(response => {
-            if (mounted) {
-                if (response != null && response.count != null)
-                    setPaging({
-                        limit: paging.limit,
-                        offset: paging.offset,
-                        maxPage: response.count / paging.limit,
-                    })
-            }
+            var error = new Error("Null data")
+            if (!mounted) throw error;
+            if (!response) throw error
+            if (!response.count) throw error
+            setPaging({
+                limit: paging.limit,
+                offset: paging.offset,
+                maxPage: response.count / paging.limit,
+                count: response.count
+            })
         }).catch(error => console.log(error))
+
         getAllOrderBySellerWithPaging(paging.limit, paging.offset).then(response => {
-            if(!mounted)
-                return
-            if (response != null && response.data != null) {
-                    let result = response.data.map(e => {
-                        // TODO:
-                        return {
-                            orderid: e.orderid,
-                            name: e.name,
-                            productid: e.productid,
-                            quantity: e.quantity,
-                            price: e.price,
-                            color: e.color,
-                            size: e.size,
-                            status: e.status,
-                            created_date: dateFormat(e.created_date)
-                        }
-                    })
-                    setData(result)
-                    setBusy(false)
+            var error = new Error("Null data")
+            if (!mounted) throw error;
+            if (!response) throw error
+            if (!response.data) throw error
+            if (response.data.length === 0) throw error
+
+            let result = response.data.map(e => {
+                // TODO:
+                return {
+                    orderid: e.orderid,
+                    name: e.name,
+                    productid: e.productid,
+                    quantity: e.quantity,
+                    price: e.price,
+                    color: e.color,
+                    size: e.size,
+                    status: e.status,
+                    created_date: dateFormat(e.created_date)
                 }
+            })
+            setData(result)
+            setBusy(false)
+
         }).catch(error => console.log(error))
         return () => mounted = false
     }, [paging.offset, paging.limit, paging.maxPage])
@@ -71,11 +78,12 @@ export const OrderTable = props => {
         return tmp
     }
 
-    const handleChange = (limit, offset, maxPage) => {
+    const handleChange = (limit, offset, maxPage, count) => {
         setPaging({
-            limit : limit,
-            offset : offset,
-            maxPage : maxPage
+            limit: limit,
+            offset: offset,
+            maxPage: maxPage,
+            count: count
         })
         return
     }
@@ -91,6 +99,7 @@ export const OrderTable = props => {
                     limit={paging.limit}
                     offset={paging.offset}
                     maxPage={paging.maxPage}
+                    count={paging.count}
                     handleChange={handleChange} />
             </div>
         </div>

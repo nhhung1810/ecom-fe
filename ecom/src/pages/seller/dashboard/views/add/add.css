@@ -8,13 +8,16 @@
     --greyish: #acacac;
     --pale-orange: #ffa15f;
     --charcoal-grey : #3d3d3f;
+    --white-two: #f6f6f6;
 }
 
 .add__container{
     font-family: Montserrat, sans-serif;
     margin-right: 250px;
-    height: calc(732px + 270px);
+    min-height: calc(732px + 270px);
+    height: fit-content;
     text-align: end;
+    background-color: var(--white-two);
 }
 
 .add__title{

@@ -9,7 +9,7 @@ const HomePage = props => {
         <div>
             <NavBar />
             <HomePageBody />
-            <Footer/>
+            <Footer />
         </div>
     )
 }
@@ -19,13 +19,13 @@ const HomePageBody = props => {
         <div className="home__body">
             <div className="home__body-container">
                 <div className="home__body-main-image-container">
-                <div className="home__body-image-text">OUTFIT OF THE WEEK</div>
+                    <div className="home__body-image-text">OUTFIT OF THE WEEK</div>
                     <img
                         src={process.env.PUBLIC_URL + "images/home-1.jpg"}
                         alt="homepage"
                     />
                     <span className="home__main-button-position">
-                        <Link to="/">
+                        <Link to="/product?ctg=ladies">
                             <button className="home__link-button home__bigger">Shop now</button>
                         </Link>
                     </span>
@@ -46,11 +46,25 @@ const HomeSubImage = props => {
     ]
     return (
         <div className="home__body-sub">
-            <HomeSubImageCard image={imageURL[0]}>Men</HomeSubImageCard>
-            <HomeSubImageCard image={imageURL[1]}>Men
+            <HomeSubImageCard
+                to="/product?ctg=men"
+                image={imageURL[0]}>Men
             </HomeSubImageCard>
-            <HomeSubImageCard image={imageURL[2]}>Men</HomeSubImageCard>
-            <HomeSubImageCard image={imageURL[3]}>Men</HomeSubImageCard>
+            <HomeSubImageCard
+                to="/product?ctg=ladies"
+                image={imageURL[1]}>
+                Ladies
+            </HomeSubImageCard>
+            <HomeSubImageCard
+                to="/product?ctg=ladies"
+                image={imageURL[2]}>
+                Girls
+            </HomeSubImageCard>
+            <HomeSubImageCard
+                to="/product?ctg=ladies"
+                image={imageURL[3]}>
+                Boys
+            </HomeSubImageCard>
         </div>
     )
 }
@@ -68,7 +82,7 @@ const HomeSubImageCard = (props) => {
                     <div className="home_sub-label-line" />
                 </div>
                 <span className="home__sub-button-position">
-                    <Link to="/">
+                    <Link to={props.to}>
                         <button className="home__link-button">Shop now</button>
                     </Link>
                 </span>

@@ -31,9 +31,11 @@
   }
 
   .main {
-    margin-left: var(--side-nav-width); /* Same as the width of the sidenav */
+    margin-left: var(--side-nav-width); 
+    /* Same as the width of the sidenav */
     background-color: var(--white-two);
-    height: 120vh;
+    min-height: 120vh;
+    height: fit-content;
     position: relative;
     bottom: 4px;
   }

@@ -77,6 +77,13 @@
     color: var(--charcoal-grey);
 }
 
+.paging__move.active{
+    color: white;
+    border: solid 1px var(--pale-orange);
+    background-color: var(--pale-orange);
+}
+
+
 .paging__move:hover{
-    background-color: var(--white-four);
+    border-color: var(--white-four);
 }

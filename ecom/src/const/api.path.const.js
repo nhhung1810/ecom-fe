@@ -10,6 +10,7 @@ const API_PATH = {
     GET_ALL_PRODUCTS_WITH_FILTER : HOST_URL + "/product/q?",
     GET_PRODUCT_INFO_QUERY : HOST_URL + "/product/info?",
     GET_PRODUCT_WITH_ORDER_INFO : HOST_URL + "/seller/product",
+    GET_PRODUCT_WITH_ORDER_INFO_WITH_PAGING : HOST_URL + "/seller/product?",
     
     UPLOAD_IMAGE : HOST_URL + "/image/upload",
     IMAGE : HOST_URL + "/image",
@@ -21,6 +22,7 @@ const API_PATH = {
     GET_ORDER_BY_SELLER_WITH_PAGING : HOST_URL + "/seller/order?",
 
     COUNT_ORDER_BY_SELLER : HOST_URL + "/order/count",
+    COUNT_PRODUCT_BY_SELLER : HOST_URL + "/product/count",
     
     UPDATE_ORDER_STATUS_COMPLETED : HOST_URL + "/order/status?status=1&",
     UPDATE_ORDER_STATUS_CANCEL : HOST_URL + "/order/status?status=2&"

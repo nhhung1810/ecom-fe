@@ -4,7 +4,16 @@ import "./paging.tool.css"
 export const PagingTool = props => {
     return (
         <div className="paging__container">
-            <span className="paging__text"> Show 1 to 10 of 123 entries</span>
+            <span className="paging__text"> 
+            Show {`${props.offset + 1} `}
+            to 
+            {` ${(props.offset + props.limit) > props.count 
+                ?
+                props.count
+                :
+                (props.offset + props.limit)
+            }`} of {props.count} entries
+            </span>
             <div className="paging__tool">
                 <PagingSelect
                     handleChange={props.handleChange}
@@ -24,6 +33,14 @@ const PagingSelect = props => {
             props.handleChange(props.limit, (index)*props.limit, props.maxPage)
         }
     }
+
+    const activeStyling = (index) => {
+        console.log(props.offset)
+        if(index === parseInt(props.offset/props.limit))
+            return "active"
+        else return ""
+    } 
+
     const generateButton = () => {
         let tmp = [];
         for (let i = 0; i < page; i++) {
@@ -31,7 +48,7 @@ const PagingSelect = props => {
                 <button
                     key={i}
                     onClick={handleClick(i)}
-                    className="paging__move"> {i + 1} </button>
+                    className={`paging__move ${activeStyling(i)}`}> {i + 1} </button>
             )
         }
         return tmp;

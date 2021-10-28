@@ -11,6 +11,7 @@
 }
 
 .table__component{
+    position: relative;
     width: 1240px;
     height: 530px;
     background-color: white;
@@ -175,4 +176,11 @@
     position: absolute;
     left : 15px;
     bottom: 11px;
+}
+
+.table__component-paging{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    width: 100%;
 }

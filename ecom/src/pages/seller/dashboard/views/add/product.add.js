@@ -10,7 +10,6 @@ import {
     AddPhotoGallery,
     GeneralInput,
     MultiSelectInput,
-    CreatableSingleSelectInput
 } from "./components";
 
 import { BRAND_LIST, CATEGORIES_LIST, COLORS_LIST, SIZE_LIST } from "../../../../../const/options.list.const";

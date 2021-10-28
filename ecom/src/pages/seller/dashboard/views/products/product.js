@@ -10,7 +10,6 @@ import { ProductSearchBar, ProductAddButton, ProductExportButton, ProductTable }
 const Product = props => {
     const onSortChange = (item, name) => {
         // TODO: add sort 
-        console.log(item, name)
     }
 
     return (

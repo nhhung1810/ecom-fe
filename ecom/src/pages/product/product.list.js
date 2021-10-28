@@ -16,10 +16,13 @@ import {
     selectAvailableFilter, selectBrandsFilter, 
     selectColorFilter, selectPriceRangeFilter, 
     selectSizesFilter } from "../../redux/product.filter.redux";
+import { Redirect } from "react-router";
 
 export const ProductList = props => {
     const [busy, setBusy] = useState(true)
     const [data, setData] = useState([])
+    const [subCtgChosen, setSubCtgChosen] = useState(null)
+
     let sizeChosen = useSelector(selectSizesFilter)
     let colorChosen = useSelector(selectColorFilter)
     let brandChosen = useSelector(selectBrandsFilter)
@@ -29,7 +32,6 @@ export const ProductList = props => {
     let query = useQuery()
     let mainCtg = query.get("ctg")
 
-    const [subCtgChosen, setSubCtgChosen] = useState(null)
 
 
     useLayoutEffect(() => {
@@ -77,6 +79,12 @@ export const ProductList = props => {
         return e => {
             setSubCtgChosen(ctg)
         }
+    }
+
+    if(mainCtg === null){
+        return (
+            <Redirect to="/product?ctg=ladies"/>
+        )
     }
 
     return (
