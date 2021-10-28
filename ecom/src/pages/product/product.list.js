@@ -1,21 +1,25 @@
 import React, { useLayoutEffect, useState } from "react";
-import { NavBar } from "../../components";
-import { SideBar, MainView } from "./components";
 import { useQuery } from "../../hook";
 import "./product.list.css"
+
+import { extractParam, formatFirstCtg, formatSecondCtg } from "../../utilities/product.list.utils";
+
+import { NavBar } from "../../components";
+import { SideBar, MainView } from "./components";
+import { Footer } from "../../components";
+
 import { fetchAllProductWithFilter } from "../../api/product.api";
 import API_PATH from "../../const/api.path.const";
-import { CATEGORIES_LIST } from "../../const/options.list.const";
-import { Footer } from "../../components";
+
 import { useSelector } from "react-redux";
-import { selectColorFilter, selectSizesFilter } from "../../redux/product.filter.redux";
+import { selectBrandsFilter, selectColorFilter, selectSizesFilter } from "../../redux/product.filter.redux";
 
 export const ProductList = props => {
     const [busy, setBusy] = useState(true)
     const [data, setData] = useState([])
     let sizeChosen = useSelector(selectSizesFilter)
     let colorChosen = useSelector(selectColorFilter)
-    console.log("This color", colorChosen)
+    let brandChosen = useSelector(selectBrandsFilter)
 
     let query = useQuery()
     let mainCtg = query.get("ctg")
@@ -25,7 +29,7 @@ export const ProductList = props => {
 
     useLayoutEffect(() => {
         let finalParam = extractParam([mainCtg, subCtgChosen],
-            sizeChosen, colorChosen);
+            sizeChosen, colorChosen, brandChosen);
         let mounted = true
         // FETCH API HERE
         fetchAllProductWithFilter(finalParam).then(response => {
@@ -57,7 +61,7 @@ export const ProductList = props => {
             setBusy(false)
         })
         return () => mounted = false
-    }, [query.toString(), subCtgChosen, sizeChosen, colorChosen])
+    }, [query.toString(), subCtgChosen, sizeChosen, colorChosen, brandChosen])
 
 
 
@@ -83,44 +87,4 @@ export const ProductList = props => {
             <Footer />
         </div>
     )
-}
-
-const extractParam = (ctgList, sizeParam, colorParam) => {
-    let ctgParam = ctgList.filter(e => e != null).map(e => {
-        let tmp = new URLSearchParams({ categories: e });
-        return tmp.toString();
-    });
-
-    if (ctgParam.length === 0)
-        ctgParam = ["categories="];
-    if (sizeParam.length === 0)
-        sizeParam = ["size="];
-    else
-        sizeParam = sizeParam.map(e => {
-            let tmp = new URLSearchParams({ size: e });
-            return tmp.toString()
-        })
-    if (colorParam.length === 0)
-        colorParam = ["colors="];
-    else 
-        colorParam = colorParam.map(e => {
-            let tmp = new URLSearchParams({colors : e})
-            return tmp.toString()
-        })
-
-    let final = [...ctgParam, ...sizeParam, ...colorParam];
-    let finalParam = final.join("&");
-    console.log(finalParam);
-    return finalParam;
-}
-
-const formatFirstCtg = (mainCtg) => {
-    return CATEGORIES_LIST.find(e => e.value == mainCtg).label
-}
-
-
-const formatSecondCtg = (subCtgChosen) => {
-    if (subCtgChosen === null || subCtgChosen === undefined) return ""
-    return " / " + CATEGORIES_LIST.find(e => e.value == subCtgChosen).label
-
 }

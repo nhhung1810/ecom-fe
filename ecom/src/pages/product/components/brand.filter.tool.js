@@ -30,15 +30,23 @@ export const BrandFilterTool = props => {
         }
     }
 
+    const isChecked = brand => {
+        if(chosenBrands.findIndex(e => e === brand) !== -1)
+            return true
+        else
+            return false
+    }
+
     const generateBrands = () => {
         return BRAND_LIST.map(e => {
             return(
-                <div className="product__sidebar-filter-brand-align">
+                <div key={e.value} className="product__sidebar-filter-brand-align">
                     <div className={activeStyling()}>
                         {e.label}
                     </div>
                     <div>
                         <CustomCheckBox
+                            default={isChecked(e.value)}
                             handleChange={onBrandChosen(e.value)}
                         />
                     </div>

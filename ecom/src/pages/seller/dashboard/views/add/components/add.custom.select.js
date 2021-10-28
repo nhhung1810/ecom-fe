@@ -109,6 +109,30 @@ export const CreatableSingleSelectInput = props => {
     )
 }
 
+export const SingleSelectInput = props => {
+    let options = props.options
+    if (options === undefined)
+        options = defaultOptions
+    
+    let placeholder = props.placeholder
+    if(placeholder === undefined)
+        placeholder = defaultPlaceholder
+
+    return (
+        <div className="add__multi-container">
+            <span className="add__multi-label">{props.children}</span>
+            <Select
+                className="add__multi"
+                classNamePrefix="add_multi"
+                onChange={e => props.onChange(e.value)}
+                options={options}
+                styles={styleMultiSelect}
+                placeholder={placeholder}
+            />
+        </div>
+    )
+}
+
 
 export const MultiSelectInput = props => {
     let options = props.options

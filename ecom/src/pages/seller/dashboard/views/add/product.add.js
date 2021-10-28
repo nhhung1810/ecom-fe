@@ -14,6 +14,7 @@ import {
 } from "./components";
 
 import { BRAND_LIST, CATEGORIES_LIST, COLORS_LIST, SIZE_LIST } from "../../../../../const/options.list.const";
+import { SingleSelectInput } from "./components/add.custom.select";
 
 export const AddPage = props => {
     const [images, setImages] = useState([])
@@ -63,12 +64,12 @@ export const AddPage = props => {
                     onChange={setCtg}
                     placeholder="Select categories"> CATEGORIES 
                 </MultiSelectInput>
-                <CreatableSingleSelectInput
+                <SingleSelectInput
                     options={BRAND_LIST}
                     onChange={setBrand}
                     placeholder={"Select brand"}>
                     BRAND
-                </CreatableSingleSelectInput>
+                </SingleSelectInput>
                 <GeneralInput
                     handleChange={(e) => { setPrice(e.target.value) }}
                     type="number" label={"PRICE ($)"} />
