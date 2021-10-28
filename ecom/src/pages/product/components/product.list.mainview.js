@@ -7,15 +7,13 @@ export const MainView = props => {
         }
         return props.data.map(element => {
             return (
-                <>
-                    <ProductCard
-                        key={element.id}
-                        id={element.id}
-                        image={element.img}
-                        name={element.name}
-                        price={element.price}
-                    />
-                </>
+                <ProductCard
+                    key={element.id}
+                    id={element.id}
+                    image={element.img}
+                    name={element.name}
+                    price={element.price}
+                />
             )
         })
     }
