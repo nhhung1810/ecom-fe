@@ -2,7 +2,7 @@ import React from "react";
 import "./cart.css"
 import { useDispatch, useSelector } from "react-redux";
 
-import { NavBar } from "../../components";
+import { Footer, NavBar } from "../../components";
 import { selectAllProduct, removeAllFromCart } from "../../redux/cart.redux";
 import { CartTable, CartSummary } from "./components";
 import { uploadOrder } from "../../api/api.order";
@@ -39,6 +39,7 @@ export const CartPage = props => {
     }
 
     return (
+        <>
         <div className="cart__bg">
             <NavBar />
             <div className="cart__title ">
@@ -49,5 +50,7 @@ export const CartPage = props => {
                 <CartSummary total={totalPrice} onSubmit={onSubmit} />
             </div>
         </div>
+            <Footer/>
+        </>
     )
 }

@@ -31,7 +31,8 @@
 
 .cart__bg{
     background-color: white;
-    height: 200vh;
+    min-height: 100vh;
+    height: fit-content;
 }
 
 

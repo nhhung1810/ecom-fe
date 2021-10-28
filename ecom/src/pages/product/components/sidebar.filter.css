@@ -148,3 +148,7 @@
     margin: auto;
     flex: 1 1 10%;
 }
+
+.product__sidebar-filter-price{
+    width: 80%;
+}

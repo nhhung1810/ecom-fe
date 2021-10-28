@@ -45,12 +45,12 @@ export const extractParam = (
 }
 
 export const formatFirstCtg = (mainCtg) => {
-    return CATEGORIES_LIST.find(e => e.value == mainCtg).label
+    return CATEGORIES_LIST.find(e => e.value === mainCtg).label
 }
 
 
 export const formatSecondCtg = (subCtgChosen) => {
     if (subCtgChosen === null || subCtgChosen === undefined) return ""
-    return " / " + CATEGORIES_LIST.find(e => e.value == subCtgChosen).label
+    return " / " + CATEGORIES_LIST.find(e => e.value === subCtgChosen).label
 
 }
