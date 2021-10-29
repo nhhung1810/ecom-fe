@@ -4,6 +4,7 @@ const API_PATH = {
     SIGNUP : HOST_URL + "/register",
     SIGNIN : HOST_URL + "/login",
     SIGNOUT : HOST_URL + "/logout",
+    CHECK_AUTH : HOST_URL + "/check",
 
     UPLOAD_PRODUCT : HOST_URL + "/product/upload",
     GET_ALL_PRODUCTS : HOST_URL + "/product",

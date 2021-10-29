@@ -3,8 +3,8 @@ import Register from "./../../pages/modal/register/modal.register"
 import Login from "./../../pages/modal/login/modal.login"
 import { useDispatch, useSelector } from "react-redux"
 import { signout } from "../../redux/auth.redux"
-import { signoutAPI } from "../../api/auth.api"
-import { useState } from "react"
+import { checkAuthAPI, signoutAPI } from "../../api/auth.api"
+import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { selectAllProduct } from "../../redux/cart.redux"
 import { Avatar } from ".."
@@ -16,6 +16,14 @@ export const AuthenticatedGroup = props => {
         const response = await signoutAPI();
         if (response) dispatch(signout())
     }
+
+    useEffect(() => {
+        checkAuthAPI().then(response => {
+            if(response === false) throw response
+        }).catch(error => {
+            dispatch(signout())
+        })
+    }, [])
 
     return (
         <>

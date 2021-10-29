@@ -63,3 +63,22 @@ export const signoutAPI = async () => {
         return false
     })
 };
+
+export const checkAuthAPI = async () => {
+    return fetch(API_PATH.CHECK_AUTH, {
+        method: "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw res.status
+        return res.json()
+    })
+    .then(data => {
+        console.log(data)
+        return true
+    })
+    .catch(error => {
+        return false
+    })
+}
