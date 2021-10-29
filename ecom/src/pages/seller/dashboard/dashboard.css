@@ -71,12 +71,14 @@
 
     top: 50%;
     position: absolute;
+    z-index: 5;
     transform: translate(0, -50%);
   }
 
   .name-position{
-    top: 50%;
     position: absolute;
+    z-index: 5;
+    top: 50%;
     right: 24px;
     transform: translate(0, -50%);
   }
@@ -108,9 +110,49 @@
   }
 
   .avatar-dropdown{
+    cursor: pointer;
     vertical-align: middle;
     position: relative;
     bottom: 1px;
+  }
+
+
+  .avatar-dropdown-container {
+    position: absolute;
+    z-index: 10;
+    right : 40px;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.08);
+  }
+  .avatar-dropdown-container >*{
+    display: block;
+    z-index: 10;
+    width: 153px;
+    height: 40px;
+    margin: auto;
+    border-radius: 2px;
+    background-color: white;
+    border: none;
+
+    /* TEXT */
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: var(--charcoal-grey);
+    text-align: start;
+  }
+
+  .avatar-dropdown-container >*:hover{
+    background-color: var(--white-two);
+  }
+
+  .avatar-dropdown-container img{
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .avatar-mail{

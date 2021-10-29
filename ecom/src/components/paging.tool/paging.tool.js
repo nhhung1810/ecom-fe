@@ -29,13 +29,11 @@ const PagingSelect = props => {
     const page = props.maxPage
     const handleClick = (index) =>{
         return e =>{
-            console.log(index+1)
             props.handleChange(props.limit, (index)*props.limit, props.maxPage)
         }
     }
 
     const activeStyling = (index) => {
-        console.log(props.offset)
         if(index === parseInt(props.offset/props.limit))
             return "active"
         else return ""
@@ -56,7 +54,7 @@ const PagingSelect = props => {
 
     return (
         <span className="paging__tool">
-            <button className="paging__max" disabled> 10 </button>
+            <button className="paging__max" disabled> {props.limit} </button>
             <button className="paging__move"> {"<<"} </button>
             <button className="paging__move"> {"<"} </button>
             {generateButton()}

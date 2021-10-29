@@ -44,3 +44,11 @@ export const BRAND_LIST = [
     {value: "hm", label: "H&M"},
     {value: "ninomax", label: "Ninomax"},
 ]
+
+export const SORT_PRODUCT_LIST = [
+    {value: 0, label: "Popularity"},
+    {value: 1, label: "Name: A - Z"},
+    {value: 2, label: "Price: Lowest to highest"},
+    {value: 3, label: "Price: Highest to lowest"},
+
+]

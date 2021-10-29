@@ -126,19 +126,10 @@
 .product__mainview-sort-button{
     width: 179px;
     height: 30px;
-    border: solid 1px var(--greyish-two);
-    background-color: var(--white-two);
+}
 
-    /* TEXT */
+.product__mainview-sort-button div{
     font-family: Montserrat, sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.57;
-    letter-spacing: normal;
-    text-align: center;
-    color: var(--greyish-brown);
 }
 
 .product__mainview-body-container{
@@ -166,6 +157,28 @@
 .product__card-image{
     position: relative;
     z-index: 0;
+}
+
+.product__card-sold-out{
+    position: absolute;
+    display: inline-block;
+    margin: auto;
+    bottom: 10px;
+    left: -5px;
+    z-index: 3;
+    width: 60px;
+    height: fit-content;
+    background-color: #808080;
+
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .product__card-image-size{

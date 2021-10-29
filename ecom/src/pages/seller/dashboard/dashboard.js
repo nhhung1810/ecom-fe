@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     BrowserRouter as Router,
     Switch,
@@ -12,9 +12,10 @@ import "./dashboard.css"
 import "./sidecard.css"
 import { Order, Product } from "./views";
 
-import { selectAuthUser } from "../../../redux/auth.redux";
-import { useSelector } from "react-redux";
+import { selectAuthUser, signout } from "../../../redux/auth.redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AddPage } from "./views/add/product.add";
+import { useOnClickOutside } from "../../../hook";
 
 
 
@@ -41,14 +42,14 @@ const Dashboard = () => {
 
     if (user === null) {
         return (
-            <Redirect to="logindash"></Redirect>
+            <Redirect to="/logindash"></Redirect>
         )
     }
 
     return (
         <Router>
             <div className="sidenav">
-                <Logo path={images}/>
+                <Logo path={images} />
 
                 <SideCard handleActiveStyling={activeStyling(1)} handleClick={setActive(1)}
                     name="Overview"
@@ -94,13 +95,40 @@ const Dashboard = () => {
 
 
 const Header = props => {
+    const ref = useRef()
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    useOnClickOutside(ref, () => setIsModalOpen(false))
+    const dispatch = useDispatch()
+
+    const onSignout = e => {
+        dispatch(signout())
+    }
+
     return (
         <div className="title-bar">
             <span className="title">{props.name}</span>
             <span className="name-position">
                 <img src={process.env.PUBLIC_URL + "/images/ava.jpg"} alt="Avatar" className="avatar"></img>
                 <span className="avatar-name">Nguyen H. Hung</span>
-                <img alt="dropdown" src={process.env.PUBLIC_URL + "/images/dropdown.svg"} className="avatar-dropdown"></img>
+                <img
+                    onClick={e => setIsModalOpen(true)}
+                    alt="dropdown"
+                    src={process.env.PUBLIC_URL + "/images/dropdown.svg"}
+                    className="avatar-dropdown" />
+                {
+                    isModalOpen
+                        ?
+                        <div ref={ref} className="avatar-dropdown-container">
+                            <button type="button">
+                                <img src={process.env.PUBLIC_URL + "/images/profile.svg"} />
+                                View Profile</button>
+                            <button type="button" onClick={onSignout}>
+                                <img src={process.env.PUBLIC_URL + "/images/logout.svg"} />
+                                Log out</button>
+                        </div>
+                        :
+                        null
+                }
                 <img alt="mail" src={process.env.PUBLIC_URL + "/images/mail.svg"} className="avatar-mail"></img>
                 <img alt="noti" src={process.env.PUBLIC_URL + "/images/notification.svg"} className="avatar-mail"></img>
             </span>
@@ -148,12 +176,12 @@ const MainView = props => {
 
                 <Route exact path={`${props.path}/product`}>
                     <Header name="Products"></Header>
-                    <Product/>
+                    <Product />
                 </Route>
 
                 <Route path={`${props.path}/product/add`}>
                     <Header name="Add product"></Header>
-                    <AddPage/>
+                    <AddPage />
                 </Route>
 
                 <Route path={`${props.path}/payment`}>

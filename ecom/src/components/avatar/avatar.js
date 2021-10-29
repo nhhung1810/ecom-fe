@@ -12,10 +12,16 @@ export const Avatar = props => {
         if (props.onSignout) props.onSignout()
         else return
     }
+
+    const handleClick = e => {
+        if(props.disable !== true)
+            setIsModalOpen(true)
+        return
+    }
     return (
         <div className="avatar__container">
             <img
-                onClick={e =>setIsModalOpen(true)}
+                onClick={handleClick}
                 className="avatar__container-image"
                 src={process.env.PUBLIC_URL + "/images/ava.jpg"}
                 alt="avatar" />

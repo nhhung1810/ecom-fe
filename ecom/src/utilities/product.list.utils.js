@@ -8,6 +8,7 @@ export const extractParam = (
     brandParam,
     priceRangeParam,
     availableParam,
+    sortIndex
 ) => {
     let ctgParam = ctgList.filter(e => e != null).map(e => {
         let tmp = new URLSearchParams({ categories: e });
@@ -52,6 +53,8 @@ export const extractParam = (
             let tmp = new URLSearchParams({ available: e })
             return tmp.toString()
         })
+    // SORT INDEX
+    let sortParam = [`sort=${sortIndex}`]
 
     let final = [
         ...ctgParam, 
@@ -60,7 +63,8 @@ export const extractParam = (
         ...brandParam, 
         pstart, 
         pstop,
-        ...availableParam
+        ...availableParam,
+        sortParam,
     ];
     let finalParam = final.join("&");
     console.log(finalParam);
@@ -73,7 +77,9 @@ export const formatFirstCtg = (mainCtg) => {
 
 
 export const formatSecondCtg = (subCtgChosen) => {
-    if (subCtgChosen === null || subCtgChosen === undefined) return ""
+    if(subCtgChosen === "null") return ""
+    if (subCtgChosen === null || 
+            subCtgChosen === undefined) return ""
     return " / " + CATEGORIES_LIST.find(e => e.value === subCtgChosen).label
 
 }

@@ -30,13 +30,13 @@ export const getAllOrderByProductID = async (id) => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
+        if(!res.ok) throw res.status
         return res.json()})
     .then(data => {
         return data
     })
     .catch(error => {
-        return false
+        return error
     })
 }
 
@@ -49,13 +49,13 @@ export const getAllOrderBySellerID = async () => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
+        if(!res.ok) throw res.status
         return res.json()})
     .then(data => {
         return data
     })
     .catch(error => {
-        return false
+        return error
     })
 }
 
@@ -73,13 +73,13 @@ export const getAllOrderBySellerWithPaging = async (limit, offset) => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
+        if(!res.ok) throw res.status
         return res.json()})
     .then(data => {
         return data
     })
     .catch(error => {
-        return false
+        return error
     })
 }
 
@@ -92,13 +92,13 @@ export const countOrderBySellerID = async () => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
+        if(!res.ok) throw res.status
         return res.json()})
     .then(data => {
         return data
     })
     .catch(error => {
-        return false
+        return error
     })
 }
 

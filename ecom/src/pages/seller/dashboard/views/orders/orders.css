@@ -130,6 +130,7 @@
 .order__toolbar-align-right{
     display: inline-block;
     position: absolute;
+    z-index: 0;
     right: 20px;
 }
 

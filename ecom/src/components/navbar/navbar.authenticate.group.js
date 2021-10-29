@@ -1,7 +1,6 @@
 
 import Register from "./../../pages/modal/register/modal.register"
 import Login from "./../../pages/modal/login/modal.login"
-import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { signout } from "../../redux/auth.redux"
 import { signoutAPI } from "../../api/auth.api"
@@ -28,7 +27,6 @@ export const AuthenticatedGroup = props => {
     )
 }
 
-{/* <Link to="/logindash"><button type="button">Login Dash</button></Link> */}
 
 export const UnauthenticatedGroup = props => {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false)

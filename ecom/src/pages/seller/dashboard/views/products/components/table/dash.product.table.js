@@ -5,8 +5,13 @@ import { useEffect, useState } from "react"
 import { countProductByUserID, fetchAllProductWithOrderInfo } from "../../../../../../../api/product.api"
 import { categoriesFormat, formatImages } from "../../../../../../../utilities/dash.product.utils"
 import { dateFormat } from "../../../../../../../utilities/date.format"
+import { useDispatch, useSelector } from "react-redux"
+import { selectAuthUser, signout } from "../../../../../../../redux/auth.redux"
+import { Redirect } from "react-router-dom"
 
 export const ProductTable = props => {
+    let user = useSelector(selectAuthUser);
+    const dispatch = useDispatch()
     const [data, setData] = useState([])
     const [busy, setBusy] = useState(true)
     const [paging, setPaging] = useState({
@@ -20,10 +25,9 @@ export const ProductTable = props => {
         let mounted = true
         countProductByUserID()
         .then(response => {
-            var error = new Error("Null data")
-            if (!mounted) throw error;
-            if (!response) throw error
-            if (!response.count) throw error
+            if (!mounted) throw response;
+            if (!response) throw response
+            if (!response.count) throw response
             setPaging({
                 limit: paging.limit,
                 offset: paging.offset,
@@ -31,14 +35,18 @@ export const ProductTable = props => {
                 count: response.count
             })
         })
-        .catch(error => {console.log(error)})
+        .catch(error => {
+            if(error === 401){
+                dispatch(signout())
+            }
+        })
 
         fetchAllProductWithOrderInfo(paging.limit, paging.offset).then(response => {
-            var error = new Error("Null data")
-            if (!mounted) throw error;
-            if (!response) throw error
-            if (!response.data) throw error
-            if (response.data.length === 0) throw error
+            // var error = new Error("Null data")
+            if (!mounted) throw response;
+            if (!response) throw response
+            if (!response.data) throw response
+            if (response.data.length === 0) throw response
 
             let tmp = response.data.map(data => {
                 // IMAGE FETCHING
@@ -60,6 +68,9 @@ export const ProductTable = props => {
             setBusy(false)
         }).catch(error => {
             console.log(error);
+            if(error === 401){
+                dispatch(signout())
+            }
         })
         return () => mounted = false
     }, [paging.count, paging.limit, paging.offset, paging.maxPage])
@@ -72,6 +83,12 @@ export const ProductTable = props => {
             count: count
         })
         return
+    }
+
+    if (user === null) {
+        return (
+            <Redirect to="/logindash"></Redirect>
+        )
     }
 
     return (

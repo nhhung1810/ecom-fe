@@ -3,9 +3,14 @@ import { OrderTableRow } from "./order.table.components"
 import { countOrderBySellerID, getAllOrderBySellerWithPaging } from "./../../../../../../api/api.order"
 import { dateFormat } from "./../../../../../../utilities/date.format"
 import { PagingTool } from "../../../../../../components"
+import { useDispatch, useSelector } from "react-redux"
+import { selectAuthUser, signout } from "../../../../../../redux/auth.redux"
+import { Redirect } from "react-router-dom"
 
 
 export const OrderTable = props => {
+    let user = useSelector(selectAuthUser)
+    const dispatch = useDispatch()
     const [data, setData] = useState([])
     const [busy, setBusy] = useState(true)
     const [paging, setPaging] = useState({
@@ -18,24 +23,26 @@ export const OrderTable = props => {
     useEffect(() => {
         let mounted = true
         countOrderBySellerID().then(response => {
-            var error = new Error("Null data")
-            if (!mounted) throw error;
-            if (!response) throw error
-            if (!response.count) throw error
+            if (!mounted) throw response;
+            if (!response) throw response;
+            if (!response.count) throw response;
             setPaging({
                 limit: paging.limit,
                 offset: paging.offset,
                 maxPage: response.count / paging.limit,
                 count: response.count
             })
-        }).catch(error => console.log(error))
+        }).catch(error => {
+            console.log("wtf", error)
+            if(error === 401)
+                dispatch(signout())
+        })
 
         getAllOrderBySellerWithPaging(paging.limit, paging.offset).then(response => {
-            var error = new Error("Null data")
-            if (!mounted) throw error;
-            if (!response) throw error
-            if (!response.data) throw error
-            if (response.data.length === 0) throw error
+            if (!mounted) throw response;
+            if (!response) throw response;
+            if (!response.data) throw response;
+            if (response.data.length === 0) throw response;
 
             let result = response.data.map(e => {
                 // TODO:
@@ -54,9 +61,19 @@ export const OrderTable = props => {
             setData(result)
             setBusy(false)
 
-        }).catch(error => console.log(error))
+        }).catch(error => {
+            console.log("wtf", error)
+            if(error === 401)
+                dispatch(signout())
+        })
         return () => mounted = false
     }, [paging.offset, paging.limit, paging.maxPage])
+
+    if (user === null) {
+        return (
+            <Redirect to="/logindash"></Redirect>
+        )
+    }
 
     const rowGenerator = () => {
         let tmp = data.map((e, index) => {

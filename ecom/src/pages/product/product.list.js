@@ -15,13 +15,15 @@ import { useSelector } from "react-redux";
 import { 
     selectAvailableFilter, selectBrandsFilter, 
     selectColorFilter, selectPriceRangeFilter, 
-    selectSizesFilter } from "../../redux/product.filter.redux";
-import { Redirect } from "react-router";
+    selectSizesFilter 
+} from "../../redux/product.filter.redux";
+import { Redirect } from "react-router-dom";
 
 export const ProductList = props => {
     const [busy, setBusy] = useState(true)
     const [data, setData] = useState([])
     const [subCtgChosen, setSubCtgChosen] = useState(null)
+    const [sortIndex, setSortIndex] = useState(0)
 
     let sizeChosen = useSelector(selectSizesFilter)
     let colorChosen = useSelector(selectColorFilter)
@@ -37,16 +39,15 @@ export const ProductList = props => {
     useLayoutEffect(() => {
         let finalParam = extractParam([mainCtg, subCtgChosen],
                             sizeChosen, colorChosen, brandChosen,
-                             priceRangeChosen, availableChosen);
+                             priceRangeChosen, availableChosen, sortIndex);
         let mounted = true
         // FETCH API HERE
         fetchAllProductWithFilter(finalParam).then(response => {
             // CHECK RESPONSE
-            var error = new Error("Null data")
-            if (!mounted) throw error;
-            if (!response) throw error
-            if (!response.data) throw error
-            if (response.data.length === 0) throw error
+            if (!mounted) throw response;
+            if (!response) throw response;
+            if (!response.data) throw response
+            if (response.data.length === 0) throw response
             // FETCH DATA
             let tmp = response.data.map(e => {
                 const imageParam = {
@@ -60,6 +61,9 @@ export const ProductList = props => {
                     img: url,
                     name: e.Prod.name,
                     price: e.Prod.price,
+                    remain : e.Prod.remain,
+                    mainCtg : mainCtg,
+                    subStg : subCtgChosen
                 }
             })
             setData(tmp)
@@ -69,9 +73,16 @@ export const ProductList = props => {
             setBusy(false)
         })
         return () => mounted = false
-    }, [query.toString(), subCtgChosen, 
-        sizeChosen, colorChosen, brandChosen, 
-        availableChosen, priceRangeChosen])
+    }, [
+        query.toString(), 
+        subCtgChosen, 
+        sizeChosen, 
+        colorChosen, 
+        brandChosen, 
+        availableChosen, 
+        priceRangeChosen,
+        sortIndex,
+    ])
 
 
 
@@ -80,6 +91,10 @@ export const ProductList = props => {
             setSubCtgChosen(ctg)
         }
     }
+
+    const onSortChange = value => {
+        setSortIndex(value%4)
+    }   
 
     if(mainCtg === null){
         return (
@@ -98,7 +113,11 @@ export const ProductList = props => {
                 <SideBar
                     activeSideCard={subCtgChosen}
                     onChange={handleChangeCategories} />
-                {busy ? null : <MainView data={data} />}
+                {busy ? null : 
+                    <MainView
+                        onSortChange={onSortChange} 
+                        data={data} 
+                    />}
             </div>
             <Footer />
         </div>

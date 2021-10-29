@@ -7,14 +7,14 @@ export const fetchAllProductAPI = async () => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
-        return res.json()})
+        if(!res.ok) throw res.status
+        return res.json()
+    })
     .then(data => {
         return data
     })
     .catch(error => {
-        console.log(error);
-        return false
+        return error
     })
 }
 
@@ -27,14 +27,13 @@ export const fetchEachProductAPI = async (paramJson) => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
+        if(!res.ok) throw res.status
         return res.json()})
     .then(data => {
         return data
     })
     .catch(error => {
-        console.log(error);
-        return false
+        return error
     })
 }
 
@@ -45,14 +44,13 @@ export const fetchAllProductWithFilter = async (params) => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
+        if(!res.ok) throw res.status
         return res.json()})
     .then(data => {
         return data
     })
     .catch(error => {
-        console.log(error);
-        return false
+        return error
     })
 }
 
@@ -63,13 +61,13 @@ export const countProductByUserID = async () => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
+        if(!res.ok) throw res.status
         return res.json()})
     .then(data => {
         return data
     })
     .catch(error => {
-        return false
+        return error
     })
 }
 
@@ -88,12 +86,12 @@ export const fetchAllProductWithOrderInfo = async (limit, offset) => {
         credentials: "include",
     })
     .then(res => {
-        if(!res.ok) throw new Error("error")
+        if(!res.ok) throw res.status
         return res.json()})
     .then(data => {
         return data
     })
     .catch(error => {
-        return false
+        return error
     })
 }
