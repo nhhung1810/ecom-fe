@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 
 import { selectAuthUser } from "../../redux/auth.redux";
 
 import "./navbar.css"
-import { selectAllProduct } from "../../redux/cart.redux";
 import { DropCard } from "./navbar.dropcard";
 import { AuthenticatedGroup, UnauthenticatedGroup } from "./navbar.authenticate.group";
+import { searchProduct } from "../../api/product.api";
+import { formatFirstCtg } from "../../utilities/product.list.utils";
+import { MAIN_CATEGORIES_LIST } from "../../const/options.list.const";
 
 
 export const NavBar = props => {
@@ -33,13 +35,39 @@ export const NavBar = props => {
 }
 
 const SearchBar = props => {
+    const history = useHistory()
+    const [search, setSearch] = useState("")
+
+    const handleSearch = async e => {
+        if(search.length === 0) return
+        const response = await searchProduct(search)
+        if(!response) return
+        if(!response.data.id) return
+
+        let mainCtg = response.data.categories
+        let mainCtgParam = ""
+        if(MAIN_CATEGORIES_LIST.findIndex(e => e.value === mainCtg[0]) !== -1)
+            mainCtgParam = mainCtg[0]
+        else if(MAIN_CATEGORIES_LIST.findIndex(e => e.value === mainCtg[1]) !== -1)
+            mainCtgParam = mainCtg[1]
+
+        let query = {
+            id : response.data.id,
+            mc : mainCtgParam
+        }
+        let param = new URLSearchParams(query)
+        console.log(param.toString())
+        history.push("/info?" + param.toString())
+    }
+    
     return (
         <span className="navbar__search-container">
             <img
+                onClick={handleSearch}
                 src={process.env.PUBLIC_URL + "/images/search.svg"}
                 className="navbar__search-icon"
                 alt="search icon"></img>
-            <input type="text" className="navbar__searchbar" placeholder="Search"></input>
+            <input onChange={e => setSearch(e.target.value)} type="text" className="navbar__searchbar" placeholder="Search"></input>
         </span>
     )
 }

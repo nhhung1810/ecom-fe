@@ -7,6 +7,7 @@ const API_PATH = {
 
     UPLOAD_PRODUCT : HOST_URL + "/product/upload",
     GET_ALL_PRODUCTS : HOST_URL + "/product",
+    SEARCH_PRODUCT : HOST_URL + "/product/search?",
     GET_ALL_PRODUCTS_WITH_FILTER : HOST_URL + "/product/q?",
     GET_PRODUCT_INFO_QUERY : HOST_URL + "/product/info?",
     GET_PRODUCT_WITH_ORDER_INFO : HOST_URL + "/seller/product",

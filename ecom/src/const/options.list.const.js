@@ -12,6 +12,13 @@ export const CATEGORIES_LIST = [
     {value: "sets", label: "Sets"},
 ]
 
+export const MAIN_CATEGORIES_LIST = [
+    {value: "men", label: "Men"},
+    {value: "ladies", label: "Ladies"},
+    {value: "girls", label: "Girls"},
+    {value: "boys", label: "Boys"},
+]
+
 export const CATEGORIES_LIST_FOR_SIDEBAR = [
     {value: "jumpsuits", label: "Rompers / Jumpsuits"},
     {value: "casual", label: "Casual dresses"},

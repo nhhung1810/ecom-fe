@@ -12,7 +12,6 @@ export const ColorGroup = props => {
     }
 
     const activeStyling = (colors) => {
-        console.log("Active styling", colors);
         if (props.chosenColor === colors)
             return "active"
         else

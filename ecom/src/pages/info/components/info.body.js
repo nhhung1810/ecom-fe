@@ -53,6 +53,7 @@ export const InfoBody = props => {
                 sizes={props.data.sizes}
                 capacity={props.data.capacity}
                 img={props.data.imgs[0]}
+                remain={props.data.remain}
             />
             <div className="info__right-images-container"></div>
         </div>

@@ -95,3 +95,28 @@ export const fetchAllProductWithOrderInfo = async (limit, offset) => {
         return error
     })
 }
+
+
+export const searchProduct = async (value) => {
+    const search = {
+        name : value.toUpperCase(),
+    }
+
+    const params = new URLSearchParams(search)
+    const url = API_PATH.SEARCH_PRODUCT +  params.toString()
+        params.toString() 
+    return fetch(url, {
+        method: "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw res.status
+        return res.json()})
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        return false
+    })
+}

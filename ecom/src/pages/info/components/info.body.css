@@ -177,8 +177,18 @@
     text-align: center;
     color: white
 }
+
+
 .info__info-submit-button:hover{
     opacity: 0.9;
+}
+
+.info__info-submit-button:disabled{
+    background-color: grey;
+}
+
+.info__info-submit-button:disabled.info__info-submit-button:hover{
+    opacity: 1;
 }
 
 /* HORIZONTAL LINE */

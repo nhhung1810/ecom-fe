@@ -17,7 +17,8 @@ export const CartTable = props => {
                     color={e.color}
                     size={e.size}
                     image={e.img}
-                    price={e.price} />
+                    price={e.price}
+                    remain={e.remain} />
             )
         })
     }

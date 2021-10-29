@@ -1,5 +1,5 @@
 
-import { CATEGORIES_LIST } from "../const/options.list.const";
+import { CATEGORIES_LIST, MAIN_CATEGORIES_LIST } from "../const/options.list.const";
 
 export const extractParam = (
     ctgList,
@@ -72,7 +72,9 @@ export const extractParam = (
 }
 
 export const formatFirstCtg = (mainCtg) => {
-    return CATEGORIES_LIST.find(e => e.value === mainCtg).label
+    let result = MAIN_CATEGORIES_LIST.find(e => e.value === mainCtg)
+    if(result) return result.label
+    else return null
 }
 
 
@@ -81,5 +83,6 @@ export const formatSecondCtg = (subCtgChosen) => {
     if (subCtgChosen === null || 
             subCtgChosen === undefined) return ""
     return " / " + CATEGORIES_LIST.find(e => e.value === subCtgChosen).label
-
 }
+
+

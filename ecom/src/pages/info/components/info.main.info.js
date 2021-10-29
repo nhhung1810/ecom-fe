@@ -23,7 +23,8 @@ export const MainInfo = props => {
             size: chosenSize,
             quantity: chosenQuantity,
             price: props.price,
-            img: props.img
+            img: props.img,
+            remain : props.remain,
         }
         dispatch(addToCart(cartData))
     }
@@ -31,7 +32,8 @@ export const MainInfo = props => {
     const handleChangeQuantity = (offset) => {
         return e => {
             e.preventDefault()
-            if (chosenQuantity + offset > 0 && chosenQuantity + offset <= props.capacity) {
+            if (chosenQuantity + offset > 0 && 
+                chosenQuantity + offset <= props.remain) {
                 setChosenQuantity(chosenQuantity + offset)
             }
         }
@@ -47,7 +49,7 @@ export const MainInfo = props => {
                     onChange={setChosenSize}
                     sizes={props.sizes} />
                 <ColorGroup
-                    chosenColor={chosenColor}
+                chosenColor={chosenColor}
                     onChange={setChosenColor}
                     colors={props.colors} />
                 <div className="info__info-quantity">
@@ -60,6 +62,7 @@ export const MainInfo = props => {
                     />
                 </div>
                 <button
+                    disabled={props.remain === 0}
                     type="submit"
                     className="info__info-submit-button">
                     Add to cart

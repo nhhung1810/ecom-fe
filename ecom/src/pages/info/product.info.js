@@ -14,6 +14,7 @@ export const ProductInfo = props => {
     let query = useQuery()
     const [data, setData] = useState(null)
     const [busy, setBusy] = useState(true)
+    let id = query.get("id");
 
     useLayoutEffect(() => {
         let mounted = true
@@ -41,16 +42,17 @@ export const ProductInfo = props => {
                 sizes: response.data.Prod.size,
                 capacity: response.data.Prod.quantity,
                 description: response.data.Prod.description,
-                price: response.data.Prod.price
+                price: response.data.Prod.price,
+                remain : response.data.Prod.remain
             })
             setBusy(false)
         })
         console.log(data)
         return () => mounted = false
-    }, [])
+    }, [id])
 
     const param = {
-        id: query.get("id"),
+        id: id,
         mainCtg: query.get("mc"),
         subCtg: query.get("sc")
     }

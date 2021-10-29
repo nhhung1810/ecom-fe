@@ -109,7 +109,7 @@ export const updateOrderStatusCompleted = async (id) => {
     const param = new URLSearchParams(queryData)
     const url = API_PATH.UPDATE_ORDER_STATUS_COMPLETED + param.toString()
     return fetch(url, {
-        method : "POST",
+        method : "PATCH",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",
     })
@@ -132,7 +132,7 @@ export const updateOrderStatusCancel = async (id) => {
     const param = new URLSearchParams(queryData)
     const url = API_PATH.UPDATE_ORDER_STATUS_CANCEL + param.toString()
     return fetch(url, {
-        method : "POST",
+        method : "PATCH",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",
     })

@@ -6,11 +6,10 @@ import { removeFromCart, addToCart } from "../../../redux/cart.redux";
 export const CartTableRow = props => {
     const dispatch = useDispatch()
     const [quantity, setQuantity] = useState(props.quantity);
-    const limit = 100;
 
     const handleQuantityChange = (offset) => {
         return e => {
-            if (quantity + offset > 0 && quantity + offset < limit){
+            if (quantity + offset > 0 && quantity + offset <= props.remain){
                 setQuantity(quantity + offset)
                 dispatch(addToCart({
                     id : props.id,

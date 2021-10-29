@@ -12,7 +12,8 @@ export const cartStore = createSlice({
         //     size : null,
         //     quantity : null,
         //     price : null,
-        //     img : null
+        //     img : null,
+        //     remain : null,
         // }
     },
 
@@ -21,8 +22,12 @@ export const cartStore = createSlice({
             let tmp = state.products.findIndex(e => e.id === action.payload.id)
             if (tmp === -1)
                 state.products.push(action.payload)
-            else 
-                state.products[tmp].quantity += action.payload.quantity
+            else {
+                let newQuantity = state.products[tmp].quantity + action.payload.quantity
+                if(newQuantity > state.products[tmp].remain)
+                    newQuantity = state.products[tmp].remain
+                state.products[tmp].quantity = newQuantity
+            }
 
         },
 
