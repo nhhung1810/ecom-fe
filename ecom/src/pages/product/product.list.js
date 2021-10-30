@@ -117,7 +117,8 @@ export const ProductList = props => {
                     <MainView
                         onSortChange={onSortChange} 
                         data={data} 
-                    />}
+                    />
+                }
             </div>
             <Footer />
         </div>

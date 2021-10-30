@@ -1,15 +1,10 @@
 
-import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { SORT_PRODUCT_LIST } from "../../../const/options.list.const"
 import { SortProductList } from "./custom.select.sort"
 export const MainView = props => {
     const generateProductCard = () => {
-        if (props.data === null) {
-            return
-        }
         return props.data.map(element => {
-            console.log("remain: ", element.remain)
             return (
                 <ProductCard
                     remain={element.remain}
@@ -42,9 +37,16 @@ export const MainView = props => {
                     />
                 </div>
             </div>
-            <div className="product__mainview-body-container">
-                {generateProductCard()}
-            </div>
+            {
+                props.data !== null && props.data.length > 0 ?
+                    <div className="product__mainview-body-container">
+                        {generateProductCard()}
+                    </div>
+                    :
+                    <div className="product__mainview-no-result">
+                        No result found
+                    </div>
+            }
             <div className="product__mainview-footer-container">
 
             </div>
@@ -61,8 +63,8 @@ const ProductCard = props => {
         const params = {
             // TODO: CHANGE THIS AFTER APPLIED THE API
             id: props.id,
-            mc : props.mainCtg,
-            sc : props.subStg
+            mc: props.mainCtg,
+            sc: props.subStg
         }
         const query = new URLSearchParams(params)
         history.push("/info?" + query.toString())

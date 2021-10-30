@@ -1,4 +1,4 @@
-import { NavBar } from "../../components"
+import { Footer, NavBar } from "../../components"
 import { useState, useLayoutEffect } from "react";
 import { Redirect } from "react-router-dom";
 
@@ -79,7 +79,7 @@ export const ProductInfo = props => {
                 />
             }
             {busy ? null : <InfoBody data={data} />}
-
+            <Footer/>
         </div>
     )
 }

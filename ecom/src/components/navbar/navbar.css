@@ -89,6 +89,7 @@
 }
 
 .navbar__right-register-button{
+    cursor: pointer;
     border: none;
     background-color: white;
     margin-right: 25px;
@@ -104,6 +105,7 @@
 }
 
 .navbar__right-login-button{
+    cursor: pointer;
     width: 120px;
     height: 35px;
 
@@ -123,6 +125,7 @@
 }
 
 .navbar__right-shopping-cart{
+    cursor: pointer;
     position: relative;
     top: 6px
 }

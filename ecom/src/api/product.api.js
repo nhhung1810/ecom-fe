@@ -120,3 +120,21 @@ export const searchProduct = async (value) => {
         return false
     })
 }
+
+export const getRandomProduct = async () => {
+    const url = API_PATH.GET_RANDOM_PRODUCTS;
+    return fetch(url, {
+        method: "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw res.status
+        return res.json()})
+    .then(data => {
+        return data
+    })
+    .catch(error => {
+        return error
+    })
+}

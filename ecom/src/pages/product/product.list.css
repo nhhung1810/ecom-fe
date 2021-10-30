@@ -93,6 +93,18 @@
 
 
 /* MAIN VIEW */
+.product__mainview-no-result{
+    position: absolute;
+    left: 47%;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: var(--dark-grey);
+}
 
 .product__mainview{
     flex: 1 1 calc(100% - var(--side-bar-width)); 

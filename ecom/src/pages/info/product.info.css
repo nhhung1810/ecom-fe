@@ -48,7 +48,8 @@
     flex-wrap: wrap;
     padding: 0 130px 0 130px;
     background-color: white;
-    height: 200vh;
+    min-height: 100vh;
+    height: fit-content;
 }
 
 .info__body > * {
@@ -74,8 +75,40 @@
 /* LEFT IMAGES */
 
 .info__left-image{
+    cursor: pointer;
     width: 80px;
     height: 115px;
     margin-bottom: 20px;
+    border: 0px;
+}
+/* RIGHT IMAGE */
+
+.info__right-images-more{
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: var(--dark-grey);
+}
+
+.info__right-images-more-brand{
+    margin-bottom: 5px;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: var(--dark-grey);
+}
+
+.info__right-images{
+    width: 80px;
+    height: 114px;
+    margin-bottom: 5px;
     border: 0px;
 }

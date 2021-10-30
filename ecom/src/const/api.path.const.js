@@ -13,6 +13,7 @@ const API_PATH = {
     GET_PRODUCT_INFO_QUERY : HOST_URL + "/product/info?",
     GET_PRODUCT_WITH_ORDER_INFO : HOST_URL + "/seller/product",
     GET_PRODUCT_WITH_ORDER_INFO_WITH_PAGING : HOST_URL + "/seller/product?",
+    GET_RANDOM_PRODUCTS : HOST_URL + "/product/random",
     
     UPLOAD_IMAGE : HOST_URL + "/image/upload",
     IMAGE : HOST_URL + "/image",
