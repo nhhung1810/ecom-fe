@@ -41,7 +41,8 @@ export const ProductTable = props => {
             }
         })
 
-        fetchAllProductWithOrderInfo(paging.limit, paging.offset).then(response => {
+        fetchAllProductWithOrderInfo(paging.limit, paging.offset)
+        .then(response => {
             // var error = new Error("Null data")
             if (!mounted) throw response;
             if (!response) throw response
@@ -54,13 +55,13 @@ export const ProductTable = props => {
                 return {
                     id: data.id,
                     imagePath: imgUrl,
+                    price: data.price,
                     pname: data.name,
-                    ptag: categoriesFormat(data.categories),
                     soldNum: data.sold,
                     capacity: data.capacity,
-                    dateAdded: dateFormat(data.created_date),
                     totalProfit: data.sold * data.price,
-                    price: data.price
+                    ptag: categoriesFormat(data.categories),
+                    dateAdded: dateFormat(data.created_date),
                 }
             })
             // ORDER SALE INFO FETCHING

@@ -32,9 +32,6 @@ export const getAllOrderByProductID = async (id) => {
     .then(res => {
         if(!res.ok) throw res.status
         return res.json()})
-    .then(data => {
-        return data
-    })
     .catch(error => {
         return error
     })
@@ -50,9 +47,7 @@ export const getAllOrderBySellerID = async () => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return error
@@ -74,9 +69,7 @@ export const getAllOrderBySellerWithPaging = async (limit, offset) => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return error
@@ -93,9 +86,7 @@ export const countOrderBySellerID = async () => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return error
@@ -115,9 +106,7 @@ export const updateOrderStatusCompleted = async (id) => {
     })
     .then(res => {
         if(!res.ok) throw new Error("error")
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return false
@@ -138,9 +127,7 @@ export const updateOrderStatusCancel = async (id) => {
     })
     .then(res => {
         if(!res.ok) throw new Error("error")
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return false

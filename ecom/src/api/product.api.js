@@ -10,9 +10,6 @@ export const fetchAllProductAPI = async () => {
         if(!res.ok) throw res.status
         return res.json()
     })
-    .then(data => {
-        return data
-    })
     .catch(error => {
         return error
     })
@@ -28,9 +25,7 @@ export const fetchEachProductAPI = async (paramJson) => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return error
@@ -45,9 +40,7 @@ export const fetchAllProductWithFilter = async (params) => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return error
@@ -62,9 +55,7 @@ export const countProductByUserID = async () => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return error
@@ -76,7 +67,6 @@ export const fetchAllProductWithOrderInfo = async (limit, offset) => {
         limit : limit,
         offset : offset
     }
-
     const params = new URLSearchParams(paging)
     const url = API_PATH.GET_PRODUCT_WITH_ORDER_INFO_WITH_PAGING + 
         params.toString() 
@@ -87,9 +77,7 @@ export const fetchAllProductWithOrderInfo = async (limit, offset) => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return error
@@ -112,9 +100,7 @@ export const searchProduct = async (value) => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return false
@@ -130,9 +116,7 @@ export const getRandomProduct = async () => {
     })
     .then(res => {
         if(!res.ok) throw res.status
-        return res.json()})
-    .then(data => {
-        return data
+        return res.json()
     })
     .catch(error => {
         return error

@@ -55,7 +55,6 @@ export const signoutAPI = async () => {
         return res.json()
     })
     .then(data => {
-        console.log(data)
         return true
     })
     .catch(error => {
@@ -75,7 +74,6 @@ export const checkAuthAPI = async () => {
         return res.json()
     })
     .then(data => {
-        console.log(data)
         return true
     })
     .catch(error => {
