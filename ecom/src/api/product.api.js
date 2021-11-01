@@ -32,8 +32,14 @@ export const fetchEachProductAPI = async (paramJson) => {
     })
 }
 
-export const fetchAllProductWithFilter = async (params) => {
-    return fetch(API_PATH.GET_ALL_PRODUCTS_WITH_FILTER + params, {
+export const fetchAllProductWithFilter = async (params, limit, offset) => {
+    const paging = {
+        limit : limit,
+        offset : offset
+    }
+    const p = new URLSearchParams(paging)
+    const url = API_PATH.GET_ALL_PRODUCTS_WITH_FILTER + params + "&" + p.toString()
+    return fetch(url, {
         method: "GET",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",
@@ -49,6 +55,21 @@ export const fetchAllProductWithFilter = async (params) => {
 
 export const countProductByUserID = async () => {
     return fetch(API_PATH.COUNT_PRODUCT_BY_SELLER, {
+        method: "GET",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw res.status
+        return res.json()
+    })
+    .catch(error => {
+        return error
+    })
+}
+
+export const countAllProducts = async (params) => {
+    return fetch(API_PATH.COUNT_ALL_PRODUCT + params.toString() , {
         method: "GET",
         headers: { 'Content-Type': "application/json" },
         credentials: "include",

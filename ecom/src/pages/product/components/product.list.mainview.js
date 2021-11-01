@@ -36,6 +36,18 @@ export const MainView = props => {
                         onChange={onChange}
                     />
                 </div>
+                {
+                    props.data !== null && props.data.length > 0 ?
+                        <CustomPaging 
+                            limit={props.limit}
+                            offset={props.offset}
+                            maxPage={props.maxPage}
+                            count={props.count}
+                            handlePagingChange={props.handlePagingChange}
+                        />
+                        : 
+                        null
+                }
             </div>
             {
                 props.data !== null && props.data.length > 0 ?
@@ -50,6 +62,49 @@ export const MainView = props => {
             <div className="product__mainview-footer-container">
 
             </div>
+        </div>
+    )
+}
+
+const CustomPaging = props => {
+
+    const handlePrev = e => {
+        if(props.offset === 0) return
+        props.handlePagingChange(
+            props.limit, 
+            props.offset - props.limit,
+            props.maxPage,
+            props.count
+        )
+        console.log("Here")
+    }
+
+    const handleNext = e => {
+        if(props.offset + props.limit >= props.count) return
+        props.handlePagingChange(
+            props.limit, 
+            props.offset + props.limit,
+            props.maxPage,
+            props.count
+        )
+        console.log("Here")
+    }
+
+    return (
+        <div className="product__mainview-paging">
+            <img
+                onClick={handlePrev}
+                className="product__mainview-paging-prev"
+                src={process.env.PUBLIC_URL + "/images/arrow.svg"}
+            />
+            <span className="product__mainview-paging-number">
+                {props.offset + 1} / {props.count}
+            </span>
+            <img
+                onClick={handleNext}
+                className="product__mainview-paging-next"
+                src={process.env.PUBLIC_URL + "/images/arrow.svg"}
+            />
         </div>
     )
 }

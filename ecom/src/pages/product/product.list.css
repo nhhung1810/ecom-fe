@@ -17,7 +17,8 @@
 }
 
 .product__mainview-header-container{
-    width: 100%;
+    position: relative;
+    width: 80%;
 }
 
 .product__container{
@@ -237,4 +238,36 @@
 
 .product__card-price{
     color: var(--greyish-brown);
+}
+
+.product__mainview-paging{
+    position: absolute;
+    right: 0px;
+    bottom: -5px;
+    display: inline-block;
+}
+
+.product__mainview-paging-prev{
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+
+.product__mainview-paging-next{
+    cursor: pointer;
+    transform: rotate(-90deg);
+}
+
+.product__mainview-paging-number{
+    position: relative;
+    bottom: 7px;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--dark-grey);
+    margin: 0 10px 0 10px;
 }

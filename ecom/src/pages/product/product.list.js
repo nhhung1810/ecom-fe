@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useQuery } from "../../hook";
 import "./product.list.css"
 
@@ -8,7 +8,7 @@ import { NavBar } from "../../components";
 import { SideBar, MainView } from "./components";
 import { Footer } from "../../components";
 
-import { fetchAllProductWithFilter } from "../../api/product.api";
+import { countAllProducts, fetchAllProductWithFilter } from "../../api/product.api";
 import API_PATH from "../../const/api.path.const";
 
 import { useSelector } from "react-redux";
@@ -24,6 +24,12 @@ export const ProductList = props => {
     const [data, setData] = useState([])
     const [subCtgChosen, setSubCtgChosen] = useState(null)
     const [sortIndex, setSortIndex] = useState(0)
+    const [paging, setPaging] = useState({
+        limit: 20,
+        offset: 0,
+        maxPage: 1,
+        count : 0,
+    })
 
     let sizeChosen = useSelector(selectSizesFilter)
     let colorChosen = useSelector(selectColorFilter)
@@ -34,15 +40,47 @@ export const ProductList = props => {
     let query = useQuery()
     let mainCtg = query.get("ctg")
 
+    useEffect(() => {
+        let finalParam = extractParam([mainCtg, subCtgChosen],
+            sizeChosen, colorChosen, brandChosen,
+             priceRangeChosen, availableChosen, sortIndex);
+        let mounted = true
+        countAllProducts(finalParam)
+        .then(response => {
+            if (!mounted) throw response;
+            if (!response) throw response;
+            if (!response.count) throw response;
 
+            setPaging({
+                limit: paging.limit,
+                offset: paging.offset,
+                maxPage: Math.ceil(response.count / paging.limit),
+                count: response.count
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        return () => mounted = false
+    }, [
+        query.toString(), 
+        subCtgChosen, 
+        sizeChosen, 
+        colorChosen, 
+        brandChosen, 
+        availableChosen, 
+        priceRangeChosen,
+    ])
 
     useLayoutEffect(() => {
         let finalParam = extractParam([mainCtg, subCtgChosen],
                             sizeChosen, colorChosen, brandChosen,
                              priceRangeChosen, availableChosen, sortIndex);
         let mounted = true
+
         // FETCH API HERE
-        fetchAllProductWithFilter(finalParam).then(response => {
+        fetchAllProductWithFilter(finalParam, paging.limit, paging.offset)
+        .then(response => {
             // CHECK RESPONSE
             if (!mounted) throw response;
             if (!response) throw response;
@@ -82,9 +120,8 @@ export const ProductList = props => {
         availableChosen, 
         priceRangeChosen,
         sortIndex,
+        paging.offset,
     ])
-
-
 
     const handleChangeCategories = ctg => {
         return e => {
@@ -95,6 +132,16 @@ export const ProductList = props => {
     const onSortChange = value => {
         setSortIndex(value%4)
     }   
+
+    const handlePagingChange = (limit, offset, maxPage, count) => {
+        setPaging({
+            limit: limit,
+            offset: offset,
+            maxPage: maxPage,
+            count: count,
+        })
+        return
+    }
 
     if(mainCtg === null){
         return (
@@ -117,6 +164,11 @@ export const ProductList = props => {
                     <MainView
                         onSortChange={onSortChange} 
                         data={data} 
+                        limit={paging.limit}
+                        offset={paging.offset}
+                        maxPage={paging.maxPage}
+                        count={paging.count}
+                        handlePagingChange={handlePagingChange}
                     />
                 }
             </div>
