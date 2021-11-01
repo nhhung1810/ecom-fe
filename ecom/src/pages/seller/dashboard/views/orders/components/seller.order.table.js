@@ -33,12 +33,16 @@ export const OrderTable = props => {
                 count: response.count
             })
         }).catch(error => {
-            console.log("wtf", error)
             if(error === 401)
                 dispatch(signout())
         })
+        return () => mounted = false
+    }, [])
 
-        getAllOrderBySellerWithPaging(paging.limit, paging.offset).then(response => {
+    useEffect(() => {
+        let mounted = true
+        getAllOrderBySellerWithPaging(paging.limit, paging.offset)
+        .then(response => {
             if (!mounted) throw response;
             if (!response) throw response;
             if (!response.data) throw response;
@@ -62,12 +66,11 @@ export const OrderTable = props => {
             setBusy(false)
 
         }).catch(error => {
-            console.log("wtf", error)
             if(error === 401)
                 dispatch(signout())
         })
         return () => mounted = false
-    }, [paging.offset, paging.limit, paging.maxPage])
+    }, [paging.offset])
 
     if (user === null) {
         return (

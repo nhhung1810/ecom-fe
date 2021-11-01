@@ -39,9 +39,18 @@ export const ProductTable = props => {
                 count: response.count
             })
         })
-        .then(() => {
-           return fetchAllProductWithOrderInfo(paging.limit, paging.offset)
+        .catch(error => {
+            if(error === 401){
+                dispatch(signout())
+            }
         })
+        return () => mounted = false
+    }, [])
+
+    useEffect(() => {
+        let mounted = true
+        
+        fetchAllProductWithOrderInfo(paging.limit, paging.offset)
         .then(response => {
             if (!mounted) throw {response, mounted};
             if (!response) throw response
@@ -74,9 +83,6 @@ export const ProductTable = props => {
         })
         return () => mounted = false
     }, [paging.offset])
-
-    console.log(paging)
-
     const handleChange = (limit, offset, maxPage, count) => {
         setPaging({
             limit: limit,

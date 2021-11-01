@@ -16,6 +16,7 @@ export const PagingTool = props => {
             </span>
             <div className="paging__tool">
                 <PagingSelect
+                    count={props.count} 
                     handleChange={props.handleChange}
                     offset={props.offset}
                     limit={props.limit} 
@@ -29,7 +30,7 @@ const PagingSelect = props => {
     const page = props.maxPage
     const handleClick = (index) =>{
         return e =>{
-            props.handleChange(props.limit, (index)*props.limit, props.maxPage)
+            props.handleChange(props.limit, (index)*props.limit, props.maxPage, props.count)
         }
     }
 
