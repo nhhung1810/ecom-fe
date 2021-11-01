@@ -14,7 +14,7 @@ export const PagingTool = props => {
                 (props.offset + props.limit)
             }`} of {props.count} entries
             </span>
-            <div className="paging__tool">
+            <div className="paging__tool-container">
                 <PagingSelect
                     count={props.count} 
                     handleChange={props.handleChange}

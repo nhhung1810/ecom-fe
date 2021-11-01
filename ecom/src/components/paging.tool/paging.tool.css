@@ -34,12 +34,14 @@
     color: var(--charcoal-grey);
 }
 
-.paging__tool{
+.paging__tool-container{
     display: inline-block;
-    width: 50%;
     position: absolute;
     right: 0px;
-    /* outline: 1px solid black; */
+}
+
+.paging__tool{
+    display: inline-block;
 }
 
 .paging__max{

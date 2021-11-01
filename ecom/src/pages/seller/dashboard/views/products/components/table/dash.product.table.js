@@ -12,8 +12,6 @@ import { Redirect } from "react-router-dom"
 export const ProductTable = props => {
     let user = useSelector(selectAuthUser);
     const dispatch = useDispatch()
-    const [data, setData] = useState([])
-    const [busy, setBusy] = useState(true)
     const [loading, setLoading] = useState({
         data : [],
         busy : true,
