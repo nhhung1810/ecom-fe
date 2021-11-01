@@ -28,8 +28,10 @@
 }
 
 .navbar__footer{
+    position: relative;
+    z-index: 3;
     width: 100%;
-    height: 50px;
+    height: fit-content;
     border-bottom: 1px solid #ececec;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
 }
@@ -39,13 +41,17 @@
     position: relative;
     left: 130px;
     top: 15px;
+    height: 35px;
+    max-height: 35px;
+    border-radius: 40px;
 }
 
 .navbar__searchbar{    
     padding-left: 15px;
     width: 181px;
     height: 35px;
-    border-radius: 17px;
+    max-height: 35px;
+    border-radius: 40px;
     border: solid 1px var(--greyish-two);
 }
 
@@ -65,12 +71,14 @@
     position: absolute;
     top: -2px;
     right: 10px;
+    opacity: 0.6;
 }
 
 .navbar__logo{
     position: absolute;
-    left: 46%;
+    left: 50%;
     top: 15px;
+    transform: translateX(-50%);
 }
 
 .navbar__right-align{
@@ -157,15 +165,17 @@
 .navbar__footer-dropcard-center{
     position: relative;
     text-align: center;
+    height: 50px;
 }
 
 .navbar__footer-dropcard{
+    position: relative;
+    top: 5px;
     font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.57;
     letter-spacing: normal;
     color: var(--dark-grey);
     padding-left: 20px;

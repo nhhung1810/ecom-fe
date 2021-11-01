@@ -8,7 +8,6 @@ import "./navbar.css"
 import { DropCard } from "./navbar.dropcard";
 import { AuthenticatedGroup, UnauthenticatedGroup } from "./navbar.authenticate.group";
 import { searchProduct } from "../../api/product.api";
-import { formatFirstCtg } from "../../utilities/product.list.utils";
 import { MAIN_CATEGORIES_LIST } from "../../const/options.list.const";
 
 
@@ -64,7 +63,7 @@ const SearchBar = props => {
         <span className="navbar__search-container">
             <img
                 onClick={handleSearch}
-                src={process.env.PUBLIC_URL + "/images/search.svg"}
+                src={process.env.PUBLIC_URL + "/images/search-2.svg"}
                 className="navbar__search-icon"
                 alt="search icon"></img>
             <input onChange={e => setSearch(e.target.value)} type="text" className="navbar__searchbar" placeholder="Search"></input>
