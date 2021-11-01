@@ -1,7 +1,7 @@
 import "./table.css"
 import { ProductTableHeader, ProductTableBody } from "./components"
 import { PagingTool } from "../../../../../../../components"
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { countProductByUserID, fetchAllProductWithOrderInfo } from "../../../../../../../api/product.api"
 import { categoriesFormat, formatImages } from "../../../../../../../utilities/dash.product.utils"
 import { dateFormat } from "../../../../../../../utilities/date.format"
@@ -14,6 +14,10 @@ export const ProductTable = props => {
     const dispatch = useDispatch()
     const [data, setData] = useState([])
     const [busy, setBusy] = useState(true)
+    const [loading, setLoading] = useState({
+        data : [],
+        busy : true,
+    })
     const [paging, setPaging] = useState({
         limit: 5,
         offset: 0,
@@ -35,16 +39,11 @@ export const ProductTable = props => {
                 count: response.count
             })
         })
-        .catch(error => {
-            if(error === 401){
-                dispatch(signout())
-            }
+        .then(() => {
+           return fetchAllProductWithOrderInfo(paging.limit, paging.offset)
         })
-
-        fetchAllProductWithOrderInfo(paging.limit, paging.offset)
         .then(response => {
-            // var error = new Error("Null data")
-            if (!mounted) throw response;
+            if (!mounted) throw {response, mounted};
             if (!response) throw response
             if (!response.data) throw response
             if (response.data.length === 0) throw response
@@ -64,17 +63,19 @@ export const ProductTable = props => {
                     dateAdded: dateFormat(data.created_date),
                 }
             })
-            // ORDER SALE INFO FETCHING
-            setData(tmp)
-            setBusy(false)
+            setLoading({
+                data : tmp,
+                busy : false,
+            })
         }).catch(error => {
-            console.log(error);
             if(error === 401){
                 dispatch(signout())
             }
         })
         return () => mounted = false
-    }, [paging.count, paging.limit, paging.offset, paging.maxPage])
+    }, [paging.offset])
+
+    console.log(paging)
 
     const handleChange = (limit, offset, maxPage, count) => {
         setPaging({
@@ -96,11 +97,11 @@ export const ProductTable = props => {
         <div className="table__component">
             <ProductTableHeader />
             {
-                busy
+                loading.busy
                     ?
                     null
                     :
-                    <ProductTableBody data={data} />
+                    <ProductTableBody data={loading.data} />
             }
             <div className="table__component-paging">
                 <PagingTool

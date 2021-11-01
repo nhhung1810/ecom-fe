@@ -14,6 +14,7 @@ import {
 
 import { BRAND_LIST, CATEGORIES_LIST, COLORS_LIST, SIZE_LIST } from "../../../../../const/options.list.const";
 import { SingleSelectInput } from "./components/add.custom.select";
+import { useHistory } from "react-router";
 
 export const AddPage = props => {
     const [images, setImages] = useState([])
@@ -26,10 +27,18 @@ export const AddPage = props => {
     const [quantity, setQuantity] = useState(0)
     const [des, setDes] = useState('')
 
+    const history = useHistory()
+
     const handleSubmit = async e => {
         // TODO: VALIDATE ALL ENTRY
         e.preventDefault();
-
+        if(name.trim().length === 0) return
+        if(ctg.length === 0) return
+        if(brand.length === 0) return
+        if(price === 0) return
+        if(size.length === 0) return
+        if(colors.length === 0) return
+        if(quantity === 0) return
         // Phase upload data
         const productData = {
             "name": name,
@@ -42,13 +51,10 @@ export const AddPage = props => {
             "description": des,
         }
         let prodRes = await uploadProductAPI(productData)
-        console.log(prodRes);
-        if (!prodRes)
-            return;
+        if (!prodRes) return;
 
-        console.log(images);
         let imageResponse = await imageUploadAPI(images, prodRes.id)
-        console.log(imageResponse);
+        history.push("/dashboard/product")
     }
 
     return (

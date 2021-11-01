@@ -167,7 +167,16 @@
     padding-bottom: 74px;
 }
 
+.add__button-container button:hover{
+    opacity: 0.8;
+}
+
+.add__button-container button:active{
+    opacity: 1;
+}
+
 .add__button-cancel{
+    cursor: pointer;
     width: 180px;
     height: 48px;
     border-radius: 2px;
@@ -185,6 +194,7 @@
 }
 
 .add__button-complete{
+    cursor: pointer;
     width: 180px;
     height: 48px;
     border-radius: 2px;
@@ -200,6 +210,7 @@
     color: white;
     margin-left: 20px;
 }
+
 
 .add__photo-upload-container{
     position: relative;

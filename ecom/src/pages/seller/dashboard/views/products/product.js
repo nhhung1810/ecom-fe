@@ -3,9 +3,12 @@ import "./product.css";
 
 import Dropdown from "../dropdown/Dropdown"
 
-import { ProductSearchBar, ProductAddButton, ProductExportButton, ProductTable } from "./components";
-
-
+import { 
+    ProductSearchBar, 
+    ProductAddButton, 
+    ProductExportButton, 
+    ProductTable 
+} from "./components";
 
 const Product = props => {
     const onSortChange = (item, name) => {
