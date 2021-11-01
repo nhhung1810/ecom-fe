@@ -40,9 +40,9 @@ const HomePageBody = props => {
 const HomeSubImage = props => {
     let imageURL = [
         process.env.PUBLIC_URL + "images/home-2.jpg",
-        process.env.PUBLIC_URL + "images/home-2.jpg",
-        process.env.PUBLIC_URL + "images/home-2.jpg",
-        process.env.PUBLIC_URL + "images/home-2.jpg"
+        process.env.PUBLIC_URL + "images/home-3.jpg",
+        process.env.PUBLIC_URL + "images/home-4.png",
+        process.env.PUBLIC_URL + "images/home-5.jpg"
     ]
     return (
         <div className="home__body-sub">
