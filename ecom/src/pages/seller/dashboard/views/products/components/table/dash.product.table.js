@@ -81,6 +81,7 @@ export const ProductTable = props => {
         })
         return () => mounted = false
     }, [paging.offset])
+
     const handleChange = (limit, offset, maxPage, count) => {
         setPaging({
             limit: limit,
@@ -105,7 +106,8 @@ export const ProductTable = props => {
                     ?
                     null
                     :
-                    <ProductTableBody data={loading.data} />
+                    <ProductTableBody
+                        data={loading.data} />
             }
             <div className="table__component-paging">
                 <PagingTool

@@ -19,22 +19,35 @@ export const DropCard = props => {
                     src={process.env.PUBLIC_URL + "/images/arrow.svg"}>
                 </img>
             </span>
-                {
-                    isOpen ?
+            {
+                isOpen ?
+                    <div ref={ref} className="navbar__dropcard">
                         <Link to={props.to}>
-                            <div ref={ref} className="navbar__dropcard">
-                                <button>Tops</button>
-                                <button>Bottoms</button>
-                                <button>Dresses </button>
-                                <button>Jacket</button>
-                                <button>Shoes</button>
-                                <button>Accessories</button>
-                                <button>Sale</button>
-                            </div>
+                            <button>Tops</button>
                         </Link>
-                        :
-                        null
-                }
+                        <Link to={props.to}>
+                            <button>Bottoms</button>
+                        </Link>
+                        <Link to={props.to}>
+                            <button>Dresses </button>
+                        </Link>
+                        <Link to={props.to}>
+                            <button>Jacket</button>
+                        </Link>
+                        <Link to={props.to}>
+                            <button>Shoes</button>
+                        </Link>
+                        <Link to={props.to}>
+                            <button>Accessories</button>
+                        </Link>
+                        <Link to={props.to}>
+                            <button>Sale</button>
+                        </Link>
+
+                    </div>
+                    :
+                    null
+            }
 
         </>
     )

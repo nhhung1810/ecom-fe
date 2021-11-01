@@ -1,23 +1,33 @@
 import { useRef, useState } from "react"
+import { archiveProduct } from "../../../../../../../../api/product.api"
 import { useOnClickOutside } from "../../../../../../../../hook"
 
 export const ProductTableBody = props => {
+    const [removed, setRemoved] = useState([])
     const rowGenerator = dataset => {
-        return dataset.map((data) => {
-            let tag = ""
-            const { id, imagePath, pname, 
-                ptag, soldNum, capacity, dateAdded, totalProfit } = data
-            tag = ptag
+        return dataset.map(data => {
+            if(removed.findIndex(e => e === data.id) !== -1)
+                return undefined
+
             return (
-                <tr key={id} className="table__body-row">
-                    <td><ProductSummary tag={tag} imagePath={imagePath} label={pname} /></td>
-                    <td>{String(soldNum) + "/" + String(capacity)}</td>
-                    <td>{dateAdded}</td>
-                    <td>{totalProfit}</td>
-                    <td className="table__body-align-left"><ActionButton /></td>
+                <tr key={data.id} className="table__body-row">
+                    <td>
+                        <ProductSummary 
+                            tag={data.ptag} 
+                            imagePath={data.imagePath} 
+                            label={data.pname} />
+                    </td>
+                    <td>{String(data.soldNum) + "/" + String(data.capacity)}</td>
+                    <td>{data.dateAdded}</td>
+                    <td>{data.totalProfit}</td>
+                    <td className="table__body-align-left">
+                        <ActionButton
+                            handleRemove={id => setRemoved([...removed, id])}
+                            id={data.id} />
+                    </td>
                 </tr>
             )
-        })
+        }).filter(e => e !== undefined)
 
     }
 
@@ -42,6 +52,11 @@ const ActionButton = props => {
     const [isOpen, setIsOpen] = useState(false)
     const ref = useRef()
 
+    const handleRemove = async e => {
+        let response = await archiveProduct(props.id)
+        if(response !== false) props.handleRemove(props.id)
+    }
+
     useOnClickOutside(ref, () => setIsOpen(false))
     return (
         <div className="table__action-container">
@@ -49,7 +64,7 @@ const ActionButton = props => {
             <img
                 onClick={e => setIsOpen(true)}
                 alt="action"
-                src={process.env.PUBLIC_URL + "/images/dropdown.svg"}
+            src={process.env.PUBLIC_URL + "/images/dropdown.svg"}
                 className="table__action-button"
             />
             {
@@ -63,7 +78,10 @@ const ActionButton = props => {
                                 src={process.env.PUBLIC_URL + "/images/edit.svg"}
                             />
                         </button>
-                        <button className="table__action-modal-remove">
+                        <button
+                            onClick={handleRemove}
+                            type="button" 
+                            className="table__action-modal-remove">
                             Remove
                             <img
                                 className="table__action-remove-icon"

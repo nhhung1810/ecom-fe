@@ -4,6 +4,7 @@
         "dropcard",
         "mainview",
         "orderid",
+        "ptag",
         "searchbar",
         "submitbutton"
     ]

@@ -28,7 +28,9 @@ const API_PATH = {
     COUNT_PRODUCT_BY_SELLER : HOST_URL + "/product/count",
     
     UPDATE_ORDER_STATUS_COMPLETED : HOST_URL + "/order/status?status=1&",
-    UPDATE_ORDER_STATUS_CANCEL : HOST_URL + "/order/status?status=2&"
+    UPDATE_ORDER_STATUS_CANCEL : HOST_URL + "/order/status?status=2&",
+
+    ARCHIVE_PRODUCT: HOST_URL + "/product/archive?",
 
 }
 

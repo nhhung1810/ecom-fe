@@ -20,7 +20,7 @@
 .paging__container{
     position: relative;
     width: 95%;
-    /* outline: 1px solid black; */
+    height: fit-content;
 }
 
 .paging__text{
@@ -44,8 +44,20 @@
     display: inline-block;
 }
 
+.paging__tool img{
+    text-align: center;
+    position: relative;
+    right: 3px;
+    top: 1px;
+}
+.paging__tool button{
+    display: inline-block;
+}
+
 .paging__max{
-    display: inline;
+    position: relative;
+    width: 32px;
+    height: 32px;
     border-radius: 2px;
     border: solid 1px var(--white-three);
     background-color: white;
@@ -55,7 +67,6 @@
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.43;
     letter-spacing: normal;
     text-align: center;
     color: var(--charcoal-grey);
@@ -63,7 +74,9 @@
 }
 
 .paging__move{
-    display: inline;
+    position: relative;
+    width: 32px;
+    height: 32px;
     border-radius: 2px;
     border: solid 1px var(--white-three);
     background-color: white;
@@ -73,10 +86,14 @@
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.43;
     letter-spacing: normal;
     text-align: center;
     color: var(--charcoal-grey);
+}
+
+.paging__move-number{
+    position: relative;
+    bottom: 5px;
 }
 
 .paging__move.active{

@@ -122,3 +122,23 @@ export const getRandomProduct = async () => {
         return error
     })
 }
+
+export const archiveProduct = async (id) => {
+    const queryData = {
+        id : id
+    }
+    const param = new URLSearchParams(queryData)
+    const url = API_PATH.ARCHIVE_PRODUCT + param.toString()
+    return fetch(url, {
+        method : "PATCH",
+        headers: { 'Content-Type': "application/json" },
+        credentials: "include",
+    })
+    .then(res => {
+        if(!res.ok) throw new Error("error")
+        return res.json()
+    })
+    .catch(error => {
+        return false
+    })
+}
